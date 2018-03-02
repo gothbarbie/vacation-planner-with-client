@@ -1,0 +1,10 @@
+.footer__top {
+  background: linear-gradient(180deg, #3B3B3B 0%, #242424 100%), #4F4F4F;
+  height: 20px;
+}
+
+.footer__main {
+  height: 240px;
+  background: linear-gradient(180deg, #3B3B3B 0%, #242424 23.76%), #4F4F4F;
+}
+

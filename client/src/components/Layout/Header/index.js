@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import './Header.css'
+import Button from '../../common/Button'
+
 type Props = {
   auth: {} | null
 }
@@ -15,10 +18,11 @@ class Header extends Component<Props> {
 
   render () {
     return (
-      <header>
-        <h1>Title</h1>
+      <header className="header">
+        <h1 className="header__logo">Title</h1>
         <nav>
           {this.renderLogin()}
+          <Button>Test</Button>
         </nav>
       </header>
     )
