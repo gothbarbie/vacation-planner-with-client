@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-class Header extends Component {
+type Props = {
+  auth: {} | null
+}
+
+class Header extends Component<Props> {
   renderLogin () {
     if (this.props.auth) {
       return <a href="/api/logout">Logout</a>
@@ -27,4 +31,4 @@ const mapStateToProps = ({ auth }) => {
   }
 }
 
-export default connect(mapStateToProps)(Header)
+export default connect((mapStateToProps: MapStateToProps<*, *, *>))(Header)

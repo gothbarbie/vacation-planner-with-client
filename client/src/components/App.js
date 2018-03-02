@@ -1,4 +1,5 @@
-// Rendering
+// @flow
+
 import React, { Component } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -7,7 +8,11 @@ import * as actions from '../actions'
 import Header from './Header'
 const Landing = () => <div>Landing</div>
 
-class App extends Component {
+type Props = {
+  fetchUser: Function
+}
+
+class App extends Component<Props> {
   componentDidMount () {
     this.props.fetchUser()
   }
