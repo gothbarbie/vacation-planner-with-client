@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
+import Header from './Header'
 const Landing = () => <div>Landing</div>
 
 class App extends Component {
@@ -11,24 +12,12 @@ class App extends Component {
     this.props.fetchUser()
   }
 
-  renderLogin() {
-    if (this.props.auth) {
-      return <a href="/api/logout">Logout</a>
-    }
-    return <a href="/auth/google">Login with Google</a>
-  }
-
   render() {
     return (
       <div>
         <BrowserRouter>
           <div>
-            <header>
-              <h1>Logo</h1>
-              <nav>
-                {this.renderLogin()}
-              </nav>
-            </header>
+            <Header />
             <div className="container">
               <Route exact path="/" component={Landing} />
             </div>
@@ -39,14 +28,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => {
-  return {
-    auth
-  }
-}
-
-const mapDispatchToProps = () => {
-
-}
-
-export default connect(mapStateToProps, actions)(App)
+export default connect(null, actions)(App)
