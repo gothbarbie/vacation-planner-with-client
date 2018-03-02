@@ -1,0 +1,32 @@
+.schedule {
+  width: 100%;
+}
+
+.calendar{
+  background: #FAFAFA;
+  width: 100%;
+  margin-top: 5rem;
+}
+
+.calendar__header {
+  font-family: 'Avenir Next', sans-serif;
+  color: #828282;
+  font-weight: 600;
+  font-size: 18px;
+  height: 3rem;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-column-gap: .75rem;
+  justify-items: center;
+  align-items: center;
+  border-bottom: 2px solid #80D1FF;
+  padding: 0 1.75rem;
+}
+
+.calendar__days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: .75rem .75rem;
+  padding: 1.75rem;
+}
+

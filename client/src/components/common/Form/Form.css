@@ -1,0 +1,17 @@
+.form {
+  background: #FAFAFA;
+  margin: 5rem 0;
+}
+
+.form__header {
+  border-bottom: 2px solid #80D1FF;
+}
+
+.form__main {
+  padding: 3rem;
+}
+
+.form__footer {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,16 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+}
+
+.input__input {
+  padding: .5rem 1rem;
+}
+
+.input__label {
+  font-family: 'Avenir Next', sans-serif;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 1rem;
+}

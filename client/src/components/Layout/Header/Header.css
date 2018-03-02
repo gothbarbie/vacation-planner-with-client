@@ -13,15 +13,38 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 0 .5rem;
 }
 
 .header__logo {
-
+  height: 60px;
+  margin-top: 10px;
 }
 
-nav {
+.nav {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  min-height: 42px;
+  align-items: center;
+  height: 100%;
+}
+
+.nav a {
+  font-family: 'Avenir Next', sans-serif;
+  color: #828282;
+  font-size: 16px;
+  font-weight: 100;
+  text-decoration: none;
+  padding: .5rem;
+  border-bottom: 2px solid transparent;
+}
+
+.nav a:hover {
+  border-bottom: 2px solid #80D1FF;
+}
+
+.nav__separator {
+  height: 2rem;
+  margin: 0 2rem;
+  border-right: 1px solid #BDBDBD;
 }

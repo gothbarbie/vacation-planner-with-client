@@ -12,8 +12,9 @@ import Main from './Layout/Main'
 
 import H1 from './common/H1'
 
+import Schedule from '../views/Schedule'
+
 const Landing = () => <div><H1>Welcome</H1></div>
-const Welcome = () => <div>Welcome</div>
 
 type Props = {
   fetchUser: Function,
@@ -32,7 +33,7 @@ class App extends Component<Props> {
             <Header />
             <Main>
               <Route component={Landing} exact path="/" />
-              <Route component={Welcome} exact path="/welcome" />
+              <Route component={Schedule} exact path="/schedule" />
             </Main>
             <Footer />
           </div>
