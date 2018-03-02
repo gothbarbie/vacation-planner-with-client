@@ -1,0 +1,6 @@
+.text-link:link, .text-link:visited {
+  text-decoration: none;
+}
+.text-link:active, .text-link:hover {
+  text-decoration: underline;
+}

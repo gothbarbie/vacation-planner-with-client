@@ -8,7 +8,11 @@ import * as actions from '../actions'
 import './App.css'
 import Header from './Layout/Header'
 import Footer from './Layout/Footer'
-const Landing = () => <div>Landing</div>
+import Main from './Layout/Main'
+
+import H1 from './common/H1'
+
+const Landing = () => <div><H1>Welcome</H1></div>
 const Welcome = () => <div>Welcome</div>
 
 type Props = {
@@ -26,10 +30,10 @@ class App extends Component<Props> {
         <BrowserRouter>
           <div className="wrapper">
             <Header />
-            <div className="container">
+            <Main>
               <Route component={Landing} exact path="/" />
               <Route component={Welcome} exact path="/welcome" />
-            </div>
+            </Main>
             <Footer />
           </div>
         </BrowserRouter>
