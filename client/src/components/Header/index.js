@@ -2,18 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 class Header extends Component {
-  renderLogin() {
+  renderLogin () {
     if (this.props.auth) {
       return <a href="/api/logout">Logout</a>
     }
     return <a href="/auth/google">Login with Google</a>
   }
 
-  render() {
+  render () {
     return (
       <header>
         <h1>Title</h1>
         <nav>
+          {this.renderLogin()}
         </nav>
       </header>
     )
@@ -22,7 +23,7 @@ class Header extends Component {
 
 const mapStateToProps = ({ auth }) => {
   return {
-    auth
+    auth,
   }
 }
 

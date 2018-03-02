@@ -8,18 +8,18 @@ import Header from './Header'
 const Landing = () => <div>Landing</div>
 
 class App extends Component {
-  componentDidMount() {
+  componentDidMount () {
     this.props.fetchUser()
   }
 
-  render() {
+  render () {
     return (
       <div>
         <BrowserRouter>
           <div>
             <Header />
             <div className="container">
-              <Route exact path="/" component={Landing} />
+              <Route component={Landing} exact path="/" />
             </div>
           </div>
         </BrowserRouter>
