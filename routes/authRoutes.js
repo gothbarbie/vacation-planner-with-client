@@ -1,13 +1,29 @@
 const passport = require('passport')
 
-module.exports = app => {
-  app.get('/auth/google', passport.authenticate('google', {
-    scope: ['profile', 'email']
-  }))
+const authController = require('../controllers/authController')
 
-  app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
-    res.redirect('/')
-  })
+module.exports = app => {
+  app.get(
+    '/auth/google',
+    passport.authenticate('google', {
+      scope: ['profile', 'email']
+    })
+  )
+
+  app.get(
+    '/auth/google/callback',
+    passport.authenticate('google'),
+    (req, res) => {
+      res.redirect('/')
+    }
+  )
+
+  app.post(
+    '/auth/email',
+    authController.validateRegister,
+    authController.register,
+    authController.login
+  )
 
   app.get('/api/logout', (req, res) => {
     req.logout()
