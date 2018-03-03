@@ -27,10 +27,9 @@ router.post(
   authController.login
 )
 
-router.get('/api/logout', (req, res) => {
-  req.logout()
-  res.redirect('/')
-})
+router.post('/auth/login', authController.login)
+
+router.get('/api/logout', authController.logout)
 
 router.get('/api/current_user', (req, res) => {
   res.send(req.user)
