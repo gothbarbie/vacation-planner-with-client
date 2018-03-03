@@ -7,9 +7,11 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const passport = require('passport')
-const promisify = require('es6-promisify')
+const { promisify } = require('es6-promisify')
 const flash = require('connect-flash')
 const expressValidator = require('express-validator')
+
+mongoose.Promise = global.Promise
 
 const routes = require('./routes/index')
 const errorHandlers = require('./handlers/errorHandlers')

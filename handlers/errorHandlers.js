@@ -49,7 +49,7 @@ exports.developmentErrors = (err, req, res, next) => {
     status: err.status,
     stackHighlighted: err.stack.replace(
       /[a-z_-\d]+.js:\d+:\d+/gi,
-      '<mark>$&</mark>'
+      '$&'
     )
   }
   res.status(err.status || 500)
@@ -57,6 +57,7 @@ exports.developmentErrors = (err, req, res, next) => {
     // Form Submit, Reload the page
     'application/json': () => res.json(errorDetails) // Ajax call, send JSON back
   })
+  console.error(err.stack)
 }
 
 /*
