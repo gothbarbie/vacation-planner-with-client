@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
-const { Schema } = mongoose
+const { Schema } = mongoose
+mongoose.Promise = global.Promise
+const md5 = require('md5')
 const validator = require('validator')
 const mongodbErrorHandler = require('mongoose-mongodb-errors')
-const md5 = require('md5')
 const passportLocalMongoose = require('passport-local-mongoose')
-
 
 const userSchema = new Schema({
   googleId: String,
@@ -30,4 +30,4 @@ userSchema.virtual('gravatar').get(function() {
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' })
 userSchema.plugin(mongodbErrorHandler)
 
-mongoose.model('users', userSchema)
+module.exports = mongoose.model('users', userSchema)

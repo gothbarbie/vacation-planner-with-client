@@ -1,7 +1,7 @@
 const passport = require('passport')
 const promisify = require('es6-promisify')
 const mongoose = require('mongoose')
-const User = mongoose.model('User')
+const User = mongoose.model('users')
 
 exports.validateRegister = (req, res, next) => {
   // Express Validator
