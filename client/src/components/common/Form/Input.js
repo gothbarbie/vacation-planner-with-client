@@ -7,12 +7,15 @@ type props = {
   error?: string,
   label: string,
   name: string,
+  onBlur: Function,
+  onChange: Function,
   placeholder?: string,
   required?: boolean,
-  type?: string
+  type?: string,
+  value: string,
 }
 
-export default ({ error, label, name, placeholder, required, type }: props) => (
+export default ({ error, label, name, onBlur, onChange, placeholder, required, type, value }: props) => (
   <div className="input">
     <label className="input__label">
       {label}
@@ -21,8 +24,11 @@ export default ({ error, label, name, placeholder, required, type }: props) => (
     <input
       className="input__input"
       name={name}
+      onBlur={onBlur}
+      onChange={onChange}
       placeholder={placeholder}
       type={type ? type : 'text'}
+      value={value}
     />
     {error && (
       <div className="input__error">

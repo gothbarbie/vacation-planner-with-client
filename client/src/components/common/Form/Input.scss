@@ -12,9 +12,9 @@
   padding: .5rem 1rem;
   font-family: 'Avenir Next', sans-serif;
   font-size: 18px;
-  color: #333;
+  color: $color-mine-shaft;
   border: 1px solid $color-silver;
-  background: #fff;
+  background: $color-white;
 }
 
 .input__input:focus {
@@ -24,17 +24,17 @@
 .input__label {
   font-family: 'Avenir Next', sans-serif;
   font-size: 14px;
-  color: #333;
+  color: $color-mine-shaft;
   margin-bottom: 1rem;
 }
 
 .input__label span {
-  color: #EB5757;
+  color: $color-burnt-sienna;
 }
 
 .input__error {
-  background: #EB5757;
-  color: #fff;
+  background: $color-burnt-sienna;
+  color: $color-white;
   font-family: 'Avenir Next', sans-serif;
   font-size: 14px;
   margin-top: .5rem;
@@ -48,7 +48,7 @@
   height: 0;
   border-style: solid;
   border-width: 0 10px 10px 10px;
-  border-color: transparent transparent #EB5757 transparent;
+  border-color: transparent transparent $color-burnt-sienna transparent;
   top: -.45rem;
   left: 10px;
 }
