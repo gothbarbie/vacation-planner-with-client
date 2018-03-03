@@ -10,24 +10,25 @@ type props = {
   title: string,
   status?: string,
   onDelete?: Function,
-  onSubmit: Function
+  onSubmit: Function,
 }
 
-export default ({ children, status, title, onDelete, onSubmit } : props) => (
+export default ({ children, status, title, onDelete, onSubmit }: props) => (
   <section className="form">
     <header className="form__header">
       <H2>
         {title} {status && <em>({status})</em>}
       </H2>
     </header>
-    <main className="form__main">
-      {children}
-    </main>
-    <footer className={classnames('form__footer', {
-      'form__footer--single-button': !onDelete,
-    })}>
-      {onDelete && <Button onClick={onDelete}>Delete</Button>}
-      <Button onClick={onSubmit}>Submit</Button>
+    <main className="form__main">{children}</main>
+    <footer
+      className={classnames('form__footer', {
+        'form__footer--single-button': !onDelete,
+      })}>
+      {onDelete && <Button onClick={onDelete} secondary>Delete</Button>}
+      <Button onClick={onSubmit} primary>
+        Submit
+      </Button>
     </footer>
   </section>
 )

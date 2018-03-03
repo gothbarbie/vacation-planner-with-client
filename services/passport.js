@@ -37,3 +37,5 @@ passport.use(
     }
   )
 )
+
+passport.use(User.createStrategy())
