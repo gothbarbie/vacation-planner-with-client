@@ -1,11 +1,13 @@
 // @flow
 
 import React from 'react'
+import type { Element } from 'react'
+
 
 import './TextLink.css'
 
 type props = {
-  children: ReactElement,
+  children: Element<any>,
   url: string,
 }
 

@@ -1,14 +1,14 @@
 // @flow
 
-import React from 'react'
+import * as React from 'react'
 
 import './Main.css'
 
-type props = {
-  children: ReactElement,
+type Props = {
+  children: React.Element<any>,
 }
 
-export default ({ children } : props) => (
+export default ({ children }: Props) => (
   <main className="main">
     <div className="main__inner">{children}</div>
   </main>

@@ -2,11 +2,11 @@
 
 import React from 'react'
 import classnames from 'classnames'
-
+import type { Element } from 'react'
 import './H2.css'
 
 type props = {
-  children: ReactElement,
+  children: Element<any>,
   light?: boolean,
   dark?: boolean,
 }

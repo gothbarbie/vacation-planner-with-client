@@ -16,8 +16,12 @@ export default () => (
       </Notice>
       <Form title="Enter your credentials">
         <div className="login__columns">
-          <Input label="E-mail" name="email" error="This field is required" />
-          <Input label="Password" name="password" />
+          <Input 
+            error="This field is required" label="E-mail" 
+            name="email" />
+          <Input 
+            label="Password" 
+            name="password" />
         </div>
       </Form>
     </div>

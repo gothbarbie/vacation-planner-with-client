@@ -2,11 +2,12 @@
 
 import React from 'react'
 import classnames from 'classnames'
+import type { Element } from 'react'
 
 import './Button.css'
 
 type props = {
-  children: ReactElement,
+  children: Element<any>,
   primary: boolean,
   secondary: boolean,
   disabled: boolean,

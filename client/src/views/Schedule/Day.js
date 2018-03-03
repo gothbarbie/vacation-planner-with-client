@@ -8,7 +8,9 @@ import './Day.css'
 type props = {
   date?: number,
   occupied: boolean,
-  people: [React.Element] | [],
+  people: [{
+    name: string
+  }],
   status?: 'string',
   weekend: boolean,
   empty: boolean,

@@ -1,13 +1,14 @@
 // @flow
 
 import React from 'react'
+import type { Element } from 'react'
 
 import Icon from '../Icon'
 
 import './Notice.css'
 
 type props = {
-  children: ReactElement
+  children: Element<any>
 }
 
 export default ({ children } : props) => (
