@@ -19,7 +19,7 @@ export default () => (
         <ul>
           <li>
             <TextLink url="https://github.com/gothbarbie/">
-              <Icon isBrand name="github" size="lg" />@gothbarbie84
+              <Icon isBrand marginRight name="github" size="lg" />@gothbarbie84
             </TextLink>
           </li>
         </ul>

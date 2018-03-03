@@ -30,3 +30,23 @@
   padding: 1.75rem;
 }
 
+.time-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.time-nav a {
+  color: #000;
+  display: flex;
+  align-items: center;
+  font-family: 'Avenir Next', sans-serif;
+  text-decoration: none;
+}
+
+.time-nav a:hover {
+  color: #80D1FF;
+  text-decoration: underline;
+}

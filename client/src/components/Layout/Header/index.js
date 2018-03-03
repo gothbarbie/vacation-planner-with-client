@@ -10,6 +10,21 @@ type Props = {
 }
 
 class Header extends Component<Props> {
+  renderLogo () {
+    if (this.props.auth) {
+      return (
+        <Link to="/schedule">
+          <img className="header__logo" src="/images/logo-v3.png" />
+        </Link>
+      )
+    }
+    return (
+      <Link to="/login">
+        <img className="header__logo" src="/images/logo-v3.png" />
+      </Link>
+    )
+  }
+
   renderLogin () {
     if (this.props.auth) {
       return (
@@ -29,7 +44,7 @@ class Header extends Component<Props> {
     return (
       <header className="header">
         <div className="header__inner">
-          <img className="header__logo" src="/images/logo-v3.png" />
+          {this.renderLogo()}
           <nav className="nav">
             <Link to="/schedule">Schedule</Link>
             <span className="nav__separator" />

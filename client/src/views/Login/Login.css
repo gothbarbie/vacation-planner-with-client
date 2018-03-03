@@ -1,0 +1,15 @@
+.login {
+  width: 100%;
+}
+
+.login__inner {
+  max-width: 700px;
+}
+
+.login__columns {
+  /* display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem 5rem; */
+  display: flex;
+  justify-content: space-around;
+}

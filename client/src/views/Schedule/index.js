@@ -1,9 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import H1 from '../../components/common/H1'
 import H3 from '../../components/common/H3'
 import Day from './Day'
 import Form from '../../components/common/Form'
+import Icon from '../../components/common/Icon'
 import Input from '../../components/common/Form/Input'
 
 import './Schedule.css'
@@ -11,7 +13,19 @@ import './Schedule.css'
 export default () => (
   <section className="schedule">
     <H1>January</H1>
-
+    <nav className="time-nav">
+      <Link to="/">
+        <Icon 
+          marginRight
+          name="arrow-circle-left" 
+          size="3x" />December 2017
+      </Link>
+      <Link to="/">
+        February<Icon marginLeft 
+          name="arrow-circle-right" 
+          size="3x" /> 
+      </Link>
+    </nav>
     <section className="calendar">
       <header className="calendar__header">
         <span>Monday</span>
@@ -23,29 +37,13 @@ export default () => (
         <span>Sunday</span>
       </header>
       <main className="calendar__days">
-        <Day date={1} 
-          occupied 
-          status="Arrival" />
-        <Day date={2} 
-          occupied 
-          status="Occupied" />
-        <Day date={3} 
-          occupied 
-          status="Occupied" />
-        <Day date={4} 
-          occupied 
-          status="Occupied" />
-        <Day date={5} 
-          occupied 
-          status="Occupied" />
-        <Day date={6} 
-          occupied 
-          status="Occupied" 
-          weekend />
-        <Day date={7} 
-          occupied 
-          status="Departure" 
-          weekend />
+        <Day date={1} occupied status="Arrival" />
+        <Day date={2} occupied status="Occupied" />
+        <Day date={3} occupied status="Occupied" />
+        <Day date={4} occupied status="Occupied" />
+        <Day date={5} occupied status="Occupied" />
+        <Day date={6} occupied status="Occupied" weekend />
+        <Day date={7} occupied status="Departure" weekend />
 
         <Day date={8} />
         <Day date={9} />
@@ -79,7 +77,6 @@ export default () => (
         <Day empty />
         <Day empty />
         <Day empty />
-        
       </main>
     </section>
 

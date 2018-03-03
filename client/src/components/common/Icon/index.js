@@ -9,9 +9,11 @@ type props = {
   name: string,
   isBrand?: boolean,
   size?: string,
+  marginLeft?: boolean,
+  marginRight?: boolean, 
 }
 
-export default ({ name, isBrand, size }: props) => (
+export default ({ name, isBrand, size, marginLeft, marginRight }: props) => (
   <i
     className={classnames(`icon fa-${name}`, {
       fab: isBrand,
@@ -24,6 +26,8 @@ export default ({ name, isBrand, size }: props) => (
       'fa-5x': size === '5x',
       'fa-7x': size === '7x',
       'fa-10x': size === '10x',
+      'margin-left': marginLeft,
+      'margin-right': marginRight,
     })}
   />
 )

@@ -6,13 +6,15 @@ import './Form.css'
 
 type props = {
   children: ReactElement,
+  title: string,
+  status?: string,
 }
 
-export default ({ children } : props) => (
+export default ({ children, status, title } : props) => (
   <section className="form">
     <header className="form__header">
       <H2>
-        Form <em>(status)</em>
+        {title} {status && <em>({status})</em>}
       </H2>
     </header>
     <main className="form__main">
