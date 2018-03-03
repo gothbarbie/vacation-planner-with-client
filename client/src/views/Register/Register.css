@@ -1,8 +1,8 @@
-.login {
+.register {
   width: 100%;
 }
 
-.login__inner {
+.register__inner {
   display: grid;
   grid-template-columns: 60% auto 30%;
   grid-template-rows: auto;
@@ -10,16 +10,19 @@
   align-items: center;
 }
 
-.login__columns {
-  display: flex;
+.register__columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 0 1rem;
   justify-content: space-around;
 }
 
-.login__or {
+.register__or {
   font-family: 'Avenir Next', sans-serif;
 }
 
-.login__google {
+.register__google {
   display: flex;
   justify-content: center;
   align-items: center;

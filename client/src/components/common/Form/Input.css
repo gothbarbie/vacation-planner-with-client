@@ -10,6 +10,12 @@
   font-family: 'Avenir Next', sans-serif;
   font-size: 18px;
   color: #333;
+  border: 1px solid #BDBDBD;
+  background: #fff;
+}
+
+.input__input:focus {
+  border: 1px solid #80D1FF;
 }
 
 .input__label {
@@ -17,6 +23,10 @@
   font-size: 14px;
   color: #333;
   margin-bottom: 1rem;
+}
+
+.input__label span {
+  color: #EB5757;
 }
 
 .input__error {

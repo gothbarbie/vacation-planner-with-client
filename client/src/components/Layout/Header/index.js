@@ -14,13 +14,17 @@ class Header extends Component<Props> {
     if (this.props.auth) {
       return (
         <Link to="/schedule">
-          <img className="header__logo" src="/images/logo-v3.png" />
+          <img
+            alt="Vacation Planner"
+            className="header__logo"
+            src="/images/logo-v3.png"
+          />
         </Link>
       )
     }
     return (
       <Link to="/login">
-        <img className="header__logo" src="/images/logo-v3.png" />
+        <img alt="Vacation Planner" className="header__logo" src="/images/logo-v3.png" />
       </Link>
     )
   }
@@ -34,8 +38,8 @@ class Header extends Component<Props> {
       )
     }
     return (
-      <ButtonLink primary url="/auth/google">
-        Login with Google
+      <ButtonLink primary url="/">
+        Login
       </ButtonLink>
     )
   }
