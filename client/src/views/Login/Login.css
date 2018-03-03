@@ -3,7 +3,15 @@
 }
 
 .login__inner {
-  max-width: 700px;
+  display: grid;
+  grid-template-columns: 60% auto 30%;
+  grid-template-rows: auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login__email {
+  grid-column: 1 / 1;
 }
 
 .login__columns {
@@ -12,4 +20,14 @@
   grid-gap: 1rem 5rem; */
   display: flex;
   justify-content: space-around;
+}
+
+.login__or {
+  font-family: 'Avenir Next', sans-serif;
+}
+
+.login__google {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
