@@ -1,28 +1,36 @@
+
+@import 'components/colors';
+
 .input {
   display: flex;
   flex-direction: column;
   margin: 2rem 0;
-  min-width: 220px; }
+  min-width: 220px;
+}
 
 .input__input {
   padding: .5rem 1rem;
   font-family: 'Avenir Next', sans-serif;
   font-size: 18px;
   color: #333;
-  border: 1px solid #bdbdbd;
-  background: #fff; }
+  border: 1px solid $color-silver;
+  background: #fff;
+}
 
 .input__input:focus {
-  border: 1px solid #80d1ff; }
+  border: 1px solid $color-anakiwa;
+}
 
 .input__label {
   font-family: 'Avenir Next', sans-serif;
   font-size: 14px;
   color: #333;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+}
 
 .input__label span {
-  color: #EB5757; }
+  color: #EB5757;
+}
 
 .input__error {
   background: #EB5757;
@@ -31,7 +39,8 @@
   font-size: 14px;
   margin-top: .5rem;
   padding: .5rem;
-  position: relative; }
+  position: relative;
+}
 
 .input__error span {
   position: absolute;
@@ -41,4 +50,5 @@
   border-width: 0 10px 10px 10px;
   border-color: transparent transparent #EB5757 transparent;
   top: -.45rem;
-  left: 10px; }
+  left: 10px;
+}
