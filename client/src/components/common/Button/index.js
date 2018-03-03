@@ -1,20 +1,19 @@
 // @flow
 
-import React from 'react'
+import * as React from 'react'
 import classnames from 'classnames'
-import type { Element } from 'react'
 
 import './Button.css'
 
-type props = {
-  children: Element<any>,
-  primary: boolean,
-  secondary: boolean,
-  disabled: boolean,
+type Props = {
+  children: React.ChildrenArray<any>,
+  primary?: boolean,
+  secondary?: boolean,
+  disabled?: boolean,
   url?: string,
 }
 
-export default ({ children, primary, secondary, disabled }: props) => (
+export default ({ children, primary, secondary, disabled }: Props) => (
   <button
     className={classnames('btn btn__default', {
       btn__primary: primary,
@@ -32,7 +31,7 @@ export const ButtonLink = ({
   secondary,
   disabled,
   url,
-}: props) => (
+}: Props) => (
   <a
     className={classnames('btn btn__default', {
       btn__primary: primary,

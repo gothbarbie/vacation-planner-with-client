@@ -6,7 +6,7 @@ import './Input.css'
 type props = {
   label: string,
   name: string,
-  placeholder: string,
+  placeholder?: string,
   error?: string
 }
 

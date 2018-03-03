@@ -1,13 +1,12 @@
 // @flow
 
-import React from 'react'
+import * as React from 'react'
 import classnames from 'classnames'
-import type { Element } from 'react'
 
 import './H3.css'
 
 type props = {
-  children: Element<any>,
+  children: React.ChildrenArray<any>,
   light?: boolean,
   dark?: boolean,
 }
