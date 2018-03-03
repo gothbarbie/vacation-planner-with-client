@@ -1,7 +1,5 @@
 .notice {
   color: #333333;
-  background: #80D1FF;
-  border: 2px solid #2D9CDB;
   padding: .5rem 1rem;
   font-family: 'Avenir Next', sans-serif;
   display: flex;
@@ -9,6 +7,20 @@
   margin: 2rem 0;
 }
 
-.notice .icon {
+.notice-blue {
+  background: #80D1FF;
+  border: 2px solid #2D9CDB;
+}
+
+.notice-blue .icon {
   color: #308BBF;
 } 
+
+.notice-yellow {
+  background: #F2C94C;
+  border: 2px solid #F2994A;
+}
+
+.notice-yellow .icon {
+  color: #F2994A;
+}

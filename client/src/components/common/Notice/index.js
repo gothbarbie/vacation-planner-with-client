@@ -1,18 +1,22 @@
 // @flow
 
-import React from 'react'
-import type { Element } from 'react'
+import * as React from 'react'
+import classnames from 'classnames'
 
 import Icon from '../Icon'
 
 import './Notice.css'
 
 type props = {
-  children: Element<any>
+  children: React.Element<any>,
+  warning: boolean,
 }
 
-export default ({ children } : props) => (
-  <div className="notice notice-blue">
+export default ({ children, warning } : props) => (
+  <div className={classnames('notice', {
+    'notice-blue': !warning,
+    'notice-yellow': warning,
+  })}>
     <Icon marginRight name="exclamation-circle" size="2x" /><div>{children}</div>
   </div>
 )
