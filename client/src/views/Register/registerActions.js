@@ -1,22 +1,28 @@
 import axios from 'axios'
 
-import { REGISTER_USER } from './registerTypes'
+import { FLASH_MESSAGE, FETCH_USER } from '../../actions/types'
 
+export const registerUser = formValues => async dispatch => {
+  try {
+    const res = await axios.post('/auth/email', {
+      email: formValues.email.value,
+      firstName: formValues.firstName.value,
+      lastName: formValues.lastName.value,
+      password: formValues.password.value,
+      passwordConfirm: formValues.passwordConfirm.value,
+    })
 
-export const registerUser = (formValues) => async dispatch => {
-
-  console.log('registerUser', formValues)
-
-  const res = await axios.post('/auth/email', {
-    email: formValues.email.value,
-    firstName: formValues.firstName.value,
-    lastName: formValues.lastName.value,
-    password: formValues.password.value,
-    'passwordConfirm': formValues.passwordConfirm.value,
-  })
-
-  dispatch({
-    type: REGISTER_USER,
-    payload: res.data,
-  })
+    dispatch({
+      type: FETCH_USER,
+      payload: res.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: FLASH_MESSAGE,
+      payload: {
+        type: 'danger',
+        message: error,
+      },
+    })
+  }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 import './Header.css'
 import { ButtonLink } from '../../common/Button'
@@ -24,7 +24,11 @@ class Header extends Component<Props> {
     }
     return (
       <Link to="/">
-        <img alt="Vacation Planner" className="header__logo" src="/images/logo-v3.png" />
+        <img
+          alt="Vacation Planner"
+          className="header__logo"
+          src="/images/logo-v3.png"
+        />
       </Link>
     )
   }
@@ -37,11 +41,13 @@ class Header extends Component<Props> {
         </ButtonLink>
       )
     }
-    return (
-      <ButtonLink primary url="/">
-        Login
-      </ButtonLink>
-    )
+    if (!this.props.history.location === '/') {
+      return (
+        <ButtonLink primary url="/">
+          Login
+        </ButtonLink>
+      )
+    }
   }
 
   render () {
@@ -69,4 +75,6 @@ const mapStateToProps = ({ auth }) => {
   }
 }
 
-export default connect((mapStateToProps: MapStateToProps<*, *, *>))(Header)
+export default connect((mapStateToProps: MapStateToProps<*, *, *>))(
+  withRouter(Header)
+)

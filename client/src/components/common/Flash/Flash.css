@@ -1,0 +1,22 @@
+.flash {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f2f2f2;
+  padding: .5rem;
+  border: 2px solid #bdbdbd;
+  font-family: 'Avenir Next', sans-serif; 
+  cursor: pointer;
+}
+
+.flash-success {
+  background: #6fcf97;
+  border: 2px solid #27ae60; }
+
+.flash-danger {
+  background: #eb5757;
+  border: 2px solid #993939; }
+
+.flash-warning {
+  background: #f2c94c;
+  border: 2px solid #f2994a; }

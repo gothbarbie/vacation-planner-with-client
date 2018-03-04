@@ -7,6 +7,7 @@ import * as actions from '../actions'
 
 import './App.css'
 import Header from './Layout/Header'
+import Flash from './common/Flash'
 import Footer from './Layout/Footer'
 import Main from './Layout/Main'
 
@@ -30,6 +31,7 @@ class App extends Component<Props> {
         <BrowserRouter>
           <div className="wrapper">
             <Header />
+            <Flash />
             <Main>
               <Route component={Login} exact path="/" />
               <Route component={Register} exact path="/register" />

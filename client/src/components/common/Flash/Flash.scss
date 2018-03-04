@@ -1,0 +1,26 @@
+@import '../../_colors';
+
+.flash {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $color-concrete;
+  padding: .5rem;
+  border: 2px solid $color-silver;
+  font-family: 'Avenir Next', sans-serif;
+}
+
+.flash-success {
+  background: $color-de-york;
+  border: 2px solid $color-jungle-green;
+}
+
+.flash-danger {
+  background: $color-burnt-sienna;
+  border: 2px solid $color-sanguine-brown;
+}
+
+.flash-warning {
+  background: $color-cream-can;
+  border: 2px solid $color-jaffa;
+}
