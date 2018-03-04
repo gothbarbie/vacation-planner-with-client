@@ -7,6 +7,12 @@
     "/auth/google": {
       "target": "http://localhost:5000"
     },
+    "/auth/email": {
+      "target": "http://localhost:5000"
+    },
+    "/auth/login": {
+      "target": "http://localhost:5000"
+    },
     "/api/logout": {
       "target": "http://localhost:5000"
     },

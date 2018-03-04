@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import H1 from '../../components/common/H1'
 import Notice from '../../components/common/Notice'
@@ -11,14 +12,47 @@ import Input from '../../components/common/Form/Input'
 import './Login.css'
 import { ButtonLink } from '../../components/common/Button'
 import Icon from '../../components/common/Icon'
+import * as actions from './loginActions'
 
 import type { MapStateToProps } from 'react-redux'
 
 type Props = {
   auth: {},
+  loginUser: Function,
+  history: RouterHistory,
 }
 
-class Login extends Component<Props> {
+type State = {
+  email: {
+    value: string,
+    touched: boolean,
+  },
+  password: {
+    value: string,
+    touched: boolean,
+  },
+  errors: {
+    email: string,
+    password: string,
+  },
+}
+
+class Login extends Component<Props, State> {
+  state = {
+    email: {
+      value: '',
+      touched: false,
+    },
+    password: {
+      value: '',
+      touched: false,
+    },
+    errors: {
+      email: '',
+      password: '',
+    },
+  }
+
   renderAlreadyLoggedIn () {
     if (this.props.auth) {
       return (
@@ -27,6 +61,50 @@ class Login extends Component<Props> {
           <Link to="/api/logout">Log out</Link>
         </Notice>
       )
+    }
+  }
+
+  handleSubmit = event => {
+    event.preventDefault()
+    this.props.loginUser({
+      email: this.state.email.value,
+      password: this.state.password.value,
+    })
+    this.props.history.push('/schedule')
+  }
+
+  handleChange = (event: Event) => {
+    if (event && event.target) {
+      const target = event.target
+      const value = target.type === 'checkbox' ? target.checked : target.value
+      const name = target.name
+      this.setState({ [name]: { ...this.state[name], value } })
+    }
+  }
+
+  handleBlur = (field: string) => (event: Event) => {
+    this.setState({
+      [field]: { ...this.state[field], touched: true },
+    })
+    this.validateForm()
+  }
+
+  validateForm () {
+    const email = this.state.email.value
+    const password = this.state.password.value
+    const errors = {}
+
+    errors.email = !email.length && 'Email is required'
+    errors.password = !password.length && 'Password is required'
+
+    this.setState({
+      errors: { ...this.state.errors, errors },
+    })
+  }
+
+  showErrors = (field: string) => {
+    if (this.state.errors[field] && this.state[field].touched) {
+      return this.state.errors[field]
     }
   }
 
@@ -41,14 +119,26 @@ class Login extends Component<Props> {
               First time here? <Link to="register"> Please register</Link>{' '}
               first...
             </Notice>
-            <Form title="Enter your credentials">
+            <Form onSubmit={this.handleSubmit} title="Enter your credentials">
               <div className="login__columns">
                 <Input
-                  error="This field is required"
+                  error={this.showErrors('email')}
+                  handleBlur={this.handleBlur('email')}
+                  handleChange={this.handleChange}
                   label="E-mail"
                   name="email"
+                  type="email"
+                  value={this.state.email.value}
                 />
-                <Input label="Password" name="password" />
+                <Input
+                  error={this.showErrors('password')}
+                  handleBlur={this.handleBlur('password')}
+                  handleChange={this.handleChange}
+                  label="Password"
+                  name="password"
+                  type="password"
+                  value={this.state.password.value}
+                />
               </div>
             </Form>
           </div>
@@ -70,4 +160,6 @@ const mapStateToProps = ({ auth }) => {
   }
 }
 
-export default connect((mapStateToProps: MapStateToProps<*, *, *>))(Login)
+export default connect((mapStateToProps: MapStateToProps<*, *, *>), actions)(
+  withRouter(Login)
+)

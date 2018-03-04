@@ -18,7 +18,7 @@ type Props = {
 type State = {
   firstName: {
     value: string,
-    touched: boolean
+    touched: boolean,
   },
   lastName: {
     value: string,
@@ -34,9 +34,15 @@ type State = {
   },
   passwordConfirm: {
     value: string,
-    touched: boolean
+    touched: boolean,
   },
-  errors: {},
+  errors: {
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    passwordConfirm: string,
+  },
 }
 
 class Register extends Component<Props, State> {
@@ -61,17 +67,22 @@ class Register extends Component<Props, State> {
       value: '',
       touched: false,
     },
-    errors: {},
+    errors: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      passwordConfirm: '',
+    },
   }
 
   handleSubmit = event => {
     event.preventDefault()
     this.props.registerUser(this.state)
-    
   }
 
-  handleChange = event => {
-    if (event.target) {
+  handleChange = (event : Event) => {
+    if (event && event.target) {
       const target = event.target
       const value = target.type === 'checkbox' ? target.checked : target.value
       const name = target.name
@@ -79,7 +90,7 @@ class Register extends Component<Props, State> {
     }
   }
 
-  handleBlur = field => event => {
+  handleBlur = (field: string) => (event: Event) => {
     this.setState({
       [field]: { ...this.state[field], touched: true },
     })
@@ -95,17 +106,19 @@ class Register extends Component<Props, State> {
 
     errors.email = !email.length && 'Email is required'
     errors.password = !password.length && 'Password is required'
-    errors.passwordConfirm = !passwordConfirm.length && 'Confirm Password is required'
+    errors.passwordConfirm =
+      !passwordConfirm.length && 'Confirm Password is required'
     if (!errors.passwordConfirm) {
-      errors.passwordConfirm = password !== passwordConfirm && 'Passwords must match'
+      errors.passwordConfirm =
+        password !== passwordConfirm && 'Passwords must match'
     }
-    
+
     this.setState({
-      errors,
+      errors: { ...this.state.errors, errors },
     })
   }
 
-  showErrors = field => {
+  showErrors = (field: string) => {
     if (this.state.errors[field] && this.state[field].touched) {
       return this.state.errors[field]
     }
@@ -121,46 +134,46 @@ class Register extends Component<Props, State> {
               <div className="register__columns">
                 <Input
                   error={this.showErrors('firstName')}
+                  handleBlur={this.handleBlur('firstName')}
+                  handleChange={this.handleChange}
                   label="First Name"
                   name="firstName"
-                  onBlur={this.handleBlur('firstName')}
-                  onChange={this.handleChange}
                   value={this.state.firstName.value}
                 />
                 <Input
                   error={this.showErrors('lastName')}
+                  handleBlur={this.handleBlur('lastName')}
+                  handleChange={this.handleChange}
                   label="Family Name"
                   name="lastName"
-                  onBlur={this.handleBlur('lastName')}
-                  onChange={this.handleChange}
                   value={this.state.lastName.value}
                 />
                 <Input
                   error={this.showErrors('email')}
+                  handleBlur={this.handleBlur('email')}
+                  handleChange={this.handleChange}
                   label="E-mail"
                   name="email"
-                  onBlur={this.handleBlur('email')}
-                  onChange={this.handleChange}
                   required
                   type="email"
                   value={this.state.email.value}
                 />
                 <Input
                   error={this.showErrors('password')}
+                  handleBlur={this.handleBlur('password')}
+                  handleChange={this.handleChange}
                   label="Password"
                   name="password"
-                  onBlur={this.handleBlur('password')}
-                  onChange={this.handleChange}
                   required
                   type="password"
                   value={this.state.password.value}
                 />
                 <Input
                   error={this.showErrors('passwordConfirm')}
+                  handleBlur={this.handleBlur('passwordConfirm')}
+                  handleChange={this.handleChange}
                   label="Confirm Password"
                   name="passwordConfirm"
-                  onBlur={this.handleBlur('passwordConfirm')}
-                  onChange={this.handleChange}
                   required
                   type="password"
                   value={this.state.passwordConfirm.value}

@@ -23,7 +23,7 @@ class Header extends Component<Props> {
       )
     }
     return (
-      <Link to="/login">
+      <Link to="/">
         <img alt="Vacation Planner" className="header__logo" src="/images/logo-v3.png" />
       </Link>
     )
