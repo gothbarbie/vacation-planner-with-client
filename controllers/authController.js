@@ -16,38 +16,38 @@ exports.validateRegister = (req, res, next) => {
   })
   req.checkBody('password', 'Password is required').notEmpty()
   req
-    .checkBody('password-confirm', 'You need to confirm the password')
+    .checkBody('passwordConfirm', 'You need to confirm the password')
     .notEmpty()
   req
-    .checkBody('password-confirm', "Passwords doesn't match")
+    .checkBody('passwordConfirm', "Passwords doesn't match")
     .equals(req.body.password)
 
   const errors = req.validationErrors()
   if (errors) {
     res.send({
       title: 'Register',
-      body: req.body
+      body: errors
     })
     return // Abort
   }
   next()
 }
 
-exports.register = async (req, res, next) => {
-  const user = new User({
-    email: req.body.email,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName
-  })
-  const registerWithPromise = promisify(User.register, User)
-  await registerWithPromise(user, req.body.password)
+exports.register = (req, res, next) => {
+  User.register(
+    {
+      email: req.body.email,
+      active: false
+    },
+    req.body.password,
+    function(err, user) {
+      if (err) {
+        return res.send({ error: user })
+      }
+    }
+  )
   next()
 }
-
-exports.login = passport.authenticate('local', {
-  failureRedirect: '/login',
-  successRedirect: '/schedule'
-})
 
 exports.logout = (req, res) => {
   req.logout()

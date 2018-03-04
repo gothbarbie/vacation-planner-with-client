@@ -22,12 +22,15 @@ router.get(
 
 router.post(
   '/auth/email',
-  authController.validateRegister,
   authController.register,
-  authController.login
+  passport.authenticate('local'), (req, res) => {
+    res.redirect('/schedule')
+  }
 )
 
-router.post('/auth/login', authController.login)
+router.post('/auth/login', passport.authenticate('local'), (req, res) => {
+  res.send(req.user)
+})
 
 router.get('/api/logout', authController.logout)
 
