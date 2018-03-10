@@ -27,7 +27,7 @@ const Input = ({ error, label, name, handleBlur, handleChange, placeholder, requ
       onBlur={handleBlur}
       onChange={handleChange}
       placeholder={placeholder}
-      type={type ? type : 'text'}
+      type={type || 'text'}
       value={value}
     />
     {error && (

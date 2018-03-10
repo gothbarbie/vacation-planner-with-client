@@ -9,15 +9,13 @@ import Day from './Day/index'
 import Form from '../../components/Form'
 import Icon from '../../components/Icon'
 import Input from '../../components/FormInput'
+import Checkbox from '../../components/FormCheckbox'
 
 import './Schedule.css'
 
-type Props = {
-  
-}
+type Props = {}
 
 export class Schedule extends Component<Props> {
-
   renderDays () {
     const days = [
       {
@@ -29,14 +27,16 @@ export class Schedule extends Component<Props> {
       },
     ]
 
-    return days.map(({ date, empty, occupied, status, weekend }, i) => <Day 
-      date={date} 
-      empty={empty} 
-      key={`day-${i}`} 
-      occupied={occupied} 
-      status={status} 
-      weekend={weekend} 
-    />)
+    return days.map(({ date, empty, occupied, status, weekend }, i) => (
+      <Day
+        date={date}
+        empty={empty}
+        key={`day-${i}`}
+        occupied={occupied}
+        status={status}
+        weekend={weekend}
+      />
+    ))
   }
 
   render () {
@@ -61,14 +61,28 @@ export class Schedule extends Component<Props> {
             <span>Saturday</span>
             <span>Sunday</span>
           </header>
-          <main className="calendar__days">
-            {this.renderDays()}
-          </main>
+          <main className="calendar__days">{this.renderDays()}</main>
         </section>
 
-        <Form>
-          <H3>Content</H3>
-          <Input label="Test" name="test" placeholder="placeholder" />
+        <Form title="New Trip">
+          <H3>Time Period</H3>
+
+          <Input
+            label="Arrival"
+            name="arrival"
+            placeholder="YYYY-MM-DD"
+            type="date"
+          />
+          <Input
+            label="Departure"
+            name="departure"
+            placeholder="YYYY-MM-DD"
+            type="date"
+          />
+
+          <H3>Participants</H3>
+          <Checkbox label="Folke" />
+          <Checkbox label="Carina" />
         </Form>
       </section>
     )

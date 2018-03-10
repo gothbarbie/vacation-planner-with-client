@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/FormCheckbox renders 1`] = `
+<label
+  className="form-checkbox"
+>
+  <input
+    className="form-checkbox__input"
+    type="checkbox"
+  />
+  <span
+    className="form-checkbox__checkmark"
+  />
+  <label
+    className="form-checkbox__label"
+  >
+    Label missing
+  </label>
+</label>
+`;

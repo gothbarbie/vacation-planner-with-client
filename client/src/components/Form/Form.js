@@ -11,9 +11,17 @@ type props = {
   status?: string,
   onDelete?: Function,
   onSubmit: Function,
+  submitText: string,
 }
 
-const Form = ({ children, status, title, onDelete, onSubmit }: props) => (
+const Form = ({
+  children,
+  status,
+  title,
+  onDelete,
+  onSubmit,
+  submitText,
+}: props) => (
   <section className="form">
     <form onSubmit={onSubmit}>
       <header className="form__header">
@@ -32,7 +40,7 @@ const Form = ({ children, status, title, onDelete, onSubmit }: props) => (
           </Button>
         )}
         <Button primary type="submit">
-          Submit
+          {submitText || 'Submit'}
         </Button>
       </footer>
     </form>

@@ -1,0 +1,65 @@
+.form-checkbox {
+  cursor: pointer;
+  margin-top: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+  user-select: none; }
+
+.form-checkbox__input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer; }
+
+.form-checkbox__checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: white;
+  border: 1px solid #80d1ff; }
+
+.form-checkbox__label {
+  font-family: 'Avenir Next', sans-serif;
+  font-size: 1rem;
+  margin-left: .7rem;
+  line-height: 1.5rem; }
+
+.form-checkbox:hover .form-checkbox__input ~ .form-checkbox__checkmark {
+  background-color: white;
+  border: 1px solid #80d1ff; }
+
+.form-checkbox:hover .form-checkbox__checkmark:after {
+  display: block; }
+
+.form-checkbox:hover .form-checkbox__checkmark:after {
+  left: .45rem;
+  top: .15rem;
+  width: .4rem;
+  height: .8rem;
+  border: solid #f2f2f2;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg); }
+
+.form-checkbox .form-checkbox__input:checked ~ .form-checkbox__checkmark {
+  background-color: #80d1ff; }
+
+.form-checkbox:hover .form-checkbox__input:checked ~ .form-checkbox__checkmark {
+  background-color: white; }
+
+.form-checkbox__checkmark:after {
+  content: "";
+  position: absolute;
+  display: none; }
+
+.form-checkbox .form-checkbox__input:checked ~ .form-checkbox__checkmark:after {
+  display: block; }
+
+.form-checkbox .form-checkbox__checkmark:after {
+  left: .45rem;
+  top: .15rem;
+  width: .4rem;
+  height: .8rem;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg); }

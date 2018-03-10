@@ -74,14 +74,32 @@ exports[`views/Schedule renders 1`] = `
       />
     </main>
   </section>
-  <Form>
+  <Form
+    title="New Trip"
+  >
     <H3>
-      Content
+      Time Period
     </H3>
     <Input
-      label="Test"
-      name="test"
-      placeholder="placeholder"
+      label="Arrival"
+      name="arrival"
+      placeholder="YYYY-MM-DD"
+      type="date"
+    />
+    <Input
+      label="Departure"
+      name="departure"
+      placeholder="YYYY-MM-DD"
+      type="date"
+    />
+    <H3>
+      Participants
+    </H3>
+    <FormCheckbox
+      label="Folke"
+    />
+    <FormCheckbox
+      label="Carina"
     />
   </Form>
 </section>
