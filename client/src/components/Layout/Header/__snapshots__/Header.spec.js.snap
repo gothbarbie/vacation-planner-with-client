@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Layout/Header renders 1`] = `
+<header
+  className="header"
+>
+  <div
+    className="header__inner"
+  >
+    <Link
+      replace={false}
+      to="/"
+    >
+      <img
+        alt="Vacation Planner"
+        className="header__logo"
+        src="/images/logo-v3.png"
+      />
+    </Link>
+    <nav
+      className="nav"
+    >
+      <Link
+        replace={false}
+        to="/schedule"
+      >
+        Schedule
+      </Link>
+      <span
+        className="nav__separator"
+      />
+      <Link
+        replace={false}
+        to="/people"
+      >
+        People
+      </Link>
+      <span
+        className="nav__separator"
+      />
+      <Link
+        replace={false}
+        to="/destinations"
+      >
+        Destinations
+      </Link>
+    </nav>
+  </div>
+</header>
+`;

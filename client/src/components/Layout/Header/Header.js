@@ -3,13 +3,16 @@ import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 
 import './Header.css'
-import { ButtonLink } from '../../Button/Button'
+import ButtonLink from '../../ButtonLink'
 
 type Props = {
   auth: {} | null,
+  history: {
+    location: string,
+  }
 }
 
-class Header extends Component<Props> {
+export class Header extends Component<Props> {
   renderLogo () {
     if (this.props.auth) {
       return (
@@ -41,7 +44,7 @@ class Header extends Component<Props> {
         </ButtonLink>
       )
     }
-    if (!this.props.history.location === '/') {
+    if (this.props.history && !this.props.history.location === '/') {
       return (
         <ButtonLink primary url="/">
           Login
