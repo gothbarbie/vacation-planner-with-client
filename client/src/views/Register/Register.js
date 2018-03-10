@@ -128,6 +128,7 @@ export class Register extends Component<Props, State> {
     return (
       <section className="register">
         <H1>New User</H1>
+        
         <div className="register__inner">
           <div className="register__email">
             <Form onSubmit={this.handleSubmit} title="Enter your credentials">

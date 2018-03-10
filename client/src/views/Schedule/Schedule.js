@@ -59,12 +59,31 @@ export class Schedule extends Component<Props, State> {
     ))
   }
 
+  handleChange = (event: SyntheticInputEvent<any>) => {
+    if (event && event.target && event.target.name) {
+      const newState = { ...this.state }
+      newState.participants.map(p => {
+        if (p.name === event.target.name) {
+          return (p.checked = !p.checked)
+        }
+        return p
+      })
+      this.setState(newState)
+    }
+  }
+
   renderParticipants () {
     const { participants } = this.state
     return (
       participants.length &&
       participants.map((p, i) => (
-        <Checkbox checked={p.checked} key={`participant-${i}`} label={p.name} />
+        <Checkbox
+          checked={p.checked}
+          key={`participant-${i}`}
+          label={p.name}
+          name={p.name}
+          onChange={this.handleChange}
+        />
       ))
     )
   }
@@ -73,6 +92,7 @@ export class Schedule extends Component<Props, State> {
     return (
       <section className="schedule">
         <H1>January</H1>
+
         <nav className="time-nav">
           <Link to="/">
             <Icon marginRight name="arrow-circle-left" size="3x" />December 2017
@@ -94,25 +114,27 @@ export class Schedule extends Component<Props, State> {
           <main className="calendar__days">{this.renderDays()}</main>
         </section>
 
-        <Form title="New Trip">
-          <H3>Time Period</H3>
-
-          <Input
-            label="Arrival"
-            name="arrival"
-            placeholder="YYYY-MM-DD"
-            type="date"
-          />
-          <Input
-            label="Departure"
-            name="departure"
-            placeholder="YYYY-MM-DD"
-            type="date"
-          />
-
-          <H3>Participants</H3>
-          {this.renderParticipants()}
-        </Form>
+        <div className="schedule__inner">
+          <Form submitText="Add" title="New Trip">
+            <H3>Time Period</H3>
+            <div className="register__columns">
+              <Input
+                label="Arrival"
+                name="arrival"
+                placeholder="YYYY-MM-DD"
+                type="date"
+              />
+              <Input
+                label="Departure"
+                name="departure"
+                placeholder="YYYY-MM-DD"
+                type="date"
+              />
+            </div>
+            <H3>Participants</H3>
+            <div className="register__columns">{this.renderParticipants()}</div>
+          </Form>
+        </div>
       </section>
     )
   }

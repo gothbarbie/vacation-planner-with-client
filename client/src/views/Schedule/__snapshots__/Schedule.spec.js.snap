@@ -74,37 +74,54 @@ exports[`views/Schedule renders 1`] = `
       />
     </main>
   </section>
-  <Form
-    title="New Trip"
+  <div
+    className="schedule__inner"
   >
-    <H3>
-      Time Period
-    </H3>
-    <Input
-      label="Arrival"
-      name="arrival"
-      placeholder="YYYY-MM-DD"
-      type="date"
-    />
-    <Input
-      label="Departure"
-      name="departure"
-      placeholder="YYYY-MM-DD"
-      type="date"
-    />
-    <H3>
-      Participants
-    </H3>
-    <FormCheckbox
-      checked={true}
-      key="participant-0"
-      label="Folke"
-    />
-    <FormCheckbox
-      checked={true}
-      key="participant-1"
-      label="Carina"
-    />
-  </Form>
+    <Form
+      submitText="Add"
+      title="New Trip"
+    >
+      <H3>
+        Time Period
+      </H3>
+      <div
+        className="register__columns"
+      >
+        <Input
+          label="Arrival"
+          name="arrival"
+          placeholder="YYYY-MM-DD"
+          type="date"
+        />
+        <Input
+          label="Departure"
+          name="departure"
+          placeholder="YYYY-MM-DD"
+          type="date"
+        />
+      </div>
+      <H3>
+        Participants
+      </H3>
+      <div
+        className="register__columns"
+      >
+        <FormCheckbox
+          checked={true}
+          key="participant-0"
+          label="Folke"
+          name="Folke"
+          onChange={[Function]}
+        />
+        <FormCheckbox
+          checked={true}
+          key="participant-1"
+          label="Carina"
+          name="Carina"
+          onChange={[Function]}
+        />
+      </div>
+    </Form>
+  </div>
 </section>
 `;
