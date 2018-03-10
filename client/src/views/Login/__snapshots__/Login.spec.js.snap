@@ -31,7 +31,7 @@ exports[`views/Login renders 1`] = `
         <div
           className="login__columns"
         >
-          <Component
+          <Input
             handleBlur={[Function]}
             handleChange={[Function]}
             label="E-mail"
@@ -39,7 +39,7 @@ exports[`views/Login renders 1`] = `
             type="email"
             value=""
           />
-          <Component
+          <Input
             handleBlur={[Function]}
             handleChange={[Function]}
             label="Password"

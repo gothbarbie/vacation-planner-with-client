@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Input renders 1`] = `
+<div
+  className="input"
+>
+  <label
+    className="input__label"
+  />
+  <input
+    className="input__input"
+    type="text"
+  />
+</div>
+`;

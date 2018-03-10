@@ -15,7 +15,7 @@ type props = {
   value: string,
 }
 
-export default ({ error, label, name, handleBlur, handleChange, placeholder, required, type, value }: props) => (
+const Input = ({ error, label, name, handleBlur, handleChange, placeholder, required, type, value }: props) => (
   <div className="input">
     <label className="input__label">
       {label}
@@ -38,3 +38,5 @@ export default ({ error, label, name, handleBlur, handleChange, placeholder, req
     )}
   </div>
 )
+
+export default Input

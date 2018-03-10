@@ -6,7 +6,7 @@ import H3 from '../../components/H3'
 import Day from './Day'
 import Form from '../../components/Form'
 import Icon from '../../components/Icon'
-import Input from '../../components/Form/Input'
+import Input from '../../components/FormInput'
 
 import './Schedule.css'
 

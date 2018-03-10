@@ -197,7 +197,7 @@ exports[`views/Schedule renders 1`] = `
     <H3>
       Content
     </H3>
-    <Component
+    <Input
       label="Test"
       name="test"
       placeholder="placeholder"

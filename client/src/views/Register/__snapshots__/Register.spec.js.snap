@@ -20,21 +20,21 @@ exports[`views/Register renders 1`] = `
         <div
           className="register__columns"
         >
-          <Component
+          <Input
             handleBlur={[Function]}
             handleChange={[Function]}
             label="First Name"
             name="firstName"
             value=""
           />
-          <Component
+          <Input
             handleBlur={[Function]}
             handleChange={[Function]}
             label="Family Name"
             name="lastName"
             value=""
           />
-          <Component
+          <Input
             handleBlur={[Function]}
             handleChange={[Function]}
             label="E-mail"
@@ -43,7 +43,7 @@ exports[`views/Register renders 1`] = `
             type="email"
             value=""
           />
-          <Component
+          <Input
             handleBlur={[Function]}
             handleChange={[Function]}
             label="Password"
@@ -52,7 +52,7 @@ exports[`views/Register renders 1`] = `
             type="password"
             value=""
           />
-          <Component
+          <Input
             handleBlur={[Function]}
             handleChange={[Function]}
             label="Confirm Password"
