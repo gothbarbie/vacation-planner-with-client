@@ -19,18 +19,18 @@ exports[`views/Schedule renders 1`] = `
         name="arrow-circle-left"
         size="3x"
       />
-      December 2017
+      February
     </Link>
     <span
       className="time-nav__current-month"
     >
-      January 2018
+      March 2018
     </span>
     <Link
       replace={false}
       to="/"
     >
-      February
+      April
       <Icon
         marginLeft={true}
         name="arrow-circle-right"

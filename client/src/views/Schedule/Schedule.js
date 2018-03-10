@@ -43,15 +43,29 @@ export class Schedule extends Component<Props, State> {
     ],
   }
   renderDays () {
-    const days = [
-      {
-        date: 1,
-        occupied: true,
-        status: 'Arrival',
-        weekend: true,
+    const daysInMonth = moment(this.props.date).daysInMonth()
+    const emptyDays = 35 - daysInMonth
+    const days = []
+
+    for (let i = 0; i < daysInMonth; i++) {
+      days.push({
+        date: i + 1,
+        occupied: false,
+        status: '',
+        weekend: false,
         empty: false,
-      },
-    ]
+      })
+    }
+
+    for (let i = 0; i < emptyDays; i++) {
+      days.push({
+        date: null,
+        occupied: false,
+        status: '',
+        weekend: false,
+        empty: true,
+      })
+    }
 
     return days.map(({ date, empty, occupied, status, weekend }, i) => (
       <Day
