@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Notice renders 1`] = `
+<div
+  className="notice notice-blue"
+>
+  <Icon
+    marginRight={true}
+    name="exclamation-circle"
+    size="2x"
+  />
+  <div />
+</div>
+`;

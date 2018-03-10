@@ -4,16 +4,16 @@ exports[`views/Login renders 1`] = `
 <section
   className="login"
 >
-  <Component>
+  <H1>
     Login
-  </Component>
+  </H1>
   <div
     className="login__inner"
   >
     <div
       className="login__email"
     >
-      <Component>
+      <Notice>
         First time here? 
         <Link
           replace={false}
@@ -23,7 +23,7 @@ exports[`views/Login renders 1`] = `
         </Link>
          
         first...
-      </Component>
+      </Notice>
       <Component
         onSubmit={[Function]}
         title="Enter your credentials"
@@ -62,7 +62,7 @@ exports[`views/Login renders 1`] = `
         secondary={true}
         url="/auth/google"
       >
-        <Component
+        <Icon
           isBrand={true}
           marginRight={true}
           name="google-plus"

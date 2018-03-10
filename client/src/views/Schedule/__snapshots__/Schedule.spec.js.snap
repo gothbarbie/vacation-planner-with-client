@@ -4,9 +4,9 @@ exports[`views/Schedule renders 1`] = `
 <section
   className="schedule"
 >
-  <Component>
+  <H1>
     January
-  </Component>
+  </H1>
   <nav
     className="time-nav"
   >
@@ -14,7 +14,7 @@ exports[`views/Schedule renders 1`] = `
       replace={false}
       to="/"
     >
-      <Component
+      <Icon
         marginRight={true}
         name="arrow-circle-left"
         size="3x"
@@ -26,7 +26,7 @@ exports[`views/Schedule renders 1`] = `
       to="/"
     >
       February
-      <Component
+      <Icon
         marginLeft={true}
         name="arrow-circle-right"
         size="3x"
@@ -194,9 +194,9 @@ exports[`views/Schedule renders 1`] = `
     </main>
   </section>
   <Component>
-    <Component>
+    <H3>
       Content
-    </Component>
+    </H3>
     <Component
       label="Test"
       name="test"

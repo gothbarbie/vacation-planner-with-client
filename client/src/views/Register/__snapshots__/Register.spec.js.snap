@@ -4,9 +4,9 @@ exports[`views/Register renders 1`] = `
 <section
   className="register"
 >
-  <Component>
+  <H1>
     New User
-  </Component>
+  </H1>
   <div
     className="register__inner"
   >
@@ -76,7 +76,7 @@ exports[`views/Register renders 1`] = `
         secondary={true}
         url="/auth/google"
       >
-        <Component
+        <Icon
           isBrand={true}
           marginRight={true}
           name="google-plus"
