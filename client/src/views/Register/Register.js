@@ -45,14 +45,6 @@ type State = {
   },
 }
 
-type myEvent = {
-  target?: {
-    checked?: Event,
-    value?: Event,
-    name?: Event,
-  },
-}
-
 export class Register extends Component<Props, State> {
   state = {
     firstName: {

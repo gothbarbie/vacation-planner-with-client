@@ -13,9 +13,29 @@ import Checkbox from '../../components/FormCheckbox'
 
 import './Schedule.css'
 
-type Props = {}
+type participant = {
+  name: string,
+  checked: boolean,
+}
 
-export class Schedule extends Component<Props> {
+type Props = {}
+type State = {
+  participants: Array<participant>,
+}
+
+export class Schedule extends Component<Props, State> {
+  state = {
+    participants: [
+      {
+        name: 'Folke',
+        checked: true,
+      },
+      {
+        name: 'Carina',
+        checked: true,
+      },
+    ],
+  }
   renderDays () {
     const days = [
       {
@@ -37,6 +57,16 @@ export class Schedule extends Component<Props> {
         weekend={weekend}
       />
     ))
+  }
+
+  renderParticipants () {
+    const { participants } = this.state
+    return (
+      participants.length &&
+      participants.map((p, i) => (
+        <Checkbox checked={p.checked} key={`participant-${i}`} label={p.name} />
+      ))
+    )
   }
 
   render () {
@@ -81,8 +111,7 @@ export class Schedule extends Component<Props> {
           />
 
           <H3>Participants</H3>
-          <Checkbox label="Folke" />
-          <Checkbox label="Carina" />
+          {this.renderParticipants()}
         </Form>
       </section>
     )

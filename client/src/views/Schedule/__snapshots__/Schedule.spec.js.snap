@@ -96,9 +96,13 @@ exports[`views/Schedule renders 1`] = `
       Participants
     </H3>
     <FormCheckbox
+      checked={true}
+      key="participant-0"
       label="Folke"
     />
     <FormCheckbox
+      checked={true}
+      key="participant-1"
       label="Carina"
     />
   </Form>
