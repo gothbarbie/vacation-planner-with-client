@@ -2,6 +2,9 @@
 
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import type { MapStateToProps } from 'react-redux'
+import moment from 'moment'
 
 import H1 from '../../components/H1'
 import H3 from '../../components/H3'
@@ -18,7 +21,10 @@ type participant = {
   checked: boolean,
 }
 
-type Props = {}
+type Props = {
+  date: Date,
+}
+
 type State = {
   participants: Array<participant>,
 }
@@ -88,17 +94,44 @@ export class Schedule extends Component<Props, State> {
     )
   }
 
+  renderCurrentMonth () {
+    return moment(this.props.date).format('MMMM YYYY')
+  }
+
+  renderPreviousMonth () {
+    const prevMonth = moment(this.props.date).clone()
+    prevMonth.subtract(1, 'month')
+    if (prevMonth.month() === 0 || prevMonth.month() === 11) {
+      return prevMonth.format('MMMM YYYY')
+    }
+    return prevMonth.format('MMMM')
+  }
+
+  renderNextMonth () {
+    const nextMonth = moment(this.props.date).clone()
+    nextMonth.add(1, 'month').format('MMMM')
+    if (nextMonth.month() === 0 || nextMonth.month() === 11) {
+      return nextMonth.format('MMMM YYYY')
+    }
+    return nextMonth.format('MMMM')
+  }
+
   render () {
     return (
       <section className="schedule">
-        <H1>January</H1>
+        <H1>Schedule</H1>
 
         <nav className="time-nav">
           <Link to="/">
-            <Icon marginRight name="arrow-circle-left" size="3x" />December 2017
+            <Icon marginRight name="arrow-circle-left" size="3x" />
+            {this.renderPreviousMonth()}
           </Link>
+          <span className="time-nav__current-month">
+            {this.renderCurrentMonth()}
+          </span>
           <Link to="/">
-            February<Icon marginLeft name="arrow-circle-right" size="3x" />
+            {this.renderNextMonth()}
+            <Icon marginLeft name="arrow-circle-right" size="3x" />
           </Link>
         </nav>
         <section className="calendar">
@@ -140,4 +173,10 @@ export class Schedule extends Component<Props, State> {
   }
 }
 
-export default Schedule
+const mapStateToProps = ({ date }) => {
+  return {
+    date,
+  }
+}
+
+export default connect((mapStateToProps: MapStateToProps<*, *, *>))(Schedule)

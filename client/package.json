@@ -23,6 +23,7 @@
   "dependencies": {
     "axios": "0.18.0",
     "classnames": "^2.2.5",
+    "moment": "^2.21.0",
     "node-sass-chokidar": "0.0.3",
     "react": "16.2.0",
     "react-dom": "16.2.0",
@@ -48,7 +49,9 @@
     "flow-watch": "1.1.2"
   },
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "scripts": {
     "start": "react-scripts start",
@@ -59,9 +62,7 @@
     "flow:watch": "flow-watch",
     "lint": "eslint src",
     "lint:watch": "esw src -w",
-    "build-css":
-      "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css":
-      "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive"
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive"
   }
 }

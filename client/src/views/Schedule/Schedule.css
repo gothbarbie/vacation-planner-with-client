@@ -58,3 +58,8 @@
   color: #80D1FF;
   text-decoration: underline;
 }
+
+.time-nav__current-month {
+  font-family: 'Avenir Next', sans-serif;
+  font-size: 1.25rem;
+}

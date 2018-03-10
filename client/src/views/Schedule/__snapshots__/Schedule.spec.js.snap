@@ -5,7 +5,7 @@ exports[`views/Schedule renders 1`] = `
   className="schedule"
 >
   <H1>
-    January
+    Schedule
   </H1>
   <nav
     className="time-nav"
@@ -21,6 +21,11 @@ exports[`views/Schedule renders 1`] = `
       />
       December 2017
     </Link>
+    <span
+      className="time-nav__current-month"
+    >
+      January 2018
+    </span>
     <Link
       replace={false}
       to="/"
