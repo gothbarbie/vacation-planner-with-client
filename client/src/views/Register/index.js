@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import H1 from '../../components/H1'
 import Form from '../../components/Form'
 import Input from '../../components/Form/Input'
-import { ButtonLink } from '../../components/Button'
+import { ButtonLink } from '../../components/Button/Button'
 import Icon from '../../components/Icon'
 import * as actions from './registerActions'
 

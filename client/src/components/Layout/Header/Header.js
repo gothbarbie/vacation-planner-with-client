@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 
 import './Header.css'
-import { ButtonLink } from '../../Button'
+import { ButtonLink } from '../../Button/Button'
 
 type Props = {
   auth: {} | null,

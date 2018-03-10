@@ -10,7 +10,7 @@ import Notice from '../../components/Notice'
 import Form from '../../components/Form'
 import Input from '../../components/Form/Input'
 import './Login.css'
-import { ButtonLink } from '../../components/Button'
+import { ButtonLink } from '../../components/Button/Button'
 import Icon from '../../components/Icon'
 import * as actions from './loginActions'
 
