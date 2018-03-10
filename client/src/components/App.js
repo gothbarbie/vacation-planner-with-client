@@ -19,7 +19,7 @@ type Props = {
   fetchUser: Function,
 }
 
-class App extends Component<Props> {
+export class App extends Component<Props> {
   componentDidMount () {
     this.props.fetchUser()
   }

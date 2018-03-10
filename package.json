@@ -47,5 +47,8 @@
     "passport-local-mongoose": "^5.0.0",
     "path-parser": "3.0.1",
     "validator": "^9.4.1"
+  },
+  "devDependencies": {
+    "enzyme-adapter-react-16": "^1.1.1"
   }
 }

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App renders 1`] = `
+<div>
+  <BrowserRouter>
+    <div
+      className="wrapper"
+    >
+      <Connect(withRouter(Header)) />
+      <Connect(Flash) />
+      <Main>
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/"
+        />
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/register"
+        />
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/schedule"
+        />
+      </Main>
+      <Footer />
+    </div>
+  </BrowserRouter>
+</div>
+`;
