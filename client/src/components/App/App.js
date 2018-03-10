@@ -3,17 +3,17 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import * as actions from '../actions'
+import * as actions from '../../actions'
 
 import './App.css'
-import Header from './Layout/Header'
-import Flash from './Flash'
-import Footer from './Layout/Footer'
-import Main from './Layout/Main'
+import Header from '../Layout/Header'
+import Flash from '../Flash'
+import Footer from '../Layout/Footer'
+import Main from '../Layout/Main'
 
-import Schedule from '../views/Schedule'
-import Login from '../views/Login'
-import Register from '../views/Register'
+import Schedule from '../../views/Schedule'
+import Login from '../../views/Login'
+import Register from '../../views/Register'
 
 type Props = {
   fetchUser: Function,
