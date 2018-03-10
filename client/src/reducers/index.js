@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
 import authReducer from './authReducer'
-import flashReducer from '../components/common/Flash/flashReducer'
+import flashReducer from '../components/Flash/flashReducer'
 
 export default combineReducers({
   auth: authReducer,

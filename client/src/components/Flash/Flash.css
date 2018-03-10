@@ -5,9 +5,7 @@
   background: #f2f2f2;
   padding: .5rem;
   border: 2px solid #bdbdbd;
-  font-family: 'Avenir Next', sans-serif; 
-  cursor: pointer;
-}
+  font-family: 'Avenir Next', sans-serif; }
 
 .flash-success {
   background: #6fcf97;

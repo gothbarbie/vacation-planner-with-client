@@ -2,11 +2,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import H1 from '../../components/common/H1'
-import Form from '../../components/common/Form'
-import Input from '../../components/common/Form/Input'
-import { ButtonLink } from '../../components/common/Button'
-import Icon from '../../components/common/Icon'
+import H1 from '../../components/H1'
+import Form from '../../components/Form'
+import Input from '../../components/Form/Input'
+import { ButtonLink } from '../../components/Button'
+import Icon from '../../components/Icon'
 import * as actions from './registerActions'
 
 import './Register.css'

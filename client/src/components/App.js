@@ -7,14 +7,13 @@ import * as actions from '../actions'
 
 import './App.css'
 import Header from './Layout/Header'
-import Flash from './common/Flash'
+import Flash from './Flash'
 import Footer from './Layout/Footer'
 import Main from './Layout/Main'
 
 import Schedule from '../views/Schedule'
 import Login from '../views/Login'
 import Register from '../views/Register'
-
 
 type Props = {
   fetchUser: Function,

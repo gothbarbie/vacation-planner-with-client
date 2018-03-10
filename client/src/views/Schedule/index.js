@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import H1 from '../../components/common/H1'
-import H3 from '../../components/common/H3'
+import H1 from '../../components/H1'
+import H3 from '../../components/H3'
 import Day from './Day'
-import Form from '../../components/common/Form'
-import Icon from '../../components/common/Icon'
-import Input from '../../components/common/Form/Input'
+import Form from '../../components/Form'
+import Icon from '../../components/Icon'
+import Input from '../../components/Form/Input'
 
 import './Schedule.css'
 
