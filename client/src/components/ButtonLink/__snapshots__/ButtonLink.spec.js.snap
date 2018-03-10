@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Input renders 1`] = `
+<a
+  className="btn btn__default"
+/>
+`;

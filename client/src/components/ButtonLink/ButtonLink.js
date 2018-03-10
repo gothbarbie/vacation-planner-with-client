@@ -3,7 +3,7 @@
 import * as React from 'react'
 import classnames from 'classnames'
 
-import './Button.css'
+import './ButtonLink.css'
 
 type Props = {
   children: React.ChildrenArray<any>,
@@ -13,16 +13,17 @@ type Props = {
   url?: string,
 }
 
-const Button = ({ children, primary, secondary, disabled }: Props) => (
-  <button
+const ButtonLink = ({ children, primary, secondary, disabled, url }: Props) => (
+  <a
     className={classnames('btn btn__default', {
       btn__primary: primary,
       btn__secondary: secondary,
       'btn--disabled': disabled,
     })}
-    disabled={disabled}>
+    disabled={disabled}
+    href={url}>
     {children}
-  </button>
+  </a>
 )
 
-export default Button
+export default ButtonLink

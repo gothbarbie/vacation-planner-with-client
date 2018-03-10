@@ -8,7 +8,7 @@ import Icon from '../Icon'
 import './Notice.css'
 
 type Props = {
-  children: React.Children,
+  children: React.ChildrenArray<any>,
   warning?: boolean,
 }
 

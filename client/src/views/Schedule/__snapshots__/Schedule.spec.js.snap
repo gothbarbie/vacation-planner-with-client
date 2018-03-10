@@ -193,7 +193,7 @@ exports[`views/Schedule renders 1`] = `
       />
     </main>
   </section>
-  <Component>
+  <Form>
     <H3>
       Content
     </H3>
@@ -202,6 +202,6 @@ exports[`views/Schedule renders 1`] = `
       name="test"
       placeholder="placeholder"
     />
-  </Component>
+  </Form>
 </section>
 `;

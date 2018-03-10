@@ -4,13 +4,14 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import type { RouterHistory } from 'react-router-dom'
 
 import H1 from '../../components/H1'
 import Notice from '../../components/Notice'
 import Form from '../../components/Form'
 import Input from '../../components/FormInput'
 import './Login.css'
-import { ButtonLink } from '../../components/Button/Button'
+import ButtonLink from '../../components/ButtonLink'
 import Icon from '../../components/Icon'
 import * as actions from './loginActions'
 
@@ -64,7 +65,7 @@ export class Login extends Component<Props, State> {
     }
   }
 
-  handleSubmit = event => {
+  handleSubmit = (event: SyntheticEvent<any>) => {
     event.preventDefault()
     this.props.loginUser({
       email: this.state.email.value,
@@ -73,7 +74,7 @@ export class Login extends Component<Props, State> {
     this.props.history.push('/schedule')
   }
 
-  handleChange = (event: Event) => {
+  handleChange = (event: SyntheticInputEvent<any>) => {
     if (event && event.target) {
       const target = event.target
       const value = target.type === 'checkbox' ? target.checked : target.value
@@ -82,7 +83,7 @@ export class Login extends Component<Props, State> {
     }
   }
 
-  handleBlur = (field: string) => (event: Event) => {
+  handleBlur = (field: string) => (event: SyntheticFocusEvent<any>) => {
     this.setState({
       [field]: { ...this.state[field], touched: true },
     })

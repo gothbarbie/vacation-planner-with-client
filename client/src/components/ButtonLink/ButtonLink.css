@@ -1,0 +1,80 @@
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+    background: none;
+    border: 0;
+    color: inherit;
+    /* cursor: default; */
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+    -webkit-appearance: button; /* for input */
+    -webkit-user-select: none; /* for button */
+       -moz-user-select: none;
+        -ms-user-select: none;
+}
+input::-moz-focus-inner,
+button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/* Make `a` like a button */
+[role="button"] {
+    color: inherit;
+    cursor: default;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    white-space: pre;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+}
+
+
+[role="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button,
+.btn {
+  font-size: 24px;
+  font-family: 'Avenir Next', sans-serif;
+  font-weight: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+  min-width: 138px;
+  cursor: pointer;
+  padding: 0 1rem;
+}
+
+.btn:link, .btn:visited {
+  text-decoration: none;
+}
+.btn:hover, .btn:active {
+  text-decoration: none;
+}
+
+.btn__default {
+  background: #ccc;
+  color: #fff;
+}
+
+.btn__primary {
+  background: linear-gradient(180deg, #369ED9 0%, #308BBF 100%);
+}
+
+.btn__secondary {
+  background: linear-gradient(180deg, #EB5757 0%, #CC4C4C 100%);
+}
+
+.btn--disabled {
+  background: linear-gradient(180deg, #CED5D9 0%, #B6BCBF 100%);
+  color: rgba(51, 51, 51, 0.5);
+  cursor: not-allowed;
+}

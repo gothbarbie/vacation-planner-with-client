@@ -3,12 +3,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
+import type { MapStateToProps } from 'react-redux'
+
 import * as actions from './flashActions'
 
 import './Flash.css'
 
 type Props = {
-  flash: void | string,
+  flash: {
+    type: void | string,
+    message: void | string,
+  },
   closeFlash: Function,
 }
 
@@ -35,7 +40,7 @@ export class Flash extends Component<Props> {
   }
 }
 
-const mapStateToProps = ({ flash }) => {
+const mapStateToProps: MapStateToProps<*, *, *> = ({ flash }) => {
   return {
     flash,
   }

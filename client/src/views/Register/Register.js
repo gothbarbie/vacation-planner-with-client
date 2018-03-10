@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import H1 from '../../components/H1'
 import Form from '../../components/Form'
 import Input from '../../components/FormInput'
-import { ButtonLink } from '../../components/Button/Button'
+import ButtonLink from '../../components/ButtonLink'
 import Icon from '../../components/Icon'
 import * as actions from './registerActions'
 
@@ -45,6 +45,14 @@ type State = {
   },
 }
 
+type myEvent = {
+  target?: {
+    checked?: Event,
+    value?: Event,
+    name?: Event,
+  },
+}
+
 export class Register extends Component<Props, State> {
   state = {
     firstName: {
@@ -76,12 +84,12 @@ export class Register extends Component<Props, State> {
     },
   }
 
-  handleSubmit = event => {
+  handleSubmit = (event: Event) => {
     event.preventDefault()
     this.props.registerUser(this.state)
   }
 
-  handleChange = (event: Event) => {
+  handleChange = (event?: SyntheticInputEvent<any>) => {
     if (event && event.target) {
       const target = event.target
       const value = target.type === 'checkbox' ? target.checked : target.value
@@ -90,7 +98,7 @@ export class Register extends Component<Props, State> {
     }
   }
 
-  handleBlur = (field: string) => (event: Event) => {
+  handleBlur = (field: string) => (event: SyntheticFocusEvent<any>) => {
     this.setState({
       [field]: { ...this.state[field], touched: true },
     })

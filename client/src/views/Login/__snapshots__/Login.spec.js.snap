@@ -24,7 +24,7 @@ exports[`views/Login renders 1`] = `
          
         first...
       </Notice>
-      <Component
+      <Form
         onSubmit={[Function]}
         title="Enter your credentials"
       >
@@ -48,7 +48,7 @@ exports[`views/Login renders 1`] = `
             value=""
           />
         </div>
-      </Component>
+      </Form>
     </div>
     <div
       className="login__or"
@@ -58,7 +58,7 @@ exports[`views/Login renders 1`] = `
     <div
       className="login__google"
     >
-      <Component
+      <ButtonLink
         secondary={true}
         url="/auth/google"
       >
@@ -68,7 +68,7 @@ exports[`views/Login renders 1`] = `
           name="google-plus"
         />
         Login with Google
-      </Component>
+      </ButtonLink>
     </div>
   </div>
 </section>
