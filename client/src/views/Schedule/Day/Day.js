@@ -16,7 +16,7 @@ type props = {
   empty: boolean,
 }
 
-export default ({ date, empty, occupied, people, status, weekend }: props) => (
+const Day = ({ date, empty, occupied, people, status, weekend }: props) => (
   <div
     className={classnames('day', {
       'day--weekend': weekend,
@@ -35,3 +35,5 @@ export default ({ date, empty, occupied, people, status, weekend }: props) => (
     })}>{status}</div>
   </div>
 )
+
+export default Day

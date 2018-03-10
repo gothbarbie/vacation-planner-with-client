@@ -1,6 +1,9 @@
+// @flow
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
+import type { MapStateToProps } from 'react-redux'
 
 import './Header.css'
 import ButtonLink from '../../ButtonLink'
@@ -9,7 +12,7 @@ type Props = {
   auth: {} | null,
   history: {
     location: string,
-  }
+  },
 }
 
 export class Header extends Component<Props> {

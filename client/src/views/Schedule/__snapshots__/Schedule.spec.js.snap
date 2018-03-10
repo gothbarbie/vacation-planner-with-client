@@ -64,131 +64,131 @@ exports[`views/Schedule renders 1`] = `
     <main
       className="calendar__days"
     >
-      <Component
+      <Day
         date={1}
         occupied={true}
         status="Arrival"
       />
-      <Component
+      <Day
         date={2}
         occupied={true}
         status="Occupied"
       />
-      <Component
+      <Day
         date={3}
         occupied={true}
         status="Occupied"
       />
-      <Component
+      <Day
         date={4}
         occupied={true}
         status="Occupied"
       />
-      <Component
+      <Day
         date={5}
         occupied={true}
         status="Occupied"
       />
-      <Component
+      <Day
         date={6}
         occupied={true}
         status="Occupied"
         weekend={true}
       />
-      <Component
+      <Day
         date={7}
         occupied={true}
         status="Departure"
         weekend={true}
       />
-      <Component
+      <Day
         date={8}
       />
-      <Component
+      <Day
         date={9}
       />
-      <Component
+      <Day
         date={10}
       />
-      <Component
+      <Day
         date={11}
       />
-      <Component
+      <Day
         date={12}
       />
-      <Component
+      <Day
         date={13}
         weekend={true}
       />
-      <Component
+      <Day
         date={14}
         weekend={true}
       />
-      <Component
+      <Day
         date={15}
       />
-      <Component
+      <Day
         date={16}
       />
-      <Component
+      <Day
         date={17}
       />
-      <Component
+      <Day
         date={18}
       />
-      <Component
+      <Day
         date={19}
       />
-      <Component
+      <Day
         date={20}
         weekend={true}
       />
-      <Component
+      <Day
         date={21}
         weekend={true}
       />
-      <Component
+      <Day
         date={22}
       />
-      <Component
+      <Day
         date={23}
       />
-      <Component
+      <Day
         date={24}
       />
-      <Component
+      <Day
         date={25}
       />
-      <Component
+      <Day
         date={26}
       />
-      <Component
+      <Day
         date={27}
         weekend={true}
       />
-      <Component
+      <Day
         date={28}
         weekend={true}
       />
-      <Component
+      <Day
         date={29}
       />
-      <Component
+      <Day
         date={30}
       />
-      <Component
+      <Day
         empty={true}
       />
-      <Component
+      <Day
         empty={true}
       />
-      <Component
+      <Day
         empty={true}
       />
-      <Component
+      <Day
         empty={true}
       />
-      <Component
+      <Day
         empty={true}
       />
     </main>
