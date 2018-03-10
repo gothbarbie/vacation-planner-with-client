@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`views/Login renders 1`] = `
+<section
+  className="login"
+>
+  <Component>
+    Login
+  </Component>
+  <div
+    className="login__inner"
+  >
+    <div
+      className="login__email"
+    >
+      <Component>
+        First time here? 
+        <Link
+          replace={false}
+          to="register"
+        >
+           Please register
+        </Link>
+         
+        first...
+      </Component>
+      <Component
+        onSubmit={[Function]}
+        title="Enter your credentials"
+      >
+        <div
+          className="login__columns"
+        >
+          <Component
+            handleBlur={[Function]}
+            handleChange={[Function]}
+            label="E-mail"
+            name="email"
+            type="email"
+            value=""
+          />
+          <Component
+            handleBlur={[Function]}
+            handleChange={[Function]}
+            label="Password"
+            name="password"
+            type="password"
+            value=""
+          />
+        </div>
+      </Component>
+    </div>
+    <div
+      className="login__or"
+    >
+      Or...
+    </div>
+    <div
+      className="login__google"
+    >
+      <Component
+        secondary={true}
+        url="/auth/google"
+      >
+        <Component
+          isBrand={true}
+          marginRight={true}
+          name="google-plus"
+        />
+        Login with Google
+      </Component>
+    </div>
+  </div>
+</section>
+`;
