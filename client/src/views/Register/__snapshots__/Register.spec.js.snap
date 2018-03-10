@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`views/Register renders 1`] = `
+<section
+  className="register"
+>
+  <Component>
+    New User
+  </Component>
+  <div
+    className="register__inner"
+  >
+    <div
+      className="register__email"
+    >
+      <Component
+        onSubmit={[Function]}
+        title="Enter your credentials"
+      >
+        <div
+          className="register__columns"
+        >
+          <Component
+            handleBlur={[Function]}
+            handleChange={[Function]}
+            label="First Name"
+            name="firstName"
+            value=""
+          />
+          <Component
+            handleBlur={[Function]}
+            handleChange={[Function]}
+            label="Family Name"
+            name="lastName"
+            value=""
+          />
+          <Component
+            handleBlur={[Function]}
+            handleChange={[Function]}
+            label="E-mail"
+            name="email"
+            required={true}
+            type="email"
+            value=""
+          />
+          <Component
+            handleBlur={[Function]}
+            handleChange={[Function]}
+            label="Password"
+            name="password"
+            required={true}
+            type="password"
+            value=""
+          />
+          <Component
+            handleBlur={[Function]}
+            handleChange={[Function]}
+            label="Confirm Password"
+            name="passwordConfirm"
+            required={true}
+            type="password"
+            value=""
+          />
+        </div>
+      </Component>
+    </div>
+    <div
+      className="register__or"
+    >
+      Or...
+    </div>
+    <div
+      className="register__google"
+    >
+      <Component
+        secondary={true}
+        url="/auth/google"
+      >
+        <Component
+          isBrand={true}
+          marginRight={true}
+          name="google-plus"
+        />
+        Register with Google
+      </Component>
+    </div>
+  </div>
+</section>
+`;
