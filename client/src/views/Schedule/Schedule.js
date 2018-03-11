@@ -68,17 +68,20 @@ export class Schedule extends Component<Props, State> {
     },
   }
 
-  renderIsWeekEnd (year, month, day) {
+  renderIsWeekEnd (year: number, month: number, day: mixed) {
+    if (!year || !month || typeof day !== 'number') return
     const weekDay = moment(`${year}/${month}/${day}`, 'YYYY/MM/D').format(
       'dddd'
     )
     return weekDay === 'Saturday' || weekDay === 'Sunday'
   }
 
-  isToday (year, month, date) {
+  isToday (year: number, month: number, date: mixed) {
+    if (!year || !month || typeof date !== 'number') return
     return (
-      moment(`${year}-${month + 1}-${date}`, 'YYYY-MM-D').format('YYYY-MM-DD') ===
-      moment().format('YYYY-MM-DD')
+      moment(`${year}-${month + 1}-${date}`, 'YYYY-MM-D').format(
+        'YYYY-MM-DD'
+      ) === moment().format('YYYY-MM-DD')
     )
   }
 
