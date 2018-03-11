@@ -39,7 +39,7 @@ export class Flash extends Component<Props> {
   }
 }
 
-const mapStateToProps = ({ flash }: Object) => {
+export const mapStateToProps = ({ flash }: Object) => {
   return {
     flash,
   }

@@ -2,6 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 import { Flash } from './Flash'
+import { mapStateToProps } from './Flash'
 
 describe('Flash', () => {
   const closeFlash = jest.fn()
@@ -60,6 +61,13 @@ describe('Flash', () => {
         flash: null,
       })
       expect(flash).toMatchSnapshot()
+    })
+  })
+
+  describe('mapStateToProps', () => {
+    it('returns flash as flash', () => {
+      const flash = { type: 'success', message: 'Success!' }
+      expect(mapStateToProps({ flash })).toEqual({ flash })
     })
   })
 })

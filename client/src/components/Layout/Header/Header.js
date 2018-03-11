@@ -8,7 +8,7 @@ import './Header.css'
 import ButtonLink from '../../ButtonLink'
 
 type Props = {
-  auth: {} | null,
+  auth: {} | void,
   history: {
     location: string,
   },
@@ -46,7 +46,7 @@ export class Header extends Component<Props> {
         </ButtonLink>
       )
     }
-    if (this.props.history && !this.props.history.location === '/') {
+    if (this.props.history && this.props.history.location !== '/') {
       return (
         <ButtonLink primary url="/">
           Login
