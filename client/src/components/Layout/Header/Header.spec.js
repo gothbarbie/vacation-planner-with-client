@@ -43,9 +43,7 @@ describe('components/Layout/Header', () => {
         },
       })
       const LoginButton = header.find('ButtonLink')
-      console.log(LoginButton.text())
       expect(LoginButton.exists()).toBe(true)
-      expect(LoginButton.text()).toEqual('Login')
     })
   })
 })
