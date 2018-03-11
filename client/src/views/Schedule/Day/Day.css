@@ -15,6 +15,10 @@
   color: #EB5757;
 }
 
+.day--today {
+  border: 1px dashed #80D1FF;
+}
+
 .day--empty {
   background: #fff;
 }

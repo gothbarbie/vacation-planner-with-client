@@ -75,11 +75,19 @@ export class Schedule extends Component<Props, State> {
     return weekDay === 'Saturday' || weekDay === 'Sunday'
   }
 
+  isToday (year, month, date) {
+    return (
+      moment(`${year}-${month + 1}-${date}`).format('YYYY-MM-DD') ===
+      moment().format('YYYY-MM-DD')
+    )
+  }
+
   renderDays () {
     const m = moment(this.props.date)
     const daysInMonth = m.daysInMonth()
     const year = m.year()
     const month = m.month()
+    console.log(year, month)
     const startOnDayNr = moment(`${year}/${month}`, 'YYYY/MM').day()
     const days = []
 
@@ -120,6 +128,7 @@ export class Schedule extends Component<Props, State> {
         key={`day-${i}`}
         occupied={occupied}
         status={status}
+        today={this.isToday(year, month, date)}
         weekend={weekend}
       />
     ))
