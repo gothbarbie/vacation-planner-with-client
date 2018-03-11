@@ -1,17 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Day renders 1`] = `
-<div
-  className="day"
->
-  <div
-    className="day__date"
-  />
-  <div
-    className="day__people"
-  />
-  <div
-    className="day__status"
-  />
-</div>
+<styled.article>
+  <styled.div />
+  <styled.div />
+  <styled.div />
+</styled.article>
 `;

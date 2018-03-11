@@ -6,7 +6,7 @@ module.exports = {
   // Colors
   // ------------------------------------
   //
-  'color-anakiwa': rgb(128, 209, 255), #80D1FF
+  'color-anakiwa': rgb(128, 209, 255), // #80D1FF
   'color-curious-blue': rgb(45, 156, 219), // #2D9CDB
   'color-burnt-sienna': rgb(235, 87, 87), // #EB5757
   'color-sanguine-brown': rgb(153, 57, 57), // #993939
@@ -20,7 +20,7 @@ module.exports = {
   // ------------------------------------
   'color-black': grayScale(0), // #000000
   'color-mine-shaft': grayScale(51), // #333333
-  'color-dove-gray': grayScale(102), // #666666
+  'color-dove-gray': grayScale(82), // #828282
   'color-dusty-gray': grayScale(153), // #999999
   'color-silver': grayScale(189), // #
   'color-alto': grayScale(220), // #dcdcdc

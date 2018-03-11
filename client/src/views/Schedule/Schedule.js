@@ -77,7 +77,7 @@ export class Schedule extends Component<Props, State> {
 
   isToday (year, month, date) {
     return (
-      moment(`${year}-${month + 1}-${date}`).format('YYYY-MM-DD') ===
+      moment(`${year}-${month + 1}-${date}`, 'YYYY-MM-D').format('YYYY-MM-DD') ===
       moment().format('YYYY-MM-DD')
     )
   }
@@ -87,7 +87,6 @@ export class Schedule extends Component<Props, State> {
     const daysInMonth = m.daysInMonth()
     const year = m.year()
     const month = m.month()
-    console.log(year, month)
     const startOnDayNr = moment(`${year}/${month}`, 'YYYY/MM').day()
     const days = []
 

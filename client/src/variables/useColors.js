@@ -1,4 +1,4 @@
-import color from './color'
+const color = require('./colors')
 
 module.exports = {
   // ---------------------------------------
@@ -25,8 +25,8 @@ module.exports = {
 
   // Grey scale
   'color-gray-dark': color['mine-shaft'], // #333333
-  'color-gray': color['color-silver'], // #cccccc
-  'color-gray-light': color['color-black'], // not set
+  'color-gray': color['color-dove-gray'], // #828282
+  'color-gray-light': color['color-silver'], // #cccccc
   'color-gray-lighter': color['color-concrete'], // #f2f2f2
   'color-gray-lightest': color['color-alabaster'], // #f9f9f9
 }

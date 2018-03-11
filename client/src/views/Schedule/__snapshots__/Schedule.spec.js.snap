@@ -75,6 +75,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-0"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -83,6 +84,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-1"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -91,6 +93,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-2"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -99,6 +102,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-3"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -107,6 +111,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-4"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -115,6 +120,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-5"
         occupied={false}
         status=""
+        today={false}
         weekend={true}
       />
       <Day
@@ -123,6 +129,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-6"
         occupied={false}
         status=""
+        today={false}
         weekend={true}
       />
       <Day
@@ -131,6 +138,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-7"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -139,6 +147,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-8"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -147,6 +156,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-9"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -155,6 +165,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-10"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -163,6 +174,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-11"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -171,6 +183,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-12"
         occupied={false}
         status=""
+        today={false}
         weekend={true}
       />
       <Day
@@ -179,6 +192,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-13"
         occupied={false}
         status=""
+        today={true}
         weekend={true}
       />
       <Day
@@ -187,6 +201,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-14"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -195,6 +210,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-15"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -203,6 +219,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-16"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -211,6 +228,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-17"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -219,6 +237,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-18"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -227,6 +246,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-19"
         occupied={false}
         status=""
+        today={false}
         weekend={true}
       />
       <Day
@@ -235,6 +255,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-20"
         occupied={false}
         status=""
+        today={false}
         weekend={true}
       />
       <Day
@@ -243,6 +264,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-21"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -251,6 +273,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-22"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -259,6 +282,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-23"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -267,6 +291,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-24"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -275,6 +300,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-25"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -283,6 +309,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-26"
         occupied={false}
         status=""
+        today={false}
         weekend={true}
       />
       <Day
@@ -291,6 +318,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-27"
         occupied={false}
         status=""
+        today={false}
         weekend={true}
       />
       <Day
@@ -299,6 +327,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-28"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -307,6 +336,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-29"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -315,6 +345,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-30"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -323,6 +354,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-31"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -331,6 +363,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-32"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -339,6 +372,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-33"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
       <Day
@@ -347,6 +381,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-34"
         occupied={false}
         status=""
+        today={false}
         weekend={false}
       />
     </main>
