@@ -355,6 +355,7 @@ exports[`views/Schedule renders 1`] = `
     className="schedule__inner"
   >
     <Form
+      onSubmit={[Function]}
       submitText="Add"
       title="New Trip"
     >
@@ -365,16 +366,22 @@ exports[`views/Schedule renders 1`] = `
         className="register__columns"
       >
         <Input
+          handleBlur={[Function]}
+          handleChange={[Function]}
           label="Arrival"
           name="arrival"
           placeholder="YYYY-MM-DD"
           type="date"
+          value=""
         />
         <Input
+          handleBlur={[Function]}
+          handleChange={[Function]}
           label="Departure"
           name="departure"
           placeholder="YYYY-MM-DD"
           type="date"
+          value=""
         />
       </div>
       <H3>
@@ -384,14 +391,14 @@ exports[`views/Schedule renders 1`] = `
         className="register__columns"
       >
         <FormCheckbox
-          checked={true}
+          checked={false}
           key="participant-0"
           label="Folke"
           name="Folke"
           onChange={[Function]}
         />
         <FormCheckbox
-          checked={true}
+          checked={false}
           key="participant-1"
           label="Carina"
           name="Carina"

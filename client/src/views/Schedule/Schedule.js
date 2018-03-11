@@ -26,21 +26,41 @@ type Props = {
 }
 
 type State = {
+  arrival: string,
+  departure: string,
   participants: Array<participant>,
+  errors: {
+    arrival: string,
+    departure: string,
+    participants: string,
+  },
 }
 
 export class Schedule extends Component<Props, State> {
   state = {
-    participants: [
+    arrival: {
+      value: '',
+      touched: false,
+    },
+    departure: {
+      value: '',
+      touched: false,
+    },
+    people: [
       {
         name: 'Folke',
-        checked: true,
+        checked: false,
       },
       {
         name: 'Carina',
-        checked: true,
+        checked: false,
       },
     ],
+    errors: {
+      arrival: '',
+      departure: '',
+      people: '',
+    },
   }
   renderDays () {
     const daysInMonth = moment(this.props.date).daysInMonth()
@@ -79,10 +99,17 @@ export class Schedule extends Component<Props, State> {
     ))
   }
 
+  handleSubmit = (event: Event) => {
+    event.preventDefault()
+    this.validateForm()
+    console.log(this.state)
+    // this.props.createVacation(this.state)
+  }
+
   handleChange = (event: SyntheticInputEvent<any>) => {
     if (event && event.target && event.target.name) {
       const newState = { ...this.state }
-      newState.participants.map(p => {
+      newState.people.map(p => {
         if (p.name === event.target.name) {
           return (p.checked = !p.checked)
         }
@@ -92,12 +119,45 @@ export class Schedule extends Component<Props, State> {
     }
   }
 
+  handleDateChange = (event?: SyntheticInputEvent<any>) => {
+    if (event && event.target) {
+      const target = event.target
+      const value = target.type === 'checkbox' ? target.checked : target.value
+      const name = target.name
+      this.setState({ [name]: { ...this.state[name], value } })
+    }
+  }
+
+  handleBlur = (field: string) => (event: SyntheticFocusEvent<any>) => {
+    this.setState({
+      [field]: { ...this.state[field], touched: true },
+    })
+    this.validateForm()
+  }
+
+  validateForm () {
+    const errors = {}
+
+    const arrival = this.state.arrival.value 
+    const departure = this.state.departure.value 
+    const people = this.state.people 
+
+    errors.arrival = !arrival.length && 'Arrival is required'
+    errors.departure = !departure.length && 'Departure is required'
+    errors.people = !people.length && 'At least one participant is required'
+
+    this.setState({
+      errors: { ...errors },
+    })
+  }
+
   renderParticipants () {
-    const { participants } = this.state
+    const { people } = this.state
     return (
-      participants.length &&
-      participants.map((p, i) => (
+      people.length &&
+      people.map((p, i) => (
         <Checkbox
+
           checked={p.checked}
           key={`participant-${i}`}
           label={p.name}
@@ -128,6 +188,12 @@ export class Schedule extends Component<Props, State> {
       return nextMonth.format('MMMM YYYY')
     }
     return nextMonth.format('MMMM')
+  }
+
+  showErrors = (field: string) => {
+    if (this.state.errors[field] && this.state[field].touched) {
+      return this.state.errors[field]
+    }
   }
 
   render () {
@@ -162,20 +228,32 @@ export class Schedule extends Component<Props, State> {
         </section>
 
         <div className="schedule__inner">
-          <Form submitText="Add" title="New Trip">
+          <Form 
+            onSubmit={this.handleSubmit}
+            submitText="Add" 
+            title="New Trip" 
+          >
             <H3>Time Period</H3>
             <div className="register__columns">
               <Input
+                error={this.showErrors('arrival')}
+                handleBlur={this.handleBlur('arrival')}
+                handleChange={this.handleDateChange}
                 label="Arrival"
                 name="arrival"
                 placeholder="YYYY-MM-DD"
                 type="date"
+                value={this.state.arrival.value}
               />
               <Input
+                error={this.showErrors('departure')}
+                handleBlur={this.handleBlur('departure')}
+                handleChange={this.handleDateChange}
                 label="Departure"
                 name="departure"
                 placeholder="YYYY-MM-DD"
                 type="date"
+                value={this.state.departure.value}
               />
             </div>
             <H3>Participants</H3>
