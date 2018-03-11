@@ -70,31 +70,31 @@ exports[`views/Schedule renders 1`] = `
       className="calendar__days"
     >
       <Day
-        date={1}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-0"
         occupied={false}
         status=""
         weekend={false}
       />
       <Day
-        date={2}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-1"
         occupied={false}
         status=""
         weekend={false}
       />
       <Day
-        date={3}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-2"
         occupied={false}
         status=""
         weekend={false}
       />
       <Day
-        date={4}
+        date={1}
         empty={false}
         key="day-3"
         occupied={false}
@@ -102,7 +102,7 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={5}
+        date={2}
         empty={false}
         key="day-4"
         occupied={false}
@@ -110,23 +110,23 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={6}
+        date={3}
         empty={false}
         key="day-5"
         occupied={false}
         status=""
-        weekend={false}
+        weekend={true}
       />
       <Day
-        date={7}
+        date={4}
         empty={false}
         key="day-6"
         occupied={false}
         status=""
-        weekend={false}
+        weekend={true}
       />
       <Day
-        date={8}
+        date={5}
         empty={false}
         key="day-7"
         occupied={false}
@@ -134,7 +134,7 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={9}
+        date={6}
         empty={false}
         key="day-8"
         occupied={false}
@@ -142,7 +142,7 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={10}
+        date={7}
         empty={false}
         key="day-9"
         occupied={false}
@@ -150,7 +150,7 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={11}
+        date={8}
         empty={false}
         key="day-10"
         occupied={false}
@@ -158,7 +158,7 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={12}
+        date={9}
         empty={false}
         key="day-11"
         occupied={false}
@@ -166,23 +166,23 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={13}
+        date={10}
         empty={false}
         key="day-12"
         occupied={false}
         status=""
-        weekend={false}
+        weekend={true}
       />
       <Day
-        date={14}
+        date={11}
         empty={false}
         key="day-13"
         occupied={false}
         status=""
-        weekend={false}
+        weekend={true}
       />
       <Day
-        date={15}
+        date={12}
         empty={false}
         key="day-14"
         occupied={false}
@@ -190,7 +190,7 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={16}
+        date={13}
         empty={false}
         key="day-15"
         occupied={false}
@@ -198,7 +198,7 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={17}
+        date={14}
         empty={false}
         key="day-16"
         occupied={false}
@@ -206,7 +206,7 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={18}
+        date={15}
         empty={false}
         key="day-17"
         occupied={false}
@@ -214,7 +214,7 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={19}
+        date={16}
         empty={false}
         key="day-18"
         occupied={false}
@@ -222,23 +222,23 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={20}
+        date={17}
         empty={false}
         key="day-19"
         occupied={false}
         status=""
-        weekend={false}
+        weekend={true}
       />
       <Day
-        date={21}
+        date={18}
         empty={false}
         key="day-20"
         occupied={false}
         status=""
-        weekend={false}
+        weekend={true}
       />
       <Day
-        date={22}
+        date={19}
         empty={false}
         key="day-21"
         occupied={false}
@@ -246,7 +246,7 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={23}
+        date={20}
         empty={false}
         key="day-22"
         occupied={false}
@@ -254,7 +254,7 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={24}
+        date={21}
         empty={false}
         key="day-23"
         occupied={false}
@@ -262,7 +262,7 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={25}
+        date={22}
         empty={false}
         key="day-24"
         occupied={false}
@@ -270,7 +270,7 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={26}
+        date={23}
         empty={false}
         key="day-25"
         occupied={false}
@@ -278,23 +278,23 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={27}
+        date={24}
         empty={false}
         key="day-26"
         occupied={false}
         status=""
-        weekend={false}
+        weekend={true}
       />
       <Day
-        date={28}
+        date={25}
         empty={false}
         key="day-27"
         occupied={false}
         status=""
-        weekend={false}
+        weekend={true}
       />
       <Day
-        date={29}
+        date={26}
         empty={false}
         key="day-28"
         occupied={false}
@@ -302,7 +302,7 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={30}
+        date={27}
         empty={false}
         key="day-29"
         occupied={false}
@@ -310,7 +310,7 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={31}
+        date={28}
         empty={false}
         key="day-30"
         occupied={false}
@@ -318,16 +318,16 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={null}
-        empty={true}
+        date={29}
+        empty={false}
         key="day-31"
         occupied={false}
         status=""
         weekend={false}
       />
       <Day
-        date={null}
-        empty={true}
+        date={30}
+        empty={false}
         key="day-32"
         occupied={false}
         status=""

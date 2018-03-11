@@ -68,13 +68,11 @@ export class Schedule extends Component<Props, State> {
     },
   }
 
-  generateEmptyDays = (year, month) => {
-    const startOnDayNr = moment(`${year}/${month}`, 'YYYY/MM').day()
-    const empty = []
-    for (let i = 0; i < startOnDayNr - 1; i++) {
-      empty.push({})
-    }
-    return empty
+  renderIsWeekEnd (year, month, day) {
+    const weekDay = moment(`${year}/${month}/${day}`, 'YYYY/MM/D').format(
+      'dddd'
+    )
+    return weekDay === 'Saturday' || weekDay === 'Sunday'
   }
 
   renderDays () {
@@ -90,7 +88,7 @@ export class Schedule extends Component<Props, State> {
         date: i,
         occupied: false,
         status: '',
-        weekend: false,
+        weekend: this.renderIsWeekEnd(year, month, i),
         empty: false,
       })
     }
