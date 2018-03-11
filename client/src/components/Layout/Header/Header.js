@@ -3,7 +3,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import type { MapStateToProps } from 'react-redux'
 
 import './Header.css'
 import ButtonLink from '../../ButtonLink'
@@ -75,12 +74,12 @@ export class Header extends Component<Props> {
   }
 }
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = ({ auth }: Object) => {
   return {
     auth,
   }
 }
 
-export default connect((mapStateToProps: MapStateToProps<*, *, *>))(
+export default connect(mapStateToProps)(
   withRouter(Header)
 )

@@ -3,7 +3,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import type { MapStateToProps } from 'react-redux'
 import moment from 'moment'
 
 import H1 from '../../components/H1'
@@ -26,13 +25,19 @@ type Props = {
 }
 
 type State = {
-  arrival: string,
-  departure: string,
-  participants: Array<participant>,
+  arrival: {
+    value: string,
+    touched: boolean,
+  },
+  departure: {
+    value: string,
+    touched: boolean,
+  },
+  people: Array<participant>,
   errors: {
-    arrival: string,
-    departure: string,
-    participants: string,
+    arrival: boolean | string,
+    departure: boolean | string,
+    people: boolean | string,
   },
 }
 
@@ -265,10 +270,10 @@ export class Schedule extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ date }) => {
+const mapStateToProps = ({ date }: Object) => {
   return {
     date,
   }
 }
 
-export default connect((mapStateToProps: MapStateToProps<*, *, *>))(Schedule)
+export default connect((mapStateToProps))(Schedule)

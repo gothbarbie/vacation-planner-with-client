@@ -15,10 +15,8 @@ import ButtonLink from '../../components/ButtonLink'
 import Icon from '../../components/Icon'
 import * as actions from './loginActions'
 
-import type { MapStateToProps } from 'react-redux'
-
 type Props = {
-  auth: {},
+  auth: {} | void,
   loginUser: Function,
   history: RouterHistory,
 }
@@ -155,12 +153,12 @@ export class Login extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ auth }) => {
+export const mapStateToProps = ({ auth }: Object) => {
   return {
     auth,
   }
 }
 
-export default connect((mapStateToProps: MapStateToProps<*, *, *>), actions)(
+export default connect(mapStateToProps, actions)(
   withRouter(Login)
 )

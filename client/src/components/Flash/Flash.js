@@ -3,7 +3,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
-import type { MapStateToProps } from 'react-redux'
 
 import * as actions from './flashActions'
 
@@ -40,7 +39,7 @@ export class Flash extends Component<Props> {
   }
 }
 
-const mapStateToProps: MapStateToProps<*, *, *> = ({ flash }) => {
+const mapStateToProps = ({ flash }: Object) => {
   return {
     flash,
   }

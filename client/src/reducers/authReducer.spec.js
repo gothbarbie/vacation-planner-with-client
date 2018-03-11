@@ -2,10 +2,12 @@ import authReducer from './authReducer'
 import { FETCH_USER } from '../actions/types'
 
 describe('reducers/authReducer', () => {
+  it('returns null as default', () => {
+    expect(authReducer(undefined, {})).toBe(null)
+  })
+  
   it('sets a fetched used', () => {
-    const user = {
-
-    }
+    const user = {}
 
     expect(authReducer(undefined, { type: FETCH_USER, payload: user })).toEqual(user)
   })
