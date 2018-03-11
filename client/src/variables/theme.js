@@ -3,7 +3,7 @@ const sizes = require('./sizes')
 const typography = require('./typography')
 
 function snakeToCamel (s) {
-  return s.replace(/(\-\w)/g, function (m) {
+  return s.replace(/(-\w)/g, function (m) {
     return m[1].toUpperCase()
   })
 }
