@@ -1,3 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Flash renders 1`] = `""`;
+exports[`Flash #closeFlash stops rendering flash-component 1`] = `""`;
+
+exports[`Flash renders (danger) 1`] = `
+<section
+  className="flash flash-danger"
+  onClick={[Function]}
+>
+  Danger!
+</section>
+`;
+
+exports[`Flash renders (default) 1`] = `
+<section
+  className="flash"
+  onClick={[Function]}
+>
+  Default
+</section>
+`;
+
+exports[`Flash renders (success) 1`] = `
+<section
+  className="flash flash-success"
+  onClick={[Function]}
+>
+  Success!
+</section>
+`;
+
+exports[`Flash renders (warning) 1`] = `
+<section
+  className="flash flash-warning"
+  onClick={[Function]}
+>
+  Warning!
+</section>
+`;
