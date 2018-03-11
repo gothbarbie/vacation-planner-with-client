@@ -67,14 +67,27 @@ export class Schedule extends Component<Props, State> {
       people: '',
     },
   }
+
+  generateEmptyDays = (year, month) => {
+    const startOnDayNr = moment(`${year}/${month}`, 'YYYY/MM').day()
+    const empty = []
+    for (let i = 0; i < startOnDayNr - 1; i++) {
+      empty.push({})
+    }
+    return empty
+  }
+
   renderDays () {
-    const daysInMonth = moment(this.props.date).daysInMonth()
-    const emptyDays = 35 - daysInMonth
+    const m = moment(this.props.date)
+    const daysInMonth = m.daysInMonth()
+    const year = m.year()
+    const month = m.month()
+    const startOnDayNr = moment(`${year}/${month}`, 'YYYY/MM').day()
     const days = []
 
-    for (let i = 0; i < daysInMonth; i++) {
+    for (let i = 1; i < daysInMonth; i++) {
       days.push({
-        date: i + 1,
+        date: i,
         occupied: false,
         status: '',
         weekend: false,
@@ -82,7 +95,17 @@ export class Schedule extends Component<Props, State> {
       })
     }
 
-    for (let i = 0; i < emptyDays; i++) {
+    for (let i = 1; i < startOnDayNr; i++) {
+      days.unshift({
+        date: null,
+        occupied: false,
+        status: '',
+        weekend: false,
+        empty: true,
+      })
+    }
+    const emptyDaysAfter = 35 - days.length
+    for (let i = 0; i < emptyDaysAfter; i++) {
       days.push({
         date: null,
         occupied: false,
@@ -143,9 +166,9 @@ export class Schedule extends Component<Props, State> {
   validateForm () {
     const errors = {}
 
-    const arrival = this.state.arrival.value 
-    const departure = this.state.departure.value 
-    const people = this.state.people 
+    const arrival = this.state.arrival.value
+    const departure = this.state.departure.value
+    const people = this.state.people
 
     errors.arrival = !arrival.length && 'Arrival is required'
     errors.departure = !departure.length && 'Departure is required'
@@ -162,7 +185,6 @@ export class Schedule extends Component<Props, State> {
       people.length &&
       people.map((p, i) => (
         <Checkbox
-
           checked={p.checked}
           key={`participant-${i}`}
           label={p.name}
@@ -233,11 +255,7 @@ export class Schedule extends Component<Props, State> {
         </section>
 
         <div className="schedule__inner">
-          <Form 
-            onSubmit={this.handleSubmit}
-            submitText="Add" 
-            title="New Trip" 
-          >
+          <Form onSubmit={this.handleSubmit} submitText="Add" title="New Trip">
             <H3>Time Period</H3>
             <div className="register__columns">
               <Input
@@ -276,4 +294,4 @@ const mapStateToProps = ({ date }: Object) => {
   }
 }
 
-export default connect((mapStateToProps))(Schedule)
+export default connect(mapStateToProps)(Schedule)
