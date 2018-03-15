@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import { withRouter } from 'react-router-dom'
 
+import { createVacation } from './scheduleActions'
 import H1 from '../../components/H1'
 import H3 from '../../components/H3'
 import Day from './Day/index'
@@ -27,6 +28,7 @@ type Props = {
   auth: void | Object,
   date: Date,
   history: RouterHistory,
+  createVacation: Function,
 }
 
 type State = {
@@ -151,7 +153,13 @@ export class Schedule extends Component<Props, State> {
     event.preventDefault()
     this.validateForm()
     console.log(this.state)
-    // this.props.createVacation(this.state)
+    this.props.createVacation({
+      arrival: this.state.arrival.value,
+      departure: this.state.departure.value,
+      people: this.state.people.forEach(p => {
+        if (p.checked) return p.name
+      }),
+    })
   }
 
   handleChange = (event: SyntheticInputEvent<any>) => {
@@ -315,4 +323,4 @@ export const mapStateToProps = ({ auth, date }: Object) => {
   }
 }
 
-export default connect(mapStateToProps)(withRouter(Schedule))
+export default connect(mapStateToProps, { createVacation })(withRouter(Schedule))

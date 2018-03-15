@@ -9,7 +9,6 @@ const bodyParser = require('body-parser')
 const passport = require('passport')
 const { promisify } = require('es6-promisify')
 const flash = require('connect-flash')
-const expressValidator = require('express-validator')
 
 mongoose.Promise = global.Promise
 
@@ -41,9 +40,6 @@ app.use(
     keys: [keys.cookieKey]
   })
 )
-
-// expressValidator
-app.use(expressValidator())
 
 // populates req.cookies with any cookies that came along with the request
 app.use(cookieParser())

@@ -3,12 +3,13 @@ const router = express.Router()
 const passport = require('passport')
 
 const authController = require('../controllers/authController')
+const vacationController = require('../controllers/vacationController')
 const { catchErrors } = require('../handlers/errorHandlers')
 
 router.get(
   '/auth/google',
   passport.authenticate('google', {
-    scope: ['profile', 'email']
+    scope: ['profile', 'email'],
   })
 )
 
@@ -21,22 +22,21 @@ router.get(
 )
 
 router.post(
-  '/auth/email',
+  '/auth/register/email',
   authController.register,
-  passport.authenticate('local'), (req, res) => {
-    res.redirect('/schedule')
-  }
+  authController.login
 )
 
-router.post('/auth/login', passport.authenticate('local'), (req, res) => {
-  console.log('req', req)
-  res.send(req.user)
-})
+router.post('/auth/login', authController.login)
 
 router.get('/api/logout', authController.logout)
 
 router.get('/api/current_user', (req, res) => {
   res.send(req.user)
 })
+
+router.post('/api/vacation/create', 
+  vacationController.validate,
+  vacationController.create)
 
 module.exports = router

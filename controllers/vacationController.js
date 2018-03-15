@@ -1,25 +1,38 @@
 const mongoose = require('mongoose')
 const Vacation = mongoose.model('vacations')
+const { checkSchema, validationResult } = require('express-validator/check')
+const { matchedData, sanitize } = require('express-validator/filter')
 
-exports.createVacation = async (req, res) => {
-  req.sanitizeBody('arrival')
-  req.sanitizeBody('departure')
-  req.checkBody('arrival', 'Must be a date').isDate()
-  req.checkBody('departure', 'Must be a date').isDate()
-
-  const errors = req.validationErrors()
-  if (errors) {
-    return res.send([ errors ])
+exports.create = async (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.mapped() })
   }
+  const body = matchedData(req)
 
   const vacation = new Vacation({
-    arrival: req.body.arrival, 
-    departure: req.body.departure,
-    people: req.body.people, 
-    author: req.body.author,
+    arrival: body.arrival,
+    departure: body.departure,
+    people: body.people,
+    author: req.auth._id,
   })
 
   await vacation.save()
 
-  res.send(vacation._id)
+  return res.send(vacation._id)
 }
+
+exports.validate = checkSchema({
+  arrival: {
+    errorMessage: 'Arrival is wrong',
+    isISO8601: true,
+  },
+  departure: {
+    errorMessage: 'Arrival is wrong',
+    isISO8601: true,
+  },
+  people: {
+    errorMessage: 'People is missing!',
+    exists: true
+  }
+})

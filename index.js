@@ -14,6 +14,7 @@ try {
 
 // Register Modules
 require('./models/User')
+require('./models/Vacation')
 
 // Start App
 const app = require('./app')

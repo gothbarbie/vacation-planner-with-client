@@ -4,7 +4,7 @@ import { FLASH_MESSAGE, FETCH_USER } from '../../actions/types'
 
 export const registerUser = formValues => async dispatch => {
   try {
-    const res = await axios.post('/auth/email', {
+    const res = await axios.post('/auth/register/email', {
       email: formValues.email.value,
       firstName: formValues.firstName.value,
       lastName: formValues.lastName.value,

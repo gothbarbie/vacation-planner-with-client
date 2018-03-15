@@ -184,7 +184,7 @@ export class Register extends Component<Props, State> {
           </div>
           <div className="register__or">Or...</div>
           <div className="register__google">
-            <ButtonLink secondary url="/auth/google">
+            <ButtonLink secondary url="/auth/register/google">
               <Icon isBrand marginRight name="google-plus" />Register with
               Google
             </ButtonLink>

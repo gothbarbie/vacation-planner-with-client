@@ -7,3 +7,5 @@ export const ERROR = 'error/set_error'
 export const ERROR_RESET = 'error/reset_error'
 
 export const SET_DATE = 'date/SET'
+
+export const CREATE_VACATION = 'vacation/CREATE'

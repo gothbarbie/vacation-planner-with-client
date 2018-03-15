@@ -12,7 +12,7 @@ exports.validateRegister = (req, res, next) => {
   req.sanitizeBody('email').normalizeEmail({
     remove_dots: false,
     remove_extension: false,
-    gmail_remove_subaddress: false
+    gmail_remove_subaddress: false,
   })
   req.checkBody('password', 'Password is required').notEmpty()
   req
@@ -26,7 +26,7 @@ exports.validateRegister = (req, res, next) => {
   if (errors) {
     res.send({
       title: 'Register',
-      body: errors
+      body: errors,
     })
     return // Abort
   }
@@ -37,7 +37,7 @@ exports.register = (req, res, next) => {
   User.register(
     {
       email: req.body.email,
-      active: false
+      active: false,
     },
     req.body.password,
     function(err, user) {
@@ -53,4 +53,24 @@ exports.logout = (req, res) => {
   req.logout()
   req.flash('success', 'You are now logged out.')
   res.redirect('/')
+}
+
+exports.login = (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return next(err)
+    }
+
+    if (!user) {
+      return res
+        .status(401)
+        .send({ success: false, message: 'authentication failed' })
+    }
+
+    req.login(user, loginErr => {
+      if (loginErr) return next(loginErr)
+
+      return res.redirect('/schedule')
+    })
+  })(req, res, next)
 }
