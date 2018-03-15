@@ -27,12 +27,4 @@ const vacationSchema = new mongoose.Schema({
   toObject: { virtuals: true }
 })
 
-function autoPopulate(next) {
-  this.populate('people')
-  next()
-}
-
-vacationSchema.pre('find', autoPopulate)
-vacationSchema.pre('findOne', autoPopulate)
-
 module.exports = mongoose.model('vacations', vacationSchema)

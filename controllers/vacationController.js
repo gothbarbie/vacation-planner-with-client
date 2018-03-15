@@ -10,8 +10,6 @@ exports.create = async (req, res, next) => {
   }
   const body = matchedData(req)
 
-  console.log(req.auth)
-
   const vacation = new Vacation({
     arrival: body.arrival,
     departure: body.departure,
@@ -21,7 +19,28 @@ exports.create = async (req, res, next) => {
 
   await vacation.save()
 
-  return res.send(vacation._id)
+  return res.send(vacation)
+}
+
+exports.get = async (req, res, next) => {
+  if (!req.param.id.match(/^[0-9a-fA-F]{24}$/)) return next()
+  const vacation = await Vacation.findOne({ _id: req.param.id })
+
+  if (!vacation) {
+    res.status(400).send({ error: 'Not found' })
+  }
+
+  res.send(vacation)
+}
+
+exports.all = async (req, res, next) => {
+  const vacations = await Vacation.find()
+
+  if (!vacations) {
+    res.status(400).send({ error: 'Not found' })
+  }
+
+  res.send(vacations)
 }
 
 exports.validate = checkSchema({
@@ -35,6 +54,6 @@ exports.validate = checkSchema({
   },
   people: {
     errorMessage: 'People is missing!',
-    exists: true
-  }
+    exists: true,
+  },
 })

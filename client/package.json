@@ -21,6 +21,9 @@
     },
     "/api/vacation/create": {
       "target": "http://localhost:5000"
+    },
+    "/api/vacation/:id": {
+      "target": "http://localhost:5000"
     }
   },
   "dependencies": {

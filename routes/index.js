@@ -39,4 +39,8 @@ router.post('/api/vacation/create',
   vacationController.validate,
   vacationController.create)
 
+router.get('/api/vacation/', vacationController.all)
+router.get('/api/vacation/:id', vacationController.get)
+
+
 module.exports = router
