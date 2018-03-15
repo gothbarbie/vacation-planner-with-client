@@ -152,13 +152,18 @@ export class Schedule extends Component<Props, State> {
   handleSubmit = (event: Event) => {
     event.preventDefault()
     this.validateForm()
-    console.log(this.state)
+    const people = []
+    
+    this.state.people.forEach(p => {
+      if (p.checked === true) {
+        people.push(p.name)
+      }
+    })
+
     this.props.createVacation({
       arrival: this.state.arrival.value,
       departure: this.state.departure.value,
-      people: this.state.people.forEach(p => {
-        if (p.checked) return p.name
-      }),
+      people,
     })
   }
 
@@ -323,4 +328,6 @@ export const mapStateToProps = ({ auth, date }: Object) => {
   }
 }
 
-export default connect(mapStateToProps, { createVacation })(withRouter(Schedule))
+export default connect(mapStateToProps, { createVacation })(
+  withRouter(Schedule)
+)
