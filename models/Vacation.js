@@ -10,8 +10,7 @@ const vacationSchema = new mongoose.Schema({
     required: 'Date of departure is required.',
   },
   people: [{
-    type: mongoose.Schema.ObjectId,
-    ref: 'Users',
+    type: [String],
     required: 'At least one participant is required.'
   }],
   created: {

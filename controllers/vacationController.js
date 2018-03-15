@@ -10,11 +10,13 @@ exports.create = async (req, res, next) => {
   }
   const body = matchedData(req)
 
+  console.log(req.auth)
+
   const vacation = new Vacation({
     arrival: body.arrival,
     departure: body.departure,
     people: body.people,
-    author: req.auth._id,
+    author: req.user._id,
   })
 
   await vacation.save()
