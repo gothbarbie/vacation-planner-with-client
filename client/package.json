@@ -26,6 +26,8 @@
     "moment": "^2.21.0",
     "node-sass-chokidar": "0.0.3",
     "react": "16.2.0",
+    "react-app-rewire-styled-components": "^3.0.0",
+    "react-app-rewired": "^1.5.0",
     "react-dom": "16.2.0",
     "react-redux": "5.0.7",
     "react-router-dom": "4.2.2",
@@ -55,9 +57,9 @@
     ]
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
     "flow": "flow",
     "flow:watch": "flow-watch",

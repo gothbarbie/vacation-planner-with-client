@@ -189,7 +189,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-13"
         occupied={false}
         status=""
-        today={true}
+        today={false}
         weekend={true}
       />
       <Day
@@ -225,7 +225,7 @@ exports[`views/Schedule renders 1`] = `
         key="day-17"
         occupied={false}
         status=""
-        today={false}
+        today={true}
         weekend={false}
       />
       <Day
