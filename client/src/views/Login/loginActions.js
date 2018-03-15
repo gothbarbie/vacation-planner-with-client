@@ -23,9 +23,10 @@ export const loginUser = ({ email, password }) => async dispatch => {
       payload,
     })
   } catch (error) {
+    console.log(error)
     const payload = {
       type: 'danger',
-      message: error,
+      message: error.message,
     }
     dispatch({
       type: FLASH_MESSAGE,

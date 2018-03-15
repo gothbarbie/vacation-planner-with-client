@@ -29,6 +29,7 @@ router.post(
 )
 
 router.post('/auth/login', passport.authenticate('local'), (req, res) => {
+  console.log('req', req)
   res.send(req.user)
 })
 

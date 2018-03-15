@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import moment from 'moment'
+import { withRouter } from 'react-router-dom'
 
 import H1 from '../../components/H1'
 import H3 from '../../components/H3'
@@ -15,13 +16,17 @@ import Checkbox from '../../components/FormCheckbox'
 
 import './Schedule.css'
 
+import type { RouterHistory } from 'react-router-dom'
+
 type participant = {
   name: string,
   checked: boolean,
 }
 
 type Props = {
+  auth: void | Object,
   date: Date,
+  history: RouterHistory,
 }
 
 type State = {
@@ -66,6 +71,12 @@ export class Schedule extends Component<Props, State> {
       departure: '',
       people: '',
     },
+  }
+
+  componentWillMount () {
+    if (!this.props.auth) {
+      this.props.history.push('/')
+    }
   }
 
   renderIsWeekEnd (year: number, month: number, day: mixed) {
@@ -297,10 +308,11 @@ export class Schedule extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = ({ date }: Object) => {
+export const mapStateToProps = ({ auth, date }: Object) => {
   return {
+    auth,
     date,
   }
 }
 
-export default connect(mapStateToProps)(Schedule)
+export default connect(mapStateToProps)(withRouter(Schedule))
