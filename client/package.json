@@ -40,7 +40,8 @@
     "react-scripts": "1.1.1",
     "redux": "3.7.2",
     "redux-thunk": "2.2.0",
-    "styled-components": "3.2.1"
+    "styled-components": "3.2.1",
+    "validator": "9.4.1"
   },
   "devDependencies": {
     "babel-eslint": "8.2.1",
@@ -58,7 +59,9 @@
     "flow-watch": "1.1.2"
   },
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "scripts": {
     "start": "react-app-rewired start",
@@ -69,9 +72,7 @@
     "flow:watch": "flow-watch",
     "lint": "eslint src",
     "lint:watch": "esw src -w",
-    "build-css":
-      "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css":
-      "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive"
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive"
   }
 }

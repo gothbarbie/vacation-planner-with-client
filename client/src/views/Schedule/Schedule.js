@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import { withRouter } from 'react-router-dom'
+import validator from 'validator'
 
 import { createVacation } from './scheduleActions'
 import H1 from '../../components/H1'
@@ -14,6 +15,7 @@ import Form from '../../components/Form'
 import Icon from '../../components/Icon'
 import Input from '../../components/FormInput'
 import Checkbox from '../../components/FormCheckbox'
+import validate from '../../utils/validate'
 
 import './Schedule.css'
 
@@ -79,6 +81,11 @@ export class Schedule extends Component<Props, State> {
     if (!this.props.auth) {
       this.props.history.push('/')
     }
+
+    console.log(validate({
+      firstName: '',
+      lastName: '',
+    }))
   }
 
   renderIsWeekEnd (year: number, month: number, day: mixed) {
@@ -153,7 +160,7 @@ export class Schedule extends Component<Props, State> {
     event.preventDefault()
     this.validateForm()
     const people = []
-    
+
     this.state.people.forEach(p => {
       if (p.checked === true) {
         people.push(p.name)
@@ -204,7 +211,15 @@ export class Schedule extends Component<Props, State> {
     const people = this.state.people
 
     errors.arrival = !arrival.length && 'Arrival is required'
+    if (!errors.arrival.length) {
+      errors.arrival =
+        !validator.isISO8601(arrival) && 'Arrival must be a valid Date.'
+    }
     errors.departure = !departure.length && 'Departure is required'
+    if (!errors.departure.length) {
+      errors.departure =
+        !validator.isISO8601(departure) && 'Departure must be a valid Date.'
+    }
     errors.people = !people.length && 'At least one participant is required'
 
     this.setState({

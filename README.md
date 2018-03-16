@@ -7,7 +7,7 @@ Its also an opportunity for me to show my skills in backend as well as frontend.
 
 ## Version
 
-1.0.0
+1.0.0 - This it not a finalised product yet, so its actually pre release and not 1.0.0, but I'm starting versioning when I release it, until then, please just follow the history below.
 
 
 ## Server
@@ -23,3 +23,14 @@ A so called "Single Page Application", built with React (16) and Redux using `Cr
 - Unit Testing: Jest, Enzyme
 - Type Checking: Flow
 - Linting: ESLint
+
+
+## History
+
+### 2018-03-16
+
+Researching alternatives for form input validation. Joi is a strong contendor, but a bit exhaustive to get a grip on, so I'm considering using Yup client-side and perhaps reconsider in backend-validation in the future. We'll see. 
+
+- https://github.com/jquense/yup
+- https://github.com/hapijs/joi
+- https://github.com/mafintosh/is-my-json-valid
