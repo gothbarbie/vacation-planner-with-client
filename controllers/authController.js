@@ -2,26 +2,8 @@ const passport = require('passport')
 const { promisify } = require('es6-promisify')
 const mongoose = require('mongoose')
 const User = mongoose.model('users')
-const validator = require('is-my-json-valid')
-
-const schemas = require('../schemas/schemas')
 
 exports.validateRegister = (req, res, next) => {
-
-  const validate = validator(schemas.registerUser, { verbose: true })
-
-  validate({ 
-    email: req.body.email, 
-    password: req.body.password,
-  })
-
-  if (validate.errors) {
-    res.send({
-      title: 'Register',
-      body: validate.errors,
-    })
-    return // Abort
-  }
   next()
 }
 

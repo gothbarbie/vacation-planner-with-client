@@ -1,4 +1,5 @@
 const express = require('express')
+const expressGraphQL = require('express-graphql')
 const session = require('express-session')
 const mongoose = require('mongoose')
 const MongoStore = require('connect-mongo')(session)
@@ -37,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.cookieKey]
+    keys: [keys.cookieKey],
   })
 )
 
@@ -52,7 +53,7 @@ app.use(
     key: keys.sessionKey,
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
 )
 
@@ -71,6 +72,14 @@ app.use((req, res, next) => {
 
 // Setup Routes
 app.use('/', routes)
+
+// Add GraphQL
+app.use(
+  '/graphql',
+  expressGraphQL({
+    graphiql: true,
+  })
+)
 
 // 404 & forward ->
 app.use(errorHandlers.notFound)
