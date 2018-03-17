@@ -20,8 +20,6 @@ const UserType = new GraphQLObjectType({
     firstName: { type: GraphQLString },
     lastName: { type: GraphQLString },
     active: { type: GraphQLBoolean },
-    salt: { type: GraphQLString },
-    hash: { type: GraphQLString },
   },
 })
 
@@ -104,6 +102,20 @@ const mutation = new GraphQLObjectType({
       },
       async resolve(parentValue, { id }) {
         return await User.findOneAndRemove({ _id: id })
+      }
+    },
+    editUser: {
+      type: UserType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLString) },
+        firstName: { type: GraphQLString },
+        lastName: { type: GraphQLString },
+      },
+      async resolve(parentValue, { id, firstName, lastName }) {
+        return await User.findOneAndUpdate({ _id: id }, { 
+          firstName, 
+          lastName
+        }, { new: true, runValidators: true }).exec()
       }
     }
   },
