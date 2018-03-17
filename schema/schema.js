@@ -93,10 +93,19 @@ const mutation = new GraphQLObjectType({
           active: false,
         },
         password)
-        
+
         return user 
       },
     },
+    deleteUser: {
+      type: UserType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLString) }
+      },
+      async resolve(parentValue, { id }) {
+        return await User.findOneAndRemove({ _id: id })
+      }
+    }
   },
 })
 
