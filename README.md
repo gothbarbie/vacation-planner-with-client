@@ -27,6 +27,10 @@ A so called "Single Page Application", built with React (16) and Redux using `Cr
 
 ## History
 
+### 2018-03-17
+
+Got tired of Validation so I've begun implementing GraphQL in backend of which I am sure there will be use.
+
 ### 2018-03-16
 
 Researching alternatives for form input validation. Joi is a strong contendor, but a bit exhaustive to get a grip on, so I'm considering using Yup client-side and perhaps reconsider in backend-validation in the future. We'll see. 

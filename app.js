@@ -17,6 +17,7 @@ const routes = require('./routes/index')
 const errorHandlers = require('./handlers/errorHandlers')
 require('./services/passport')
 const keys = require('./config/keys')
+const schema = require('./schema/schema')
 
 const app = express()
 
@@ -77,6 +78,7 @@ app.use('/', routes)
 app.use(
   '/graphql',
   expressGraphQL({
+    schema,
     graphiql: true,
   })
 )
