@@ -91,8 +91,8 @@ const mutation = new GraphQLObjectType({
           active: false,
         },
         password)
-
-        return user 
+        if (user) return user
+        throw new Error('User could not be added', { email, firstName, lastName, password })
       },
     },
     deleteUser: {
@@ -101,7 +101,9 @@ const mutation = new GraphQLObjectType({
         id: { type: new GraphQLNonNull(GraphQLString) }
       },
       async resolve(parentValue, { id }) {
-        return await User.findOneAndRemove({ _id: id })
+        const user = await User.findOneAndRemove({ _id: id })
+        if (user) return user 
+        throw new Error('User could not be deleted', id)
       }
     },
     editUser: {
@@ -112,10 +114,13 @@ const mutation = new GraphQLObjectType({
         lastName: { type: GraphQLString },
       },
       async resolve(parentValue, { id, firstName, lastName }) {
-        return await User.findOneAndUpdate({ _id: id }, { 
+        const user = await User.findOneAndUpdate({ _id: id }, { 
           firstName, 
           lastName
         }, { new: true, runValidators: true }).exec()
+
+        if (user) return user
+        throw new Error('User could not be updated', id)
       }
     }
   },
