@@ -15,7 +15,6 @@ import Form from '../../components/Form'
 import Icon from '../../components/Icon'
 import Input from '../../components/FormInput'
 import Checkbox from '../../components/FormCheckbox'
-import validate from '../../utils/validate'
 
 import './Schedule.css'
 
@@ -81,11 +80,6 @@ export class Schedule extends Component<Props, State> {
     if (!this.props.auth) {
       this.props.history.push('/')
     }
-
-    console.log(validate({
-      firstName: '',
-      lastName: '',
-    }))
   }
 
   renderIsWeekEnd (year: number, month: number, day: mixed) {
