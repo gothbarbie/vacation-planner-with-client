@@ -1,12 +1,14 @@
 [ignore]
-.*/node_modules/.*
-.*node_modules.*
+.*/node_modules/*.
 
 [include]
 
 [libs]
-flow-typed
 
 [lints]
 
 [options]
+module.system.node.resolve_dirname=node_modules
+module.system.node.resolve_dirname=./src
+module.system.node.resolve_dirname=.
+module.name_mapper.extension='graphql' -> '<PROJECT_ROOT>/__mocks__/graphqlFileMock'

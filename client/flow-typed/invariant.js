@@ -1,4 +1,4 @@
 // @flow
 declare module 'invariant' {
-  declare var exports: any
+  declare module.exports: any
 }
