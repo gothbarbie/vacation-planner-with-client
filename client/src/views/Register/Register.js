@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
 import PageWrapper from '../../components/PageWrapper'
 import ThreeColumnsWrapper from '../../components/ThreeColumnsWrapper'
@@ -9,12 +10,11 @@ import Form from '../../components/Form'
 import Input from '../../components/FormInput'
 import ButtonLink from '../../components/ButtonLink'
 import Icon from '../../components/Icon'
-import * as actions from './registerActions'
 
 import './Register.css'
 
 type Props = {
-  registerUser: Function,
+  mutate: Function,
 }
 
 type State = {
@@ -80,7 +80,15 @@ export class Register extends Component<Props, State> {
 
   handleSubmit = (event: Event) => {
     event.preventDefault()
-    this.props.registerUser(this.state)
+    const { firstName, lastName, email, password } = this.state
+    this.props.mutate({
+      variables: {
+        firstName: firstName.value,
+        lastName: lastName.value,
+        email: email.value,
+        password: password.value,
+      },
+    })
   }
 
   handleChange = (event?: SyntheticInputEvent<any>) => {
@@ -197,4 +205,22 @@ export class Register extends Component<Props, State> {
   }
 }
 
-export default connect(null, actions)(Register)
+const mutation = gql`
+  mutation AddUser(
+    $email: String!
+    $firstName: String
+    $lastName: String
+    $password: String!
+  ) {
+    addUser(
+      email: $email
+      firstName: $firstName
+      lastName: $lastName
+      password: $password
+    ) {
+      id
+    }
+  }
+`
+
+export default graphql(mutation)(Register)
