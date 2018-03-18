@@ -31,7 +31,7 @@ type participant = {
 
 type Props = {
   data: {
-    vacations: {},
+    vacations: [],
     loading: Boolean,
   },
   auth: void | Object,
@@ -108,11 +108,11 @@ export class Schedule extends Component<Props, State> {
     )
   }
 
-  datesMatch (compareDate, currentDate) {
+  datesMatch (compareDate: Date, currentDate: string) {
     return moment(compareDate).format('YYYY-MM-DD') === currentDate
   }
 
-  dateIsOccupied (arrivalDate, departureDate, currentDate) {
+  dateIsOccupied (arrivalDate: Date, departureDate: Date, currentDate: string) {
     return (
       moment(currentDate).isAfter(moment(arrivalDate)) &&
       moment(currentDate).isBefore(moment(departureDate))
@@ -137,7 +137,7 @@ export class Schedule extends Component<Props, State> {
       let status = ''
 
       // TODO: Add People
-      data.vacations &&
+      data.vacations &&  
         data.vacations.forEach((v, vi) => {
           if (this.datesMatch(v.arrival, currentDate)) {
             occupied = true
