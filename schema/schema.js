@@ -69,6 +69,15 @@ const RootQuery = new GraphQLObjectType({
         throw new Error('No vacation found', args.id)
       },
     },
+    vacations: {
+      type: new GraphQLList(VacationType),
+      args: {},
+      async resolve(parentValue, args) {
+        const vacations = await Vacation.find()
+        if (vacations) return vacations
+        throw new Error('No vacations found')
+      },
+    },
   },
 })
 
@@ -84,27 +93,34 @@ const mutation = new GraphQLObjectType({
         password: { type: new GraphQLNonNull(GraphQLString) },
       },
       async resolve(parentValue, { email, firstName, lastName, password }) {
-        const user = await User.register({
-          email: email,
-          firstName: firstName,
-          lastName: lastName,
-          active: false,
-        },
-        password)
+        const user = await User.register(
+          {
+            email: email,
+            firstName: firstName,
+            lastName: lastName,
+            active: false,
+          },
+          password
+        )
         if (user) return user
-        throw new Error('User could not be added', { email, firstName, lastName, password })
+        throw new Error('User could not be added', {
+          email,
+          firstName,
+          lastName,
+          password,
+        })
       },
     },
     deleteUser: {
       type: UserType,
       args: {
-        id: { type: new GraphQLNonNull(GraphQLString) }
+        id: { type: new GraphQLNonNull(GraphQLString) },
       },
       async resolve(parentValue, { id }) {
         const user = await User.findOneAndRemove({ _id: id })
-        if (user) return user 
+        if (user) return user
         throw new Error('User could not be deleted', id)
-      }
+      },
     },
     editUser: {
       type: UserType,
@@ -114,19 +130,46 @@ const mutation = new GraphQLObjectType({
         lastName: { type: GraphQLString },
       },
       async resolve(parentValue, { id, firstName, lastName }) {
-        const user = await User.findOneAndUpdate({ _id: id }, { 
-          firstName, 
-          lastName
-        }, { new: true, runValidators: true }).exec()
+        const user = await User.findOneAndUpdate(
+          { _id: id },
+          {
+            firstName,
+            lastName,
+          },
+          { new: true, runValidators: true }
+        ).exec()
 
         if (user) return user
         throw new Error('User could not be updated', id)
+      },
+    },
+    addVacation: {
+      type: VacationType,
+      args: {
+        author: { type: new GraphQLNonNull(GraphQLString) },
+        arrival: { type: new GraphQLNonNull(GraphQLString) },
+        departure: { type: new GraphQLNonNull(GraphQLString) },
+        people: { type: new GraphQLNonNull(new GraphQLList(GraphQLString)) },
+      },
+      async resolve(parentValue, { author, arrival, departure, people}) {
+        const now = new Date()
+
+        const vacation = new Vacation({
+          author,
+          arrival,
+          departure,
+          people,
+          created: now.toISOString()
+        })
+        await vacation.save()
+        if (vacation) return vacation 
+        throw new Error('Could not add Vacation', { author, arrival, departure, people })
       }
-    }
+    },
   },
 })
 
 module.exports = new GraphQLSchema({
   query: RootQuery,
-  mutation
+  mutation,
 })

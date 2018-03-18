@@ -27,6 +27,10 @@ A so called "Single Page Application", built with React (16) and Redux using `Cr
 
 ## History
 
+### 2018-03-18
+
+Continuing implementation of GraphQL and switching out all the Redux-stuff to GraphQL Queries and Mutations. So far so good.
+
 ### 2018-03-17
 
 Got tired of Validation so I've begun implementing GraphQL in backend of which I am sure there will be use.
