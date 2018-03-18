@@ -6,6 +6,7 @@ import moment from 'moment'
 import { withRouter } from 'react-router-dom'
 import validator from 'validator'
 import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
 import getVacations from '../../queries/getVacations'
 
@@ -37,6 +38,7 @@ type Props = {
   date: Date,
   history: RouterHistory,
   createVacation: Function,
+  mutate: Function,
 }
 
 type State = {
@@ -106,6 +108,15 @@ export class Schedule extends Component<Props, State> {
     )
   }
 
+  datesMatch (compareDate, currentDate) {
+    return moment(compareDate).format('YYYY-MM-DD') === currentDate
+  }
+
+  dateIsOccupied (arrivalDate, departureDate, currentDate) {
+    return moment(currentDate).isAfter(moment(arrivalDate)) &&
+      moment(currentDate).isBefore(moment(departureDate))
+  }
+
   renderDays () {
     const m = moment(this.props.date)
     const daysInMonth = m.daysInMonth()
@@ -115,17 +126,48 @@ export class Schedule extends Component<Props, State> {
     const days = []
 
     for (let i = 1; i < daysInMonth; i++) {
-      // const fullDate = moment(`${year}-${month + 1}-${day}`, 'YYYY-MM-D').format('YYYY-MM-DD')
+      const currentDate = moment(
+        `${year}-${month + 1}-${i}`,
+        'YYYY-MM-D'
+      ).format('YYYY-MM-DD')
+      const { data } = this.props
+      let occupied = false
+      let status = ''
 
-      // TODO: set occupied and status from this.props.data.vacations array
+      data.vacations &&
+        data.vacations.forEach((v, vi) => {
+          if (this.datesMatch(v.arrival, currentDate)) {
+            occupied = true
+            status = 'Arrival'
+          }
 
-      days.push({
-        date: i,
-        occupied: false,
-        status: '',
-        weekend: this.renderIsWeekEnd(year, month, i),
-        empty: false,
-      })
+          if (this.dateIsOccupied(v.arrival, v.departure, currentDate)) {
+            occupied = true
+            status = 'Occupied'
+          }
+
+          if (this.datesMatch(v.departure, currentDate)) {
+            occupied = true
+            status = 'Departure'
+          }
+          if (vi === 0) {
+            days.push({
+              date: i,
+              occupied: occupied,
+              status: status,
+              weekend: this.renderIsWeekEnd(year, month, i),
+              empty: false,
+            })
+          } else {
+            days[i - 1] = {
+              date: i,
+              occupied: occupied,
+              status: status,
+              weekend: this.renderIsWeekEnd(year, month, i),
+              empty: false,
+            }
+          }
+        })
     }
 
     for (let i = 1; i < startOnDayNr; i++) {
@@ -175,12 +217,16 @@ export class Schedule extends Component<Props, State> {
         people.push(p.name)
       }
     })
-
-    this.props.createVacation({
-      arrival: this.state.arrival.value,
-      departure: this.state.departure.value,
-      people,
+    // TODO: Retrieve current user ID
+    this.props.mutate({
+      variables: {
+        author: '5a9a78869d9ca37741305880',
+        arrival: this.state.arrival.value,
+        departure: this.state.departure.value,
+        people,
+      },
     })
+    this.setState({})
   }
 
   handleChange = (event: SyntheticInputEvent<any>) => {
@@ -348,11 +394,29 @@ export class Schedule extends Component<Props, State> {
   }
 }
 
-export const mapStateToProps = ({ auth, date }: Object) => {
-  return {
-    auth,
-    date,
+const mutation = gql`
+  mutation addVacation(
+    $author: String!
+    $arrival: String!
+    $departure: String!
+    $people: [String]!
+  ) {
+    addVacation(
+      author: $author
+      arrival: $arrival
+      departure: $departure
+      people: $people
+    ) {
+      id
+    }
   }
-}
+`
 
-export default graphql(getVacations)(withRouter(Schedule))
+// export const mapStateToProps = ({ auth, date }: Object) => {
+//   return {
+//     auth,
+//     date,
+//   }
+// }
+
+export default graphql(mutation)(graphql(getVacations)(withRouter(Schedule)))
