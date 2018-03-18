@@ -2,6 +2,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import PageWrapper from '../../components/PageWrapper'
+import ThreeColumnsWrapper from '../../components/ThreeColumnsWrapper'
 import H1 from '../../components/H1'
 import Form from '../../components/Form'
 import Input from '../../components/FormInput'
@@ -126,10 +128,10 @@ export class Register extends Component<Props, State> {
 
   render () {
     return (
-      <section className="register">
+      <PageWrapper>
         <H1>New User</H1>
-        
-        <div className="register__inner">
+
+        <ThreeColumnsWrapper>
           <div className="register__email">
             <Form onSubmit={this.handleSubmit} title="Enter your credentials">
               <div className="register__columns">
@@ -189,8 +191,8 @@ export class Register extends Component<Props, State> {
               Google
             </ButtonLink>
           </div>
-        </div>
-      </section>
+        </ThreeColumnsWrapper>
+      </PageWrapper>
     )
   }
 }

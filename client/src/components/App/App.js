@@ -3,9 +3,11 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import * as actions from '../../actions'
+import styled from 'styled-components'
 
+import * as actions from '../../actions'
 import './App.css'
+
 import Header from '../Layout/Header'
 import Flash from '../Flash'
 import Footer from '../Layout/Footer'
@@ -19,6 +21,13 @@ type Props = {
   fetchUser: Function,
 }
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+`
+
 export class App extends Component<Props> {
   componentDidMount () {
     this.props.fetchUser()
@@ -28,7 +37,7 @@ export class App extends Component<Props> {
     return (
       <div>
         <BrowserRouter>
-          <div className="wrapper">
+          <Wrapper>
             <Header />
             <Flash />
             <Main>
@@ -37,7 +46,7 @@ export class App extends Component<Props> {
               <Route component={Schedule} exact path="/schedule" />
             </Main>
             <Footer />
-          </div>
+          </Wrapper>
         </BrowserRouter>
       </div>
     )

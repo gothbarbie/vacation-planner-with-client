@@ -2,12 +2,14 @@
 
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
 import moment from 'moment'
 import { withRouter } from 'react-router-dom'
 import validator from 'validator'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
-import { createVacation } from './scheduleActions'
+import PageWrapper from '../../components/PageWrapper'
+import ThreeColumnsWrapper from '../../components/ThreeColumnsWrapper'
 import H1 from '../../components/H1'
 import H3 from '../../components/H3'
 import Day from './Day/index'
@@ -26,6 +28,10 @@ type participant = {
 }
 
 type Props = {
+  data: {
+    vacations: {},
+    loading: Boolean,
+  },
   auth: void | Object,
   date: Date,
   history: RouterHistory,
@@ -77,9 +83,9 @@ export class Schedule extends Component<Props, State> {
   }
 
   componentWillMount () {
-    if (!this.props.auth) {
-      this.props.history.push('/')
-    }
+    // if (!this.props.auth) {
+    //   this.props.history.push('/')
+    // }
   }
 
   renderIsWeekEnd (year: number, month: number, day: mixed) {
@@ -108,6 +114,10 @@ export class Schedule extends Component<Props, State> {
     const days = []
 
     for (let i = 1; i < daysInMonth; i++) {
+      // const fullDate = moment(`${year}-${month + 1}-${day}`, 'YYYY-MM-D').format('YYYY-MM-DD')
+
+      // TODO: set occupied and status from this.props.data.vacations array
+
       days.push({
         date: i,
         occupied: false,
@@ -137,17 +147,21 @@ export class Schedule extends Component<Props, State> {
       })
     }
 
-    return days.map(({ date, empty, occupied, status, weekend }, i) => (
-      <Day
-        date={date}
-        empty={empty}
-        key={`day-${i}`}
-        occupied={occupied}
-        status={status}
-        today={this.isToday(year, month, date)}
-        weekend={weekend}
-      />
-    ))
+    return days.map(({ date, empty, occupied, status, weekend }, i) => {
+      const today = this.isToday(year, month, date)
+
+      return (
+        <Day
+          date={date}
+          empty={empty}
+          key={`day-${i}`}
+          occupied={occupied}
+          status={status}
+          today={today}
+          weekend={weekend}
+        />
+      )
+    })
   }
 
   handleSubmit = (event: Event) => {
@@ -266,8 +280,11 @@ export class Schedule extends Component<Props, State> {
   }
 
   render () {
+    if (this.props.data.loading) {
+      return <div>Loading...</div>
+    }
     return (
-      <section className="schedule">
+      <PageWrapper>
         <H1>Schedule</H1>
 
         <nav className="time-nav">
@@ -296,7 +313,7 @@ export class Schedule extends Component<Props, State> {
           <main className="calendar__days">{this.renderDays()}</main>
         </section>
 
-        <div className="schedule__inner">
+        <ThreeColumnsWrapper>
           <Form onSubmit={this.handleSubmit} submitText="Add" title="New Trip">
             <H3>Time Period</H3>
             <div className="register__columns">
@@ -324,11 +341,25 @@ export class Schedule extends Component<Props, State> {
             <H3>Participants</H3>
             <div className="register__columns">{this.renderParticipants()}</div>
           </Form>
-        </div>
-      </section>
+        </ThreeColumnsWrapper>
+      </PageWrapper>
     )
   }
 }
+
+const query = gql`
+  query getVacations {
+    vacations {
+      id
+      arrival
+      departure
+      people
+      author {
+        id
+      }
+    }
+  }
+`
 
 export const mapStateToProps = ({ auth, date }: Object) => {
   return {
@@ -337,6 +368,4 @@ export const mapStateToProps = ({ auth, date }: Object) => {
   }
 }
 
-export default connect(mapStateToProps, { createVacation })(
-  withRouter(Schedule)
-)
+export default graphql(query)(withRouter(Schedule))

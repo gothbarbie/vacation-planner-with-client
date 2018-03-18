@@ -1,15 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`views/Login renders 1`] = `
-<section
-  className="login"
->
+<styled.section>
   <H1>
     Login
   </H1>
-  <div
-    className="login__inner"
-  >
+  <styled.div>
     <div
       className="login__email"
     >
@@ -70,6 +66,6 @@ exports[`views/Login renders 1`] = `
         Login with Google
       </ButtonLink>
     </div>
-  </div>
-</section>
+  </styled.div>
+</styled.section>
 `;

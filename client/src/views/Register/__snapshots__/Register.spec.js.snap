@@ -1,15 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`views/Register renders 1`] = `
-<section
-  className="register"
->
+<styled.section>
   <H1>
     New User
   </H1>
-  <div
-    className="register__inner"
-  >
+  <styled.div>
     <div
       className="register__email"
     >
@@ -84,6 +80,6 @@ exports[`views/Register renders 1`] = `
         Register with Google
       </ButtonLink>
     </div>
-  </div>
-</section>
+  </styled.div>
+</styled.section>
 `;

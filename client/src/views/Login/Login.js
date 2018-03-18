@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import type { RouterHistory } from 'react-router-dom'
 
+import PageWrapper from '../../components/PageWrapper'
+import ThreeColumnsWrapper from '../../components/ThreeColumnsWrapper'
 import H1 from '../../components/H1'
 import Notice from '../../components/Notice'
 import Form from '../../components/Form'
@@ -109,10 +111,10 @@ export class Login extends Component<Props, State> {
 
   render () {
     return (
-      <section className="login">
+      <PageWrapper>
         {this.renderAlreadyLoggedIn()}
         <H1>Login</H1>
-        <div className="login__inner">
+        <ThreeColumnsWrapper>
           <div className="login__email">
             <Notice>
               First time here? <Link to="register"> Please register</Link>{' '}
@@ -147,8 +149,8 @@ export class Login extends Component<Props, State> {
               <Icon isBrand marginRight name="google-plus" />Login with Google
             </ButtonLink>
           </div>
-        </div>
-      </section>
+        </ThreeColumnsWrapper>
+      </PageWrapper>
     )
   }
 }
@@ -159,6 +161,4 @@ export const mapStateToProps = ({ auth }: Object) => {
   }
 }
 
-export default connect(mapStateToProps, actions)(
-  withRouter(Login)
-)
+export default connect(mapStateToProps, actions)(withRouter(Login))

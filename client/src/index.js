@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import reduxThunk from 'redux-thunk'
+import { ApolloClient } from 'apollo-client'
+import { HttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+import { ApolloProvider } from 'react-apollo'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './variables/theme'
 
@@ -15,11 +19,20 @@ const store = createStore(
   applyMiddleware(reduxThunk)
 )
 
+const uri =  '/graphql'
+
+const client = new ApolloClient({
+  link: new HttpLink({ uri }),
+  cache: new InMemoryCache(),
+})
+
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </ApolloProvider>
   </ThemeProvider>,
   document.querySelector('#root')
 )
