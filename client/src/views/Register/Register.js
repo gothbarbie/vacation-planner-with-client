@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import { withRouter } from 'react-router-dom'
 
 import PageWrapper from '../../components/PageWrapper'
 import ThreeColumnsWrapper from '../../components/ThreeColumnsWrapper'
@@ -15,6 +16,9 @@ import './Register.css'
 
 type Props = {
   mutate: Function,
+  history: {
+    push: Function,
+  },
 }
 
 type State = {
@@ -81,14 +85,16 @@ export class Register extends Component<Props, State> {
   handleSubmit = (event: Event) => {
     event.preventDefault()
     const { firstName, lastName, email, password } = this.state
-    this.props.mutate({
-      variables: {
-        firstName: firstName.value,
-        lastName: lastName.value,
-        email: email.value,
-        password: password.value,
-      },
-    })
+    this.props
+      .mutate({
+        variables: {
+          firstName: firstName.value,
+          lastName: lastName.value,
+          email: email.value,
+          password: password.value,
+        },
+      })
+      .then(() => { this.props.history.push('/schedule') })
   }
 
   handleChange = (event?: SyntheticInputEvent<any>) => {
@@ -223,4 +229,4 @@ const mutation = gql`
   }
 `
 
-export default graphql(mutation)(Register)
+export default graphql(mutation)(withRouter(Register))

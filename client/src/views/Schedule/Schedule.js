@@ -6,7 +6,8 @@ import moment from 'moment'
 import { withRouter } from 'react-router-dom'
 import validator from 'validator'
 import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
+
+import getVacations from '../../queries/getVacations'
 
 import PageWrapper from '../../components/PageWrapper'
 import ThreeColumnsWrapper from '../../components/ThreeColumnsWrapper'
@@ -347,20 +348,6 @@ export class Schedule extends Component<Props, State> {
   }
 }
 
-const query = gql`
-  query getVacations {
-    vacations {
-      id
-      arrival
-      departure
-      people
-      author {
-        id
-      }
-    }
-  }
-`
-
 export const mapStateToProps = ({ auth, date }: Object) => {
   return {
     auth,
@@ -368,4 +355,4 @@ export const mapStateToProps = ({ auth, date }: Object) => {
   }
 }
 
-export default graphql(query)(withRouter(Schedule))
+export default graphql(getVacations)(withRouter(Schedule))
