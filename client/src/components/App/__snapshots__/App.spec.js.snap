@@ -3,9 +3,7 @@
 exports[`App renders 1`] = `
 <div>
   <BrowserRouter>
-    <div
-      className="wrapper"
-    >
+    <styled.div>
       <Connect(withRouter(Header)) />
       <Connect(Flash) />
       <Main>
@@ -26,7 +24,7 @@ exports[`App renders 1`] = `
         />
       </Main>
       <Footer />
-    </div>
+    </styled.div>
   </BrowserRouter>
 </div>
 `;

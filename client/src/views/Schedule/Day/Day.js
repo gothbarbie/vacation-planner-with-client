@@ -59,8 +59,8 @@ const Status = styled.div`
   align-items: center;
   height: 26px;
 
-  color: ${({ occupied, theme }) => occupied && theme.color.white}
-  background: ${({ occupied, theme }) => occupied && theme.color.dangerLight}
+  color: ${({ occupied, theme }) => occupied ? theme.colors.white : 'transparent'};
+  background: ${({ occupied, theme }) => occupied ? theme.colors.dangerLight : 'transparent'};
 `
 
 const Day = ({
@@ -80,7 +80,7 @@ const Day = ({
           return <div>{person.name}</div>
         })}
     </People>
-    <Status>{status}</Status>
+    <Status occupied={occupied}>{status}</Status>
   </DayWrapper>
 )
 

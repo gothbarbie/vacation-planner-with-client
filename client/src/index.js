@@ -24,6 +24,7 @@ const uri =  '/graphql'
 const client = new ApolloClient({
   link: new HttpLink({ uri }),
   cache: new InMemoryCache(),
+  dataIdFromObject: o => o.id,
 })
 
 ReactDOM.render(

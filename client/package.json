@@ -30,15 +30,15 @@
     }
   },
   "dependencies": {
-    "ajv": "^6.2.1",
-    "apollo-cache-inmemory": "^1.1.11",
-    "apollo-client": "^2.2.7",
+    "ajv": "6.2.1",
+    "apollo-cache-inmemory": "1.1.11",
+    "apollo-client": "2.2.7",
     "apollo-client-preset": "^1.0.8",
-    "apollo-link-http": "^1.5.3",
+    "apollo-link-http": "1.5.3",
     "axios": "0.18.0",
     "classnames": "2.2.5",
-    "graphql": "^0.13.2",
-    "graphql-tag": "^2.8.0",
+    "graphql": "0.13.2",
+    "graphql-tag": "2.8.0",
     "moment": "2.21.0",
     "node-sass-chokidar": "0.0.3",
     "react": "16.2.0",
@@ -72,6 +72,9 @@
   "jest": {
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
+    ],
+    "moduleFileExtensions": [
+      "js"
     ]
   },
   "scripts": {

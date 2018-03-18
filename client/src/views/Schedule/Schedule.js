@@ -113,8 +113,10 @@ export class Schedule extends Component<Props, State> {
   }
 
   dateIsOccupied (arrivalDate, departureDate, currentDate) {
-    return moment(currentDate).isAfter(moment(arrivalDate)) &&
+    return (
+      moment(currentDate).isAfter(moment(arrivalDate)) &&
       moment(currentDate).isBefore(moment(departureDate))
+    )
   }
 
   renderDays () {
@@ -134,6 +136,7 @@ export class Schedule extends Component<Props, State> {
       let occupied = false
       let status = ''
 
+      // TODO: Add People
       data.vacations &&
         data.vacations.forEach((v, vi) => {
           if (this.datesMatch(v.arrival, currentDate)) {
@@ -170,6 +173,7 @@ export class Schedule extends Component<Props, State> {
         })
     }
 
+    // Add empty days BEFORE the first weekday of the month
     for (let i = 1; i < startOnDayNr; i++) {
       days.unshift({
         date: null,
@@ -179,6 +183,7 @@ export class Schedule extends Component<Props, State> {
         empty: true,
       })
     }
+    // Add empty days AFTER the first weekday of the month
     const emptyDaysAfter = 35 - days.length
     for (let i = 0; i < emptyDaysAfter; i++) {
       days.push({

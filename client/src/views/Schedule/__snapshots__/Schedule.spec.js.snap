@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`views/Schedule renders 1`] = `
-<section
-  className="schedule"
->
+<styled.section>
   <H1>
     Schedule
   </H1>
@@ -94,273 +92,243 @@ exports[`views/Schedule renders 1`] = `
         weekend={false}
       />
       <Day
-        date={1}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-3"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={2}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-4"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={3}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-5"
         occupied={false}
         status=""
-        today={false}
-        weekend={true}
+        weekend={false}
       />
       <Day
-        date={4}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-6"
         occupied={false}
         status=""
-        today={false}
-        weekend={true}
+        weekend={false}
       />
       <Day
-        date={5}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-7"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={6}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-8"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={7}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-9"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={8}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-10"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={9}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-11"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={10}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-12"
         occupied={false}
         status=""
-        today={false}
-        weekend={true}
+        weekend={false}
       />
       <Day
-        date={11}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-13"
         occupied={false}
         status=""
-        today={false}
-        weekend={true}
+        weekend={false}
       />
       <Day
-        date={12}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-14"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={13}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-15"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={14}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-16"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={15}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-17"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={16}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-18"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={17}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-19"
         occupied={false}
         status=""
-        today={true}
-        weekend={true}
+        weekend={false}
       />
       <Day
-        date={18}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-20"
         occupied={false}
         status=""
-        today={false}
-        weekend={true}
+        weekend={false}
       />
       <Day
-        date={19}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-21"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={20}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-22"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={21}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-23"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={22}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-24"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={23}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-25"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={24}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-26"
         occupied={false}
         status=""
-        today={false}
-        weekend={true}
+        weekend={false}
       />
       <Day
-        date={25}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-27"
         occupied={false}
         status=""
-        today={false}
-        weekend={true}
+        weekend={false}
       />
       <Day
-        date={26}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-28"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={27}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-29"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={28}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-30"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={29}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-31"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
-        date={30}
-        empty={false}
+        date={null}
+        empty={true}
         key="day-32"
         occupied={false}
         status=""
-        today={false}
         weekend={false}
       />
       <Day
@@ -381,9 +349,7 @@ exports[`views/Schedule renders 1`] = `
       />
     </main>
   </section>
-  <div
-    className="schedule__inner"
-  >
+  <styled.div>
     <Form
       onSubmit={[Function]}
       submitText="Add"
@@ -436,6 +402,6 @@ exports[`views/Schedule renders 1`] = `
         />
       </div>
     </Form>
-  </div>
-</section>
+  </styled.div>
+</styled.section>
 `;
