@@ -7,6 +7,12 @@ const VacationType = require('./vacationType')
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
+    currentUser: {
+      type: UserType, 
+      resolve(parentValue, args, req) {
+        return req.user
+      }
+    },
     user: {
       type: UserType,
       args: { id: { type: GraphQLString } },

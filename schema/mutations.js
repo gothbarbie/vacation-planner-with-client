@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const User = mongoose.model('users')
 
 const UserType = require('./types/userType')
+const authController = require('../controllers/authController')
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -16,36 +17,30 @@ const mutation = new GraphQLObjectType({
         lastName: { type: GraphQLString },
         password: { type: new GraphQLNonNull(GraphQLString) },
       },
-      async resolve(
-        parentValue,
-        { email, firstName, lastName, password },
-        req
-      ) {
-        const user = await User.register(
-          {
-            email: email,
-            firstName: firstName,
-            lastName: lastName,
-            active: false,
-          },
-          password
-        )
-        if (user) {
-          return new Promise((resolve, reject) => {
-            req.logIn(user, (err) => {
-              if (err) { reject(err )}
-              resolve(user)
-            })
-          })
-        }
-        throw new Error('User could not be added', {
-          email,
-          firstName,
-          lastName,
-          password,
-        })
-      },
+      async resolve(parentValue, { 
+        email, firstName, lastName, password 
+      }, req) {
+       return authController.signup({ email, firstName, lastName, password, req })
+      }
     },
+    logout: {
+      type: UserType,
+      resolve(parentValue, args, req) {
+        const { user } = req 
+        req.logout()
+        return user
+      }
+    },
+    login: {
+      type: UserType,
+      args: {
+        email: { type: GraphQLString },
+        password: { type: GraphQLString },
+      },
+      resolve(parentValue, { email, password }, req) {
+        return authController.login({ email, password, req })
+      }
+    }
   },
 })
 

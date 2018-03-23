@@ -84,7 +84,7 @@ app.use(
 )
 
 // 404 & forward ->
-app.use(errorHandlers.notFound)
+// app.use(errorHandlers.notFound)
 
 // Check for validation errors ->
 app.use(errorHandlers.flashValidationErrors)
