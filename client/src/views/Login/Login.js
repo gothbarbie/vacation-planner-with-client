@@ -3,6 +3,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
+import { graphql } from 'react-apollo'
+
+import query from '../../queries/Auth'
+import mutation from '../../mutations/Login'
+
 import type { RouterHistory } from 'react-router-dom'
 
 import PageWrapper from '../../components/PageWrapper'
@@ -16,8 +21,10 @@ import ButtonLink from '../../components/ButtonLink'
 import Icon from '../../components/Icon'
 
 type Props = {
-  auth: {} | void,
-  loginUser: Function,
+  data: {
+    auth: {} | void,
+  },
+  mutate: Function,
   history: RouterHistory,
 }
 
@@ -53,7 +60,8 @@ export class Login extends Component<Props, State> {
   }
 
   renderAlreadyLoggedIn () {
-    if (this.props.auth) {
+    console.log(this.props)
+    if (this.props.data.auth) {
       return (
         <Notice warning>
           You are already logged in, do you want to log in as another user?{' '}
@@ -66,6 +74,12 @@ export class Login extends Component<Props, State> {
   handleSubmit = (event: SyntheticEvent<any>) => {
     event.preventDefault()
     console.log(this.state)
+    this.props.mutate({
+      variables: {
+        email: this.state.email.value,
+        password: this.state.password.value,
+      },
+    })
     // this.props.history.push('/schedule')
   }
 
@@ -150,4 +164,4 @@ export class Login extends Component<Props, State> {
   }
 }
 
-export default withRouter(Login)
+export default graphql(query)(graphql(mutation)(withRouter(Login)))
