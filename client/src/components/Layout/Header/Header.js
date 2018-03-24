@@ -12,10 +12,13 @@ import Button from '../../Button'
 import ButtonLink from '../../ButtonLink'
 
 type Props = {
-  auth: {} | void,
+  data: {
+    auth: {} | void,
+  },
   history: {
     location: string,
   },
+  mutate: Function,
 }
 
 export class Header extends Component<Props> {
@@ -51,14 +54,20 @@ export class Header extends Component<Props> {
 
   renderLogin () {
     if (this.props.data.auth) {
-      return <Button onClick={this.handleLogout}>Logout</Button>
+      return <Button onClick={() => this.handleLogout}>Logout</Button>
     }
-    if (this.props.history && this.props.history.location !== '/') {
+    if (
+      this.props.history &&
+      this.props.history.location &&
+      this.props.history.location.pathname !== '/'
+    ) {
       return (
         <ButtonLink primary url="/">
           Login
         </ButtonLink>
       )
+    } else {
+      return <div />
     }
   }
 

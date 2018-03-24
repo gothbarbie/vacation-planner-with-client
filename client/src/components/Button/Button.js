@@ -13,14 +13,16 @@ type Props = {
   url?: string,
 }
 
-const Button = ({ children, primary, secondary, disabled }: Props) => (
+const Button = ({ children, primary, secondary, disabled, onClick }: Props) => (
   <button
     className={classnames('btn btn__default', {
       btn__primary: primary,
       btn__secondary: secondary,
       'btn--disabled': disabled,
     })}
-    disabled={disabled}>
+    disabled={disabled}
+    onClick={onClick}
+  >
     {children}
   </button>
 )
