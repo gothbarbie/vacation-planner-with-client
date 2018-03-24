@@ -2,9 +2,9 @@
 
 exports[`App renders 1`] = `
 <div>
-  <BrowserRouter>
+  <Switch>
     <styled.div>
-      <Connect(withRouter(Header)) />
+      <Apollo(Apollo(withRouter(Header))) />
       <Connect(Flash) />
       <Main>
         <Route
@@ -25,6 +25,6 @@ exports[`App renders 1`] = `
       </Main>
       <Footer />
     </styled.div>
-  </BrowserRouter>
+  </Switch>
 </div>
 `;

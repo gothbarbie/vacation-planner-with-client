@@ -6,9 +6,9 @@ import moment from 'moment'
 import { withRouter } from 'react-router-dom'
 import validator from 'validator'
 import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
+// import gql from 'graphql-tag'
 
-import getVacations from '../../queries/getVacations'
+import auth from '../../queries/auth'
 
 import PageWrapper from '../../components/PageWrapper'
 import ThreeColumnsWrapper from '../../components/ThreeColumnsWrapper'
@@ -137,7 +137,7 @@ export class Schedule extends Component<Props, State> {
       let status = ''
 
       // TODO: Add People
-      data.vacations &&  
+      data && data.vacations && data.vacations.length &&
         data.vacations.forEach((v, vi) => {
           if (this.datesMatch(v.arrival, currentDate)) {
             occupied = true
@@ -266,9 +266,7 @@ export class Schedule extends Component<Props, State> {
   validateForm () {
     const errors = {}
 
-    const arrival = this.state.arrival.value
-    const departure = this.state.departure.value
-    const people = this.state.people
+    const { arrival, departure, people } = this.state
 
     errors.arrival = !arrival.length && 'Arrival is required'
     if (!errors.arrival.length) {
@@ -332,7 +330,7 @@ export class Schedule extends Component<Props, State> {
   }
 
   render () {
-    if (this.props.data.loading) {
+    if (this.props.data && this.props.data.loading) {
       return <div>Loading...</div>
     }
     return (
@@ -399,29 +397,21 @@ export class Schedule extends Component<Props, State> {
   }
 }
 
-const mutation = gql`
-  mutation addVacation(
-    $author: String!
-    $arrival: String!
-    $departure: String!
-    $people: [String]!
-  ) {
-    addVacation(
-      author: $author
-      arrival: $arrival
-      departure: $departure
-      people: $people
-    ) {
-      id
-    }
-  }
-`
-
-// export const mapStateToProps = ({ auth, date }: Object) => {
-//   return {
-//     auth,
-//     date,
+// const mutation = gql`
+//   mutation addVacation(
+//     $author: String!
+//     $arrival: String!
+//     $departure: String!
+//     $people: [String]!
+//   ) {
+//     addVacation(
+//       author: $author
+//       arrival: $arrival
+//       departure: $departure
+//       people: $people
+//     ) {
+//       id
+//     }
 //   }
-// }
-
-export default graphql(mutation)(graphql(getVacations)(withRouter(Schedule)))
+// `
+export default graphql(auth)(withRouter(Schedule))

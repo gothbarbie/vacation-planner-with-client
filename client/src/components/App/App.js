@@ -1,11 +1,9 @@
 // @flow
 
-import React, { Component } from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
-import { connect } from 'react-redux'
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 
-import * as actions from '../../actions'
 import './App.css'
 
 import Header from '../Layout/Header'
@@ -13,13 +11,11 @@ import Flash from '../Flash'
 import Footer from '../Layout/Footer'
 import Main from '../Layout/Main'
 
-import Schedule from '../../views/Schedule'
-import Login from '../../views/Login'
-import Register from '../../views/Register'
+import Schedule from '../../routes/Schedule'
+import Login from '../../routes/Login/LoginContainer'
+import Register from '../../routes/Register'
 
-type Props = {
-  fetchUser: Function,
-}
+import restricted from '../../routes/restricted'
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,29 +24,23 @@ const Wrapper = styled.div`
   min-height: 100vh;
 `
 
-export class App extends Component<Props> {
-  componentDidMount () {
-    this.props.fetchUser()
-  }
-
-  render () {
-    return (
-      <div>
-        <BrowserRouter>
-          <Wrapper>
-            <Header />
-            <Flash />
-            <Main>
-              <Route component={Login} exact path="/" />
-              <Route component={Register} exact path="/register" />
-              <Route component={Schedule} exact path="/schedule" />
-            </Main>
-            <Footer />
-          </Wrapper>
-        </BrowserRouter>
-      </div>
-    )
-  }
+export const App = () => {
+  return (
+    <div>
+      <Switch>
+        <Wrapper>
+          {/* <Header />
+          <Flash /> */}
+          <Main>
+            <Route component={Login} exact path="/" />
+            <Route component={Register} exact path="/register" />
+            <Route component={restricted(Schedule)} exact path="/schedule" />
+          </Main>
+          <Footer />
+        </Wrapper>
+      </Switch>
+    </div>
+  )
 }
 
-export default connect(null, actions)(App)
+export default App

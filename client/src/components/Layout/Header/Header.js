@@ -1,22 +1,39 @@
 // @flow
 
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { compose, graphql } from 'react-apollo'
 
+import logout from '../../../mutations/logout'
+
+import auth from '../../../queries/auth'
 import './Header.css'
 import ButtonLink from '../../ButtonLink'
 
 type Props = {
-  auth: {} | void,
+  mutate: Function,
+  data: {
+    loading: boolean, 
+    auth: {
+      email: string,
+    },
+  },
   history: {
     location: string,
   },
 }
 
 export class Header extends Component<Props> {
+  logout () {
+    this.props.mutate({
+      refetchQueries: [{ query: auth }],
+    })
+  }
+
   renderLogo () {
-    if (this.props.auth) {
+    const { data } = this.props
+    console.log('props', this.props)
+    if (data && data.auth) {
       return (
         <Link to="/schedule">
           <img
@@ -39,14 +56,19 @@ export class Header extends Component<Props> {
   }
 
   renderLogin () {
-    if (this.props.auth) {
+    const { data, history } = this.props
+
+    if (data && data.loading) {
+      return <div>Loading...</div>
+    }
+    if (data && data.auth) {
       return (
         <ButtonLink default url="/api/logout">
           Logout
         </ButtonLink>
       )
     }
-    if (this.props.history && this.props.history.location !== '/') {
+    if (history && history.location !== '/') {
       return (
         <ButtonLink primary url="/">
           Login
@@ -74,12 +96,7 @@ export class Header extends Component<Props> {
   }
 }
 
-const mapStateToProps = ({ auth }: Object) => {
-  return {
-    auth,
-  }
-}
-
-export default connect(mapStateToProps)(
-  withRouter(Header)
-)
+export default compose(
+  graphql(logout, { name: 'logout' }),
+  graphql(auth)
+)(Header)

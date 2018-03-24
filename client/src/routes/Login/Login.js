@@ -2,10 +2,11 @@
 
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import type { RouterHistory } from 'react-router-dom'
+import { compose, graphql } from 'react-apollo'
 
+import login from '../../mutations/login'
+
+import auth from '../../queries/auth'
 import PageWrapper from '../../components/PageWrapper'
 import ThreeColumnsWrapper from '../../components/ThreeColumnsWrapper'
 import H1 from '../../components/H1'
@@ -15,11 +16,14 @@ import Input from '../../components/FormInput'
 import './Login.css'
 import ButtonLink from '../../components/ButtonLink'
 import Icon from '../../components/Icon'
-import * as actions from './loginActions'
+
+import type { RouterHistory } from 'react-router-dom'
 
 type Props = {
-  auth: {} | void,
-  loginUser: Function,
+  data: {
+    auth: object | void,
+  },
+  mutate: Function,
   history: RouterHistory,
 }
 
@@ -55,7 +59,7 @@ export class Login extends Component<Props, State> {
   }
 
   renderAlreadyLoggedIn () {
-    if (this.props.auth) {
+    if (this.props.data && this.props.data.auth) {
       return (
         <Notice warning>
           You are already logged in, do you want to log in as another user?{' '}
@@ -67,11 +71,14 @@ export class Login extends Component<Props, State> {
 
   handleSubmit = (event: SyntheticEvent<any>) => {
     event.preventDefault()
-    this.props.loginUser({
-      email: this.state.email.value,
-      password: this.state.password.value,
+    const { mutate } = this.props
+
+    mutate({
+      variables: {
+        email: this.state.email.value,
+        password: this.state.password.value,
+      },
     })
-    this.props.history.push('/schedule')
   }
 
   handleChange = (event: SyntheticInputEvent<any>) => {
@@ -110,6 +117,7 @@ export class Login extends Component<Props, State> {
   }
 
   render () {
+    console.log('props', this.props)
     return (
       <PageWrapper>
         {this.renderAlreadyLoggedIn()}
@@ -155,10 +163,7 @@ export class Login extends Component<Props, State> {
   }
 }
 
-export const mapStateToProps = ({ auth }: Object) => {
-  return {
-    auth,
-  }
-}
-
-export default connect(mapStateToProps, actions)(withRouter(Login))
+export default compose(
+  graphql(login),
+  graphql(auth)
+)(Login)

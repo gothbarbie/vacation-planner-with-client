@@ -2,7 +2,6 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 import { Login } from './Login'
-import { mapStateToProps } from './Login'
 
 describe('views/Login', () => {
   const state = {
@@ -21,7 +20,9 @@ describe('views/Login', () => {
   }
 
   const props = {
-    auth: null,
+    data: {
+      auth: null,
+    },
     loginUser: jest.fn(),
     history: {},
   }
@@ -35,13 +36,6 @@ describe('views/Login', () => {
   describe('#showErrors', () => {
     xit('returns errors for named field', () => {
       expect(login.showErrors('email')).toEqual()
-    })
-  })
-
-  describe('mapStateToProps', () => {
-    it('returns auth as auth', () => {
-      const auth = { auth: 'auth' }
-      expect(mapStateToProps({ auth })).toEqual({ auth })
     })
   })
 })
