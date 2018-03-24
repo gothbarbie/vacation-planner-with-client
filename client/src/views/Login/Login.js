@@ -3,7 +3,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
-import { graphql } from 'react-apollo'
+import { graphql, compose } from 'react-apollo'
 
 import query from '../../queries/Auth'
 import mutation from '../../mutations/Login'
@@ -162,4 +162,7 @@ export class Login extends Component<Props, State> {
   }
 }
 
-export default graphql(query)(graphql(mutation)(withRouter(Login)))
+export default compose(
+  graphql(mutation),
+  graphql(query)
+)(withRouter(Login))

@@ -17,7 +17,7 @@ const cache = new InMemoryCache({
   dataIdFromObject: o => o.id,
 })
 
-const httpLink = createHttpLink({ uri: '/graphql' })
+const httpLink = createHttpLink({ uri: '/graphql', credentials: 'same-origin' },)
 const middlewareLink = new ApolloLink((operation, forward) => {
   operation.setContext({
     headers: {

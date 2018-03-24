@@ -2,11 +2,13 @@
 
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import { graphql } from 'react-apollo'
+import { graphql, compose } from 'react-apollo'
 
 import query from '../../../queries/Auth'
+import mutation from '../../../mutations/Logout'
 
 import './Header.css'
+import Button from '../../Button'
 import ButtonLink from '../../ButtonLink'
 
 type Props = {
@@ -17,6 +19,12 @@ type Props = {
 }
 
 export class Header extends Component<Props> {
+  handleLogout () {
+    this.props.mutate({
+      refetchQueries: [{ query }],
+    })
+  }
+
   renderLogo () {
     console.log('header', this.props.data)
     if (this.props.data.auth) {
@@ -42,12 +50,8 @@ export class Header extends Component<Props> {
   }
 
   renderLogin () {
-    if (this.props.auth) {
-      return (
-        <ButtonLink default url="/api/logout">
-          Logout
-        </ButtonLink>
-      )
+    if (this.props.data.auth) {
+      return <Button onClick={this.handleLogout}>Logout</Button>
     }
     if (this.props.history && this.props.history.location !== '/') {
       return (
@@ -77,4 +81,4 @@ export class Header extends Component<Props> {
   }
 }
 
-export default graphql(query)(withRouter(Header))
+export default compose(graphql(mutation), graphql(query))(withRouter(Header))
