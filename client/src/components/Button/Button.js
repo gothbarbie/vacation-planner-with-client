@@ -10,6 +10,7 @@ type Props = {
   primary?: boolean,
   secondary?: boolean,
   disabled?: boolean,
+  onClick?: Function,
   url?: string,
 }
 

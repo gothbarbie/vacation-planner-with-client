@@ -54,7 +54,7 @@ export class Header extends Component<Props> {
 
   renderLogin () {
     if (this.props.data.auth) {
-      return <Button onClick={() => this.handleLogout}>Logout</Button>
+      return <Button onClick={() => this.handleLogout()}>Logout</Button>
     }
     if (
       this.props.history &&
