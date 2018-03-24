@@ -60,7 +60,6 @@ export class Login extends Component<Props, State> {
   }
 
   renderAlreadyLoggedIn () {
-    console.log(this.props)
     if (this.props.data.auth) {
       return (
         <Notice warning>
@@ -73,7 +72,6 @@ export class Login extends Component<Props, State> {
 
   handleSubmit = (event: SyntheticEvent<any>) => {
     event.preventDefault()
-    console.log(this.state)
     this.props.mutate({
       variables: {
         email: this.state.email.value,

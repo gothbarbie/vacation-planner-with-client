@@ -1,10 +1,10 @@
 // @flow
 
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import classnames from 'classnames'
 
-import * as actions from './flashActions'
+// import * as actions from './flashActions'
 
 import './Flash.css'
 
@@ -39,10 +39,4 @@ export class Flash extends Component<Props> {
   }
 }
 
-export const mapStateToProps = ({ flash }: Object) => {
-  return {
-    flash,
-  }
-}
-
-export default connect(mapStateToProps, actions)(Flash)
+export default Flash

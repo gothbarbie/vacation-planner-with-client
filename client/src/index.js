@@ -1,38 +1,49 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
-import reduxThunk from 'redux-thunk'
-import { ApolloClient } from 'apollo-client'
-import { HttpLink } from 'apollo-link-http'
-import { InMemoryCache } from 'apollo-cache-inmemory'
+
+import ApolloClient from 'apollo-client'
+import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloProvider } from 'react-apollo'
+
+import { ApolloLink } from 'apollo-link'
+import { createHttpLink } from 'apollo-link-http'
+
 import { ThemeProvider } from 'styled-components'
 import { theme } from './variables/theme'
 
 import App from './components/App/index'
-import reducers from './reducers'
 
-const store = createStore(
-  reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(reduxThunk)
-)
-
-const uri =  '/graphql'
-
-const client = new ApolloClient({
-  link: new HttpLink({ uri }),
-  cache: new InMemoryCache(),
+const cache = new InMemoryCache({
   dataIdFromObject: o => o.id,
 })
+
+const httpLink = createHttpLink({ uri: '/graphql' })
+const middlewareLink = new ApolloLink((operation, forward) => {
+  operation.setContext({
+    headers: {
+      authorization: localStorage.getItem('token') || null,
+    },
+  })
+  return forward(operation)
+})
+
+const link = middlewareLink.concat(httpLink)
+
+const client = new ApolloClient({
+  link,
+  cache: cache.restore(window.__APOLLO_STATE__ || {}),
+})
+
+console.log('client', client)
+
+if (process.env.NODE_ENV !== 'production') {
+  window.__APOLLO_CLIENT__ = client
+}
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <ApolloProvider client={client}>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <App />
     </ApolloProvider>
   </ThemeProvider>,
   document.querySelector('#root')

@@ -1,8 +1,10 @@
 // @flow
 
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
+import { graphql } from 'react-apollo'
+
+import query from '../../../queries/Auth'
 
 import './Header.css'
 import ButtonLink from '../../ButtonLink'
@@ -16,7 +18,8 @@ type Props = {
 
 export class Header extends Component<Props> {
   renderLogo () {
-    if (this.props.auth) {
+    console.log('header', this.props.data)
+    if (this.props.data.auth) {
       return (
         <Link to="/schedule">
           <img
@@ -74,12 +77,4 @@ export class Header extends Component<Props> {
   }
 }
 
-const mapStateToProps = ({ auth }: Object) => {
-  return {
-    auth,
-  }
-}
-
-export default connect(mapStateToProps)(
-  withRouter(Header)
-)
+export default graphql(query)(withRouter(Header))
