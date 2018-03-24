@@ -13,7 +13,7 @@ const Vacation = mongoose.model('vacations')
 const UserType = require('./userType')
 
 const VacationType = new GraphQLObjectType({
-  name: 'Vacation',
+  name: 'VacationType',
   fields: {
     id: { type: GraphQLString },
     author: {

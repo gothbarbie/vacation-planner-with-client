@@ -7,7 +7,7 @@ Its also an opportunity for me to show my skills in backend as well as frontend.
 
 ## Version
 
-1.0.0 - This it not a finalised product yet, so its actually pre release and not 1.0.0, but I'm starting versioning when I release it, until then, please just follow the history below.
+1.0.0 - This it not a finalised product yet, so its actually pre release and not 1.0.0, but I'm starting versioning when I release it, until then, please just follow the History at the bottom of this README.
 
 
 ## Server

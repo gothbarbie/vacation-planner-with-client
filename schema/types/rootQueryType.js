@@ -7,7 +7,7 @@ const VacationType = require('./vacationType')
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
-    currentUser: {
+    auth: {
       type: UserType, 
       resolve(parentValue, args, req) {
         return req.user
@@ -35,15 +35,15 @@ const RootQueryType = new GraphQLObjectType({
         throw new Error('No vacation found', args.id)
       },
     },
-    vacations: {
-      type: new GraphQLList(VacationType),
-      args: {},
-      async resolve(parentValue, args) {
-        const vacations = await Vacation.find()
-        if (vacations) return vacations
-        throw new Error('No vacations found')
-      },
-    },
+    // vacations: {
+    //   type: VacationType,
+    //   args: {},
+    //   async resolve(parentValue, args) {
+    //     const vacations = await Vacation.find()
+    //     if (vacations) return vacations
+    //     throw new Error('No vacations found')
+    //   },
+    // },
   },
 })
 

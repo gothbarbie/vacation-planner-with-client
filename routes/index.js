@@ -6,20 +6,20 @@ const authController = require('../controllers/authController')
 const vacationController = require('../controllers/vacationController')
 const { catchErrors } = require('../handlers/errorHandlers')
 
-// router.get(
-//   '/auth/google',
-//   passport.authenticate('google', {
-//     scope: ['profile', 'email'],
-//   })
-// )
+router.get(
+  '/auth/google',
+  passport.authenticate('google', {
+    scope: ['profile', 'email'],
+  })
+)
 
-// router.get(
-//   '/auth/google/callback',
-//   passport.authenticate('google'),
-//   (req, res) => {
-//     res.redirect('/schedule')
-//   }
-// )
+router.get(
+  '/auth/google/callback',
+  passport.authenticate('google'),
+  (req, res) => {
+    res.redirect('/schedule')
+  }
+)
 
 // router.post(
 //   '/auth/register/email',
