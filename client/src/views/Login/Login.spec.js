@@ -38,10 +38,4 @@ describe('views/Login', () => {
     })
   })
 
-  describe('mapStateToProps', () => {
-    it('returns auth as auth', () => {
-      const auth = { auth: 'auth' }
-      expect(mapStateToProps({ auth })).toEqual({ auth })
-    })
-  })
 })

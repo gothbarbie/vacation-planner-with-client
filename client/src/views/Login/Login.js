@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import type { RouterHistory } from 'react-router-dom'
 
@@ -15,7 +14,6 @@ import Input from '../../components/FormInput'
 import './Login.css'
 import ButtonLink from '../../components/ButtonLink'
 import Icon from '../../components/Icon'
-import * as actions from './loginActions'
 
 type Props = {
   auth: {} | void,
@@ -67,11 +65,8 @@ export class Login extends Component<Props, State> {
 
   handleSubmit = (event: SyntheticEvent<any>) => {
     event.preventDefault()
-    this.props.loginUser({
-      email: this.state.email.value,
-      password: this.state.password.value,
-    })
-    this.props.history.push('/schedule')
+    console.log(this.state)
+    // this.props.history.push('/schedule')
   }
 
   handleChange = (event: SyntheticInputEvent<any>) => {
@@ -155,10 +150,4 @@ export class Login extends Component<Props, State> {
   }
 }
 
-export const mapStateToProps = ({ auth }: Object) => {
-  return {
-    auth,
-  }
-}
-
-export default connect(mapStateToProps, actions)(withRouter(Login))
+export default withRouter(Login)

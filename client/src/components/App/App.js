@@ -1,11 +1,9 @@
 // @flow
 
-import React, { Component } from 'react'
+import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
-import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import * as actions from '../../actions'
 import './App.css'
 
 import Header from '../Layout/Header'
@@ -17,9 +15,6 @@ import Schedule from '../../views/Schedule'
 import Login from '../../views/Login'
 import Register from '../../views/Register'
 
-type Props = {
-  fetchUser: Function,
-}
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,29 +23,22 @@ const Wrapper = styled.div`
   min-height: 100vh;
 `
 
-export class App extends Component<Props> {
-  componentDidMount () {
-    this.props.fetchUser()
-  }
+export const App = () => (
+  <div>
+    <BrowserRouter>
+      <Wrapper>
+        <Header />
+        <Flash />
+        <Main>
+          <Route component={Login} exact path="/" />
+          <Route component={Register} exact path="/register" />
+          <Route component={Schedule} exact path="/schedule" />
+        </Main>
+        <Footer />
+      </Wrapper>
+    </BrowserRouter>
+  </div>
+)
+  
 
-  render () {
-    return (
-      <div>
-        <BrowserRouter>
-          <Wrapper>
-            <Header />
-            <Flash />
-            <Main>
-              <Route component={Login} exact path="/" />
-              <Route component={Register} exact path="/register" />
-              <Route component={Schedule} exact path="/schedule" />
-            </Main>
-            <Footer />
-          </Wrapper>
-        </BrowserRouter>
-      </div>
-    )
-  }
-}
-
-export default connect(null, actions)(App)
+export default App
