@@ -6,7 +6,6 @@ import moment from 'moment'
 import { withRouter } from 'react-router-dom'
 import validator from 'validator'
 import { graphql } from 'react-apollo'
-// import gql from 'graphql-tag'
 
 import query from '../../queries/GetVacations'
 
@@ -31,13 +30,12 @@ type participant = {
 
 type Props = {
   data: {
+    auth: void | Object,
     vacations: [],
     loading: Boolean,
   },
-  auth: void | Object,
   date: Date,
   history: RouterHistory,
-  createVacation: Function,
   mutate: Function,
 }
 
@@ -113,13 +111,40 @@ export class Schedule extends Component<Props, State> {
     )
   }
 
-  renderDays () {
+  addEmptyDaysBefore (startOnDayNr: number, days: []) {
+    // Add empty days BEFORE the first weekday of the month
+    for (let i = 1; i < startOnDayNr; i++) {
+      days.unshift({
+        date: null,
+        occupied: false,
+        status: '',
+        weekend: false,
+        empty: true,
+      })
+    }
+    return days
+  }
+
+  addEmptyDaysAfter (days: []) {
+    // Add empty days AFTER the first weekday of the month
+    const emptyDaysAfter = 35 - days.length
+    for (let i = 0; i < emptyDaysAfter; i++) {
+      days.push({
+        date: null,
+        occupied: false,
+        status: '',
+        weekend: false,
+        empty: true,
+      })
+    }
+    return days
+  }
+
+  addDays (days: []) {
     const m = moment(this.props.date)
     const daysInMonth = m.daysInMonth()
     const year = m.year()
     const month = m.month()
-    const startOnDayNr = moment(`${year}/${month}`, 'YYYY/MM').day()
-    const days = []
 
     for (let i = 1; i < daysInMonth; i++) {
       const currentDate = moment(
@@ -166,28 +191,19 @@ export class Schedule extends Component<Props, State> {
           }
         })
     }
+    return days
+  }
 
-    // Add empty days BEFORE the first weekday of the month
-    for (let i = 1; i < startOnDayNr; i++) {
-      days.unshift({
-        date: null,
-        occupied: false,
-        status: '',
-        weekend: false,
-        empty: true,
-      })
-    }
-    // Add empty days AFTER the first weekday of the month
-    const emptyDaysAfter = 35 - days.length
-    for (let i = 0; i < emptyDaysAfter; i++) {
-      days.push({
-        date: null,
-        occupied: false,
-        status: '',
-        weekend: false,
-        empty: true,
-      })
-    }
+  renderDays () {
+    const m = moment(this.props.date)
+    const year = m.year()
+    const month = m.month()
+    const startOnDayNr = moment(`${year}/${month}`, 'YYYY/MM').day()
+    let days = []
+
+    days = this.addDays(days)
+    days = this.addEmptyDaysBefore(startOnDayNr, days)
+    days = this.addEmptyDaysAfter(days)
 
     return days.map(({ date, empty, occupied, status, weekend }, i) => {
       const today = this.isToday(year, month, date)
@@ -224,6 +240,7 @@ export class Schedule extends Component<Props, State> {
         departure: this.state.departure.value,
         people,
       },
+      refetchQueries: [{ query }],
     })
     this.setState({})
   }
@@ -360,7 +377,7 @@ export class Schedule extends Component<Props, State> {
         </section>
 
         <ThreeColumnsWrapper>
-          <Form onSubmit={this.handleSubmit} submitText="Add" title="New Trip">
+          <Form enableSubmit onSubmit={this.handleSubmit} submitText="Add" title="New Trip">
             <H3>Time Period</H3>
             <div className="register__columns">
               <Input
@@ -421,4 +438,3 @@ export class Schedule extends Component<Props, State> {
 // export default graphql(mutation)(graphql(getVacations)(withRouter(Schedule)))
 
 export default graphql(query)(withRouter(Schedule))
-

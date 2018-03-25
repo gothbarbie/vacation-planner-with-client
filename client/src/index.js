@@ -8,16 +8,22 @@ import { ApolloProvider } from 'react-apollo'
 import { ApolloLink } from 'apollo-link'
 import { createHttpLink } from 'apollo-link-http'
 
+import { Provider } from 'react-redux'
+
 import { ThemeProvider } from 'styled-components'
 import { theme } from './variables/theme'
 
+import createStore from './store/createStore'
+
 import App from './components/App/index'
+
+const store = createStore({})
 
 const cache = new InMemoryCache({
   dataIdFromObject: o => o.id,
 })
 
-const httpLink = createHttpLink({ uri: '/graphql', credentials: 'same-origin' },)
+const httpLink = createHttpLink({ uri: '/graphql', credentials: 'same-origin' })
 const middlewareLink = new ApolloLink((operation, forward) => {
   operation.setContext({
     headers: {
@@ -41,11 +47,13 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
-  </ThemeProvider>,
+  <ApolloProvider client={client}>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </ThemeProvider>
+  </ApolloProvider>,
   document.querySelector('#root')
 )
 
