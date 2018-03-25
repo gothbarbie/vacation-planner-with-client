@@ -80,11 +80,10 @@ export class Login extends Component<Props, State> {
   enableSubmit () {
     const { email, password, errors } = this.state
 
-    const allTouched = email.touched && password.touched
     const noErrors = !errors.email.length && !errors.password.length
     const allHasValues = email.value.length && password.value.length
 
-    return allTouched && noErrors && allHasValues
+    return noErrors && allHasValues
   }
 
   handleSubmit = (event: SyntheticEvent<any>) => {

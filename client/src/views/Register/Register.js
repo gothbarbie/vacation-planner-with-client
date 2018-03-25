@@ -90,7 +90,7 @@ export class Register extends Component<Props, State> {
   }
 
   componentWillUpdate (nextProps) {
-    if (!this.props.data.auth && nextProps.data.auth) {
+    if (nextProps.data.auth) {
       this.props.history.push('/schedule')
     }
   }
@@ -104,13 +104,6 @@ export class Register extends Component<Props, State> {
       passwordConfirm,
       errors,
     } = this.state
-
-    const allTouched =
-      firstName.touched &&
-      lastName.touched &&
-      email.touched &&
-      password.touched &&
-      passwordConfirm.touched
 
     const noErrors =
       !errors.firstName.length &&
@@ -126,7 +119,7 @@ export class Register extends Component<Props, State> {
       password.value.length &&
       passwordConfirm.value.length
 
-    return allTouched && noErrors && allHasValues
+    return noErrors && allHasValues
   }
 
   handleSubmit = (event: Event) => {
@@ -268,4 +261,7 @@ export class Register extends Component<Props, State> {
   }
 }
 
-export default compose(graphql(query), graphql(mutation))(withRouter(Register))
+export default compose(
+  graphql(query),
+  graphql(mutation),
+)(withRouter(Register))

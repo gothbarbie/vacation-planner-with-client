@@ -10,7 +10,7 @@ exports[`views/Register renders 1`] = `
       className="register__email"
     >
       <Form
-        enableSubmit={false}
+        enableSubmit={0}
         onSubmit={[Function]}
         title="Enter your credentials"
       >

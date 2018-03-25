@@ -6,6 +6,8 @@ import styled from 'styled-components'
 
 import './App.css'
 
+import requireAuth from '../../HOCs/requireAuth'
+
 import Header from '../Layout/Header'
 import Flash from '../Flash'
 import Footer from '../Layout/Footer'
@@ -32,7 +34,7 @@ export const App = () => (
         <Main>
           <Route component={Login} exact path="/" />
           <Route component={Register} exact path="/register" />
-          <Route component={Schedule} exact path="/schedule" />
+          <Route component={requireAuth(Schedule)} exact path="/schedule" />
         </Main>
         <Footer />
       </Wrapper>

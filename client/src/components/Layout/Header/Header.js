@@ -59,7 +59,11 @@ export class Header extends Component<Props> {
 
   renderLogin () {
     if (this.props.data.auth) {
-      return <Button onClick={() => this.handleLogout()}>Logout</Button>
+      return (
+        <Button onClick={() => this.handleLogout()} secondary>
+          Logout
+        </Button>
+      )
     }
     if (
       this.props.history &&
@@ -72,7 +76,11 @@ export class Header extends Component<Props> {
         </ButtonLink>
       )
     } else {
-      return <ButtonLink primary url="register">Register</ButtonLink>
+      return (
+        <ButtonLink primary url="register">
+          Register
+        </ButtonLink>
+      )
     }
   }
 
@@ -81,13 +89,15 @@ export class Header extends Component<Props> {
       <header className="header">
         <div className="header__inner">
           {this.renderLogo()}
-          {this.props.data.auth && <nav className="nav">
-            <Link to="/schedule">Schedule</Link>
-            <span className="nav__separator" />
-            <Link to="/people">People</Link>
-            <span className="nav__separator" />
-            <Link to="/destinations">Destinations</Link>
-          </nav>}
+          {this.props.data.auth && (
+            <nav className="nav">
+              <Link to="/schedule">Schedule</Link>
+              <span className="nav__separator" />
+              <Link to="/people">People</Link>
+              <span className="nav__separator" />
+              <Link to="/destinations">Destinations</Link>
+            </nav>
+          )}
           {this.renderLogin()}
         </div>
       </header>

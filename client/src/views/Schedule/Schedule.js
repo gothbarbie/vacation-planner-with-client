@@ -31,7 +31,6 @@ type participant = {
 
 type Props = {
   data: {
-    auth: {} | voide,
     vacations: [],
     loading: Boolean,
   },
@@ -84,12 +83,6 @@ export class Schedule extends Component<Props, State> {
       departure: '',
       people: '',
     },
-  }
-
-  componentWillMount () {
-    if (!this.props.data.auth) {
-      this.props.history.push('/')
-    }
   }
 
   renderIsWeekEnd (year: number, month: number, day: mixed) {
@@ -428,3 +421,4 @@ export class Schedule extends Component<Props, State> {
 // export default graphql(mutation)(graphql(getVacations)(withRouter(Schedule)))
 
 export default graphql(query)(withRouter(Schedule))
+
