@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
 export default gql`
-  mutation {
-    login(email: "info@hannasoderstrom.com", password: "password"){
+  mutation Login($email: String, $password: String) {
+    login(email: $email, password: $password){
       id
       email
     }

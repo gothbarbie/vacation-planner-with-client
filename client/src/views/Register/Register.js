@@ -1,8 +1,9 @@
 // @flow
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
 import { withRouter } from 'react-router-dom'
+
+import mutation from '../../mutations/Signup'
 
 import PageWrapper from '../../components/PageWrapper'
 import ThreeColumnsWrapper from '../../components/ThreeColumnsWrapper'
@@ -82,11 +83,44 @@ export class Register extends Component<Props, State> {
     },
   }
 
+  enableSubmit () {
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      passwordConfirm,
+      errors,
+    } = this.state
+
+    const allTouched =
+      firstName.touched &&
+      lastName.touched &&
+      email.touched &&
+      password.touched &&
+      passwordConfirm.touched
+
+    const noErrors =
+      !errors.firstName.length &&
+      !errors.lastName.length &&
+      !errors.email.length &&
+      !errors.password.length &&
+      !errors.passwordConfirm.length
+
+    const allHasValues =
+      firstName.value.length &&
+      lastName.value.length &&
+      email.value.length &&
+      password.value.length &&
+      passwordConfirm.value.length
+
+    return allTouched && noErrors && allHasValues
+  }
+
   handleSubmit = (event: Event) => {
     event.preventDefault()
     const { firstName, lastName, email, password } = this.state
-    this.props
-      .mutate({
+    this.props.mutate({
         variables: {
           firstName: firstName.value,
           lastName: lastName.value,
@@ -94,7 +128,9 @@ export class Register extends Component<Props, State> {
           password: password.value,
         },
       })
-      .then(() => { this.props.history.push('/schedule') })
+      .then(() => {
+        this.props.history.push('/schedule')
+      })
   }
 
   handleChange = (event?: SyntheticInputEvent<any>) => {
@@ -147,7 +183,11 @@ export class Register extends Component<Props, State> {
 
         <ThreeColumnsWrapper>
           <div className="register__email">
-            <Form onSubmit={this.handleSubmit} title="Enter your credentials">
+            <Form
+              enableSubmit={this.enableSubmit()}
+              onSubmit={this.handleSubmit}
+              title="Enter your credentials"
+            >
               <div className="register__columns">
                 <Input
                   error={this.showErrors('firstName')}
@@ -155,6 +195,7 @@ export class Register extends Component<Props, State> {
                   handleChange={this.handleChange}
                   label="First Name"
                   name="firstName"
+                  required
                   value={this.state.firstName.value}
                 />
                 <Input
@@ -163,6 +204,7 @@ export class Register extends Component<Props, State> {
                   handleChange={this.handleChange}
                   label="Family Name"
                   name="lastName"
+                  required
                   value={this.state.lastName.value}
                 />
                 <Input
@@ -210,23 +252,5 @@ export class Register extends Component<Props, State> {
     )
   }
 }
-
-const mutation = gql`
-  mutation AddUser(
-    $email: String!
-    $firstName: String
-    $lastName: String
-    $password: String!
-  ) {
-    addUser(
-      email: $email
-      firstName: $firstName
-      lastName: $lastName
-      password: $password
-    ) {
-      id
-    }
-  }
-`
 
 export default graphql(mutation)(withRouter(Register))
