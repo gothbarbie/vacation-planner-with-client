@@ -19,6 +19,9 @@ import './Register.css'
 import type { RouterHistory } from 'react-router-dom'
 
 type Props = {
+  data: {
+    auth: {} | void,
+  },
   mutate: Function,
   query: Function,
   history: RouterHistory,
@@ -83,6 +86,13 @@ export class Register extends Component<Props, State> {
       password: '',
       passwordConfirm: '',
     },
+    loginErrors: [],
+  }
+
+  componentWillUpdate (nextProps) {
+    if (!this.props.data.auth && nextProps.data.auth) {
+      this.props.history.push('/schedule')
+    }
   }
 
   enableSubmit () {
@@ -132,8 +142,9 @@ export class Register extends Component<Props, State> {
         },
         refetchQueries: [{ query }],
       })
-      .then(() => {
-        this.props.history.push('/schedule')
+      .catch(res => {
+        const errors = res.graphQLErrors.map(error => error.message)
+        this.setState({ loginErrors: errors })
       })
   }
 

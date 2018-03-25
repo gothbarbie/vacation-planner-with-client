@@ -72,7 +72,7 @@ export class Header extends Component<Props> {
         </ButtonLink>
       )
     } else {
-      return <div />
+      return <ButtonLink primary url="register">Register</ButtonLink>
     }
   }
 
