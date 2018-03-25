@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 import { withRouter } from 'react-router-dom'
 import validator from 'validator'
-import { graphql } from 'react-apollo'
+import { compose, graphql } from 'react-apollo'
+import { connect } from 'react-redux'
 
 import query from '../../queries/GetVacations'
+import mutate from '../../mutations/AddVacation'
 
 import PageWrapper from '../../components/PageWrapper'
 import ThreeColumnsWrapper from '../../components/ThreeColumnsWrapper'
@@ -146,7 +148,7 @@ export class Schedule extends Component<Props, State> {
     const year = m.year()
     const month = m.month()
 
-    for (let i = 1; i < daysInMonth; i++) {
+    for (let i = 1; i < daysInMonth + 1; i++) {
       const currentDate = moment(
         `${year}-${month + 1}-${i}`,
         'YYYY-MM-D'
@@ -377,7 +379,12 @@ export class Schedule extends Component<Props, State> {
         </section>
 
         <ThreeColumnsWrapper>
-          <Form enableSubmit onSubmit={this.handleSubmit} submitText="Add" title="New Trip">
+          <Form
+            enableSubmit
+            onSubmit={this.handleSubmit}
+            submitText="Add"
+            title="New Trip"
+          >
             <H3>Time Period</H3>
             <div className="register__columns">
               <Input
@@ -428,13 +435,14 @@ export class Schedule extends Component<Props, State> {
 //   }
 // `
 
-// export const mapStateToProps = ({ auth, date }: Object) => {
-//   return {
-//     auth,
-//     date,
-//   }
-// }
+export const mapStateToProps = ({ auth, date }: Object) => {
+  return {
+    date,
+  }
+}
 
 // export default graphql(mutation)(graphql(getVacations)(withRouter(Schedule)))
 
-export default graphql(query)(withRouter(Schedule))
+export default compose(graphql(query), graphql(mutate))(
+  connect(mapStateToProps)(withRouter(Schedule))
+)
