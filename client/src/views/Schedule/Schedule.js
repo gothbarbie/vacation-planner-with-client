@@ -43,7 +43,7 @@ type Props = {
   match: {
     params: {
       id: string,
-    }
+    },
   },
   mutate: Function,
 }
@@ -106,8 +106,12 @@ export class Schedule extends Component<Props, State> {
           const v = res.data.vacation
           const newState = { ...this.state }
 
-          newState.arrival.value = new Date(v.arrival).toISOString().substring(0, 10)
-          newState.departure.value = new Date(v.departure).toISOString().substring(0, 10)
+          newState.arrival.value = new Date(v.arrival)
+            .toISOString()
+            .substring(0, 10)
+          newState.departure.value = new Date(v.departure)
+            .toISOString()
+            .substring(0, 10)
           newState.people.forEach(p => {
             if (v.people.includes(p.name)) {
               p.checked = true
@@ -193,19 +197,23 @@ export class Schedule extends Component<Props, State> {
       // TODO: Add People
       data.vacations &&
         data.vacations.forEach((v, vi) => {
+          let people = []
           if (this.datesMatch(v.arrival, currentDate)) {
             occupied = true
             status = 'Arrival'
+            people = v.people
           }
 
           if (this.dateIsOccupied(v.arrival, v.departure, currentDate)) {
             occupied = true
             status = 'Occupied'
+            people = v.people
           }
 
           if (this.datesMatch(v.departure, currentDate)) {
             occupied = true
             status = 'Departure'
+            people = v.people
           }
           if (vi === 0) {
             days.push({
@@ -214,16 +222,19 @@ export class Schedule extends Component<Props, State> {
               status: status,
               weekend: this.renderIsWeekEnd(year, month, i),
               empty: false,
-              people: occupied ? v.people : [],
+              people: people,
             })
           } else {
+            if (days[i - 1].people && days[i - 1].people.length) {
+              people = days[i - 1].people
+            }
             days[i - 1] = {
               date: i,
               occupied: occupied,
               status: status,
               weekend: this.renderIsWeekEnd(year, month, i),
               empty: false,
-              people: occupied ? v.people : [],
+              people: people,
             }
           }
         })
