@@ -76,8 +76,8 @@ const Day = ({
     <Date>{date}</Date>
     <People>
       {people &&
-        people.map(person => {
-          return <div>{person.name}</div>
+        people.map((person, i) => {
+          return <div key={`date-${date}-person-${i}`}>{person}</div>
         })}
     </People>
     <Status occupied={occupied}>{status}</Status>

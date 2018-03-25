@@ -181,6 +181,7 @@ export class Schedule extends Component<Props, State> {
               status: status,
               weekend: this.renderIsWeekEnd(year, month, i),
               empty: false,
+              people: occupied ? v.people : [],
             })
           } else {
             days[i - 1] = {
@@ -189,6 +190,7 @@ export class Schedule extends Component<Props, State> {
               status: status,
               weekend: this.renderIsWeekEnd(year, month, i),
               empty: false,
+              people: occupied ? v.people : [],
             }
           }
         })
@@ -207,7 +209,7 @@ export class Schedule extends Component<Props, State> {
     days = this.addEmptyDaysBefore(startOnDayNr, days)
     days = this.addEmptyDaysAfter(days)
 
-    return days.map(({ date, empty, occupied, status, weekend }, i) => {
+    return days.map(({ date, empty, occupied, people, status, weekend }, i) => {
       const today = this.isToday(year, month, date)
 
       return (
@@ -216,6 +218,7 @@ export class Schedule extends Component<Props, State> {
           empty={empty}
           key={`day-${i}`}
           occupied={occupied}
+          people={people}
           status={status}
           today={today}
           weekend={weekend}

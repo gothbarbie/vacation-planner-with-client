@@ -351,6 +351,7 @@ exports[`views/Schedule renders 1`] = `
   </section>
   <styled.div>
     <Form
+      enableSubmit={true}
       onSubmit={[Function]}
       submitText="Add"
       title="New Trip"
