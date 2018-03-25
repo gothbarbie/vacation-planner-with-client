@@ -12,9 +12,9 @@ exports.signup = async ({ email, firstName, lastName, password, req }) => {
   
   if (user) {
     return new Promise((resolve, reject) => {
-      req.logIn((user, err) => {
-        if (err) { reject(err )}
-        resolve(user)
+      req.logIn(user, (err) => {
+        if (err) { reject(err) }
+        return resolve(user)
       })
     })
   }
@@ -30,9 +30,10 @@ exports.signup = async ({ email, firstName, lastName, password, req }) => {
 exports.login = ({ email, password, req }) => {
   return new Promise((resolve, reject) => {
     passport.authenticate('local', (err, user) => {
+      console.error(err)
       if (!user) { reject('Invalid credentials.') }
 
-      req.login(user, () => resolve(user))
+      return req.login(user, (err) => resolve(user))
     })({ body: { email, password }})
   })
 }

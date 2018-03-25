@@ -6,9 +6,9 @@ import moment from 'moment'
 import { withRouter } from 'react-router-dom'
 import validator from 'validator'
 import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
+// import gql from 'graphql-tag'
 
-import getVacations from '../../queries/getVacations'
+import query from '../../queries/GetVacations'
 
 import PageWrapper from '../../components/PageWrapper'
 import ThreeColumnsWrapper from '../../components/ThreeColumnsWrapper'
@@ -137,7 +137,7 @@ export class Schedule extends Component<Props, State> {
       let status = ''
 
       // TODO: Add People
-      data.vacations &&  
+      data.vacations &&
         data.vacations.forEach((v, vi) => {
           if (this.datesMatch(v.arrival, currentDate)) {
             occupied = true
@@ -399,23 +399,23 @@ export class Schedule extends Component<Props, State> {
   }
 }
 
-const mutation = gql`
-  mutation addVacation(
-    $author: String!
-    $arrival: String!
-    $departure: String!
-    $people: [String]!
-  ) {
-    addVacation(
-      author: $author
-      arrival: $arrival
-      departure: $departure
-      people: $people
-    ) {
-      id
-    }
-  }
-`
+// const mutation = gql`
+//   mutation addVacation(
+//     $author: String!
+//     $arrival: String!
+//     $departure: String!
+//     $people: [String]!
+//   ) {
+//     addVacation(
+//       author: $author
+//       arrival: $arrival
+//       departure: $departure
+//       people: $people
+//     ) {
+//       id
+//     }
+//   }
+// `
 
 // export const mapStateToProps = ({ auth, date }: Object) => {
 //   return {
@@ -424,4 +424,6 @@ const mutation = gql`
 //   }
 // }
 
-export default graphql(mutation)(graphql(getVacations)(withRouter(Schedule)))
+// export default graphql(mutation)(graphql(getVacations)(withRouter(Schedule)))
+
+export default graphql(query)(withRouter(Schedule))

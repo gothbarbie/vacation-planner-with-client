@@ -63,11 +63,4 @@ describe('Flash', () => {
       expect(flash).toMatchSnapshot()
     })
   })
-
-  describe('mapStateToProps', () => {
-    it('returns flash as flash', () => {
-      const flash = { type: 'success', message: 'Success!' }
-      expect(mapStateToProps({ flash })).toEqual({ flash })
-    })
-  })
 })

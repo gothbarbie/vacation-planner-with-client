@@ -11,25 +11,30 @@ import './Header.css'
 import Button from '../../Button'
 import ButtonLink from '../../ButtonLink'
 
+import type { RouterHistory } from 'react-router-dom'
+
 type Props = {
   data: {
     auth: {} | void,
   },
-  history: {
-    location: string,
-  },
+  history: RouterHistory,
   mutate: Function,
 }
 
 export class Header extends Component<Props> {
   handleLogout () {
-    this.props.mutate({
-      refetchQueries: [{ query }],
-    })
+    this.props
+      .mutate({
+        refetchQueries: [{ query }],
+      })
+      .then(() => this.props.history.push('/'))
+      .catch(res => {
+        const errors = res.graphQLErrors.map(error => error.message)
+        throw new Error('Logout failure', errors)
+      })
   }
 
   renderLogo () {
-    console.log('header', this.props.data)
     if (this.props.data.auth) {
       return (
         <Link to="/schedule">

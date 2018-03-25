@@ -60,6 +60,12 @@ export class Login extends Component<Props, State> {
     loginErrors: [],
   }
 
+  componentWillUpdate (nextProps) {
+    if (!this.props.data.auth && nextProps.data.auth) {
+      this.props.history.push('/schedule')
+    }
+  }
+
   renderAlreadyLoggedIn () {
     if (this.props.data.auth) {
       return (

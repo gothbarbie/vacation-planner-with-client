@@ -1,9 +1,10 @@
 // @flow
 import React, { Component } from 'react'
-import { graphql } from 'react-apollo'
+import { graphql, compose } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 
 import mutation from '../../mutations/Signup'
+import query from '../../queries/Auth'
 
 import PageWrapper from '../../components/PageWrapper'
 import ThreeColumnsWrapper from '../../components/ThreeColumnsWrapper'
@@ -15,11 +16,12 @@ import Icon from '../../components/Icon'
 
 import './Register.css'
 
+import type { RouterHistory } from 'react-router-dom'
+
 type Props = {
   mutate: Function,
-  history: {
-    push: Function,
-  },
+  query: Function,
+  history: RouterHistory,
 }
 
 type State = {
@@ -120,13 +122,15 @@ export class Register extends Component<Props, State> {
   handleSubmit = (event: Event) => {
     event.preventDefault()
     const { firstName, lastName, email, password } = this.state
-    this.props.mutate({
+    this.props
+      .mutate({
         variables: {
           firstName: firstName.value,
           lastName: lastName.value,
           email: email.value,
           password: password.value,
         },
+        refetchQueries: [{ query }],
       })
       .then(() => {
         this.props.history.push('/schedule')
@@ -253,4 +257,4 @@ export class Register extends Component<Props, State> {
   }
 }
 
-export default graphql(mutation)(withRouter(Register))
+export default compose(graphql(query), graphql(mutation))(withRouter(Register))

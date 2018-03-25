@@ -9,6 +9,7 @@ const {
 } = graphql
 const mongoose = require('mongoose')
 const Vacation = mongoose.model('vacations')
+const User = mongoose.model('users')
 
 const UserType = require('./userType')
 
