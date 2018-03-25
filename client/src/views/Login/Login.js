@@ -57,6 +57,7 @@ export class Login extends Component<Props, State> {
       email: '',
       password: '',
     },
+    loginErrors: [],
   }
 
   renderAlreadyLoggedIn () {
@@ -70,15 +71,31 @@ export class Login extends Component<Props, State> {
     }
   }
 
+  enableSubmit () {
+    const { email, password, errors } = this.state
+
+    const allTouched = email.touched && password.touched
+    const noErrors = !errors.email.length && !errors.password.length
+    const allHasValues = email.value.length && password.value.length
+
+    return allTouched && noErrors && allHasValues
+  }
+
   handleSubmit = (event: SyntheticEvent<any>) => {
     event.preventDefault()
-    this.props.mutate({
-      variables: {
-        email: this.state.email.value,
-        password: this.state.password.value,
-      },
-      refetchQueries: [{ query }]
-    })
+
+    this.props
+      .mutate({
+        variables: {
+          email: this.state.email.value,
+          password: this.state.password.value,
+        },
+        refetchQueries: [{ query }],
+      })
+      .catch(res => {
+        const errors = res.graphQLErrors.map(error => error.message)
+        this.setState({ loginErrors: errors })
+      })
   }
 
   handleChange = (event: SyntheticInputEvent<any>) => {
@@ -127,7 +144,11 @@ export class Login extends Component<Props, State> {
               First time here? <Link to="register"> Please register</Link>{' '}
               first...
             </Notice>
-            <Form onSubmit={this.handleSubmit} title="Enter your credentials">
+            <Form
+              enableSubmit={this.enableSubmit()}
+              onSubmit={this.handleSubmit}
+              title="Enter your credentials"
+            >
               <div className="login__columns">
                 <Input
                   error={this.showErrors('email')}
@@ -162,7 +183,4 @@ export class Login extends Component<Props, State> {
   }
 }
 
-export default compose(
-  graphql(mutation),
-  graphql(query)
-)(withRouter(Login))
+export default compose(graphql(mutation), graphql(query))(withRouter(Login))

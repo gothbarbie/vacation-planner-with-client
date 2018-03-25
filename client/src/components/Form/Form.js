@@ -7,6 +7,7 @@ import './Form.css'
 
 type props = {
   children: ReactElement,
+  enableSubmit?: boolean,
   title: string,
   status?: string,
   onDelete?: Function,
@@ -16,6 +17,7 @@ type props = {
 
 const Form = ({
   children,
+  enableSubmit,
   status,
   title,
   onDelete,
@@ -39,7 +41,7 @@ const Form = ({
             Delete
           </Button>
         )}
-        <Button primary type="submit">
+        <Button disabled={!enableSubmit} primary type="submit">
           {submitText || 'Submit'}
         </Button>
       </footer>
