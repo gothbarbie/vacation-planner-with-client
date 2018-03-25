@@ -15,11 +15,11 @@ type Props = {
   history: RouterHistory,
 }
 
-export default WrapperComponent => {
+export default (WrapperComponent) => {
   class RequireAuth extends Component<Props> {
-    componentDidMount () {
-      if (!this.props.data.loading && !this.props.data.auth) {
-        this.props.history.push('/')
+    componentWillUpdate (nextProps: Props) {
+      if (!nextProps.data.loading && !nextProps.data.auth) {
+        nextProps.history.push('/')
       }
     }
 

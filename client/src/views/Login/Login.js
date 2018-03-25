@@ -60,7 +60,7 @@ export class Login extends Component<Props, State> {
     loginErrors: [],
   }
 
-  componentWillUpdate (nextProps) {
+  componentWillUpdate (nextProps: Props) {
     if (!this.props.data.auth && nextProps.data.auth) {
       this.props.history.push('/schedule')
     }
@@ -99,7 +99,7 @@ export class Login extends Component<Props, State> {
       })
       .catch(res => {
         const errors = res.graphQLErrors.map(error => error.message)
-        this.setState({ loginErrors: errors })
+        this.setState(() => { loginErrors: errors })
       })
   }
 

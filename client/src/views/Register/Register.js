@@ -89,8 +89,8 @@ export class Register extends Component<Props, State> {
     loginErrors: [],
   }
 
-  componentWillUpdate (nextProps) {
-    if (nextProps.data.auth) {
+  componentWillUpdate (nextProps: Props) {
+    if (!this.props.data.auth && nextProps.data.auth) {
       this.props.history.push('/schedule')
     }
   }
@@ -137,7 +137,9 @@ export class Register extends Component<Props, State> {
       })
       .catch(res => {
         const errors = res.graphQLErrors.map(error => error.message)
-        this.setState({ loginErrors: errors })
+        this.setState(() => {
+          loginErrors: errors
+        })
       })
   }
 
@@ -261,7 +263,4 @@ export class Register extends Component<Props, State> {
   }
 }
 
-export default compose(
-  graphql(query),
-  graphql(mutation),
-)(withRouter(Register))
+export default compose(graphql(query), graphql(mutation))(withRouter(Register))

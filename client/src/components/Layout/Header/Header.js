@@ -30,7 +30,7 @@ export class Header extends Component<Props> {
       .then(() => this.props.history.push('/'))
       .catch(res => {
         const errors = res.graphQLErrors.map(error => error.message)
-        throw new Error('Logout failure', errors)
+        throw new Error('Logout failure ' + errors)
       })
   }
 
