@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 import { withRouter } from 'react-router-dom'
 import validator from 'validator'
-import { compose, graphql } from 'react-apollo'
+import { compose, graphql, withApollo } from 'react-apollo'
 import { connect } from 'react-redux'
 
 import query from '../../queries/GetVacations'
+import GetVacation from '../../queries/GetVacation'
 import mutate from '../../mutations/AddVacation'
 
 import PageWrapper from '../../components/PageWrapper'
@@ -31,6 +32,7 @@ type participant = {
 }
 
 type Props = {
+  client: Function,
   data: {
     auth: void | Object,
     vacations: [],
@@ -38,6 +40,11 @@ type Props = {
   },
   date: Date,
   history: RouterHistory,
+  match: {
+    params: {
+      id: string,
+    }
+  },
   mutate: Function,
 }
 
@@ -83,6 +90,32 @@ export class Schedule extends Component<Props, State> {
       departure: '',
       people: '',
     },
+  }
+
+  componentWillMount () {
+    if (this.props.match.params.id) {
+      this.props.client
+        .query({
+          query: GetVacation,
+          variables: {
+            id: this.props.match.params.id,
+          },
+        })
+        .then(res => {
+          console.log(res.data.vacation)
+          const v = res.data.vacation
+          const newState = { ...this.state }
+
+          newState.arrival.value = new Date(v.arrival).toISOString().substring(0, 10)
+          newState.departure.value = new Date(v.departure).toISOString().substring(0, 10)
+          newState.people.forEach(p => {
+            if (v.people.includes(p.name)) {
+              p.checked = true
+            }
+          })
+          this.setState({ ...newState })
+        })
+    }
   }
 
   renderIsWeekEnd (year: number, month: number, day: mixed) {
@@ -227,6 +260,15 @@ export class Schedule extends Component<Props, State> {
     })
   }
 
+  fetchVacation () {
+    this.props.client.query({
+      query: GetVacation,
+      variables: {
+        id: this.state.selectVacationId,
+      },
+    })
+  }
+
   handleSubmit = (event: Event) => {
     event.preventDefault()
     this.validateForm()
@@ -238,11 +280,13 @@ export class Schedule extends Component<Props, State> {
       }
     })
     // TODO: Retrieve current user ID
+    const { data } = this.props
+    const { arrival, departure } = this.state
     this.props.mutate({
       variables: {
-        author: '5a9a78869d9ca37741305880',
-        arrival: this.state.arrival.value,
-        departure: this.state.departure.value,
+        author: data.auth.id,
+        arrival: arrival.value,
+        departure: departure.value,
         people,
       },
       refetchQueries: [{ query }],
@@ -348,6 +392,7 @@ export class Schedule extends Component<Props, State> {
   }
 
   render () {
+    console.log(this.props)
     if (this.props.data.loading) {
       return <div>Loading...</div>
     }
@@ -420,32 +465,12 @@ export class Schedule extends Component<Props, State> {
   }
 }
 
-// const mutation = gql`
-//   mutation addVacation(
-//     $author: String!
-//     $arrival: String!
-//     $departure: String!
-//     $people: [String]!
-//   ) {
-//     addVacation(
-//       author: $author
-//       arrival: $arrival
-//       departure: $departure
-//       people: $people
-//     ) {
-//       id
-//     }
-//   }
-// `
-
-export const mapStateToProps = ({ auth, date }: Object) => {
+export const mapStateToProps = ({ date }: Object) => {
   return {
     date,
   }
 }
 
-// export default graphql(mutation)(graphql(getVacations)(withRouter(Schedule)))
-
 export default compose(graphql(query), graphql(mutate))(
-  connect(mapStateToProps)(withRouter(Schedule))
+  connect(mapStateToProps)(withRouter(withApollo(Schedule)))
 )

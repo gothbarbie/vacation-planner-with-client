@@ -35,6 +35,7 @@ export const App = () => (
           <Route component={Login} exact path="/" />
           <Route component={Register} exact path="/register" />
           <Route component={requireAuth(Schedule)} exact path="/schedule" />
+          <Route component={requireAuth(Schedule)} path="/schedule/:id" />
         </Main>
         <Footer />
       </Wrapper>

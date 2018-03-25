@@ -22,6 +22,10 @@ exports[`App renders 1`] = `
           exact={true}
           path="/schedule"
         />
+        <Route
+          component={[Function]}
+          path="/schedule/:id"
+        />
       </Main>
       <Footer />
     </styled.div>
