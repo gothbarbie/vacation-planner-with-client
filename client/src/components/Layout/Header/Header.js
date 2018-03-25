@@ -81,13 +81,13 @@ export class Header extends Component<Props> {
       <header className="header">
         <div className="header__inner">
           {this.renderLogo()}
-          <nav className="nav">
+          {this.props.data.auth && <nav className="nav">
             <Link to="/schedule">Schedule</Link>
             <span className="nav__separator" />
             <Link to="/people">People</Link>
             <span className="nav__separator" />
             <Link to="/destinations">Destinations</Link>
-          </nav>
+          </nav>}
           {this.renderLogin()}
         </div>
       </header>

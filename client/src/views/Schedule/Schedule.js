@@ -31,6 +31,7 @@ type participant = {
 
 type Props = {
   data: {
+    auth: {} | voide,
     vacations: [],
     loading: Boolean,
   },
@@ -86,9 +87,9 @@ export class Schedule extends Component<Props, State> {
   }
 
   componentWillMount () {
-    // if (!this.props.auth) {
-    //   this.props.history.push('/')
-    // }
+    if (!this.props.data.auth) {
+      this.props.history.push('/')
+    }
   }
 
   renderIsWeekEnd (year: number, month: number, day: mixed) {
