@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Layout/Header renders 1`] = `
+<header
+  className="header"
+>
+  <div
+    className="header__inner"
+  >
+    <Link
+      replace={false}
+      to="/"
+    >
+      <img
+        alt="Vacation Planner"
+        className="header__logo"
+        src="/images/logo-v3.png"
+      />
+    </Link>
+    <ButtonLink
+      primary={true}
+      url="/"
+    >
+      Login
+    </ButtonLink>
+  </div>
+</header>
+`;

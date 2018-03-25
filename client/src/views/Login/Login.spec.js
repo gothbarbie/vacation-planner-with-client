@@ -20,7 +20,7 @@ describe('views/Login', () => {
   }
 
   const props = {
-    auth: null,
+    data: { auth: null },
     loginUser: jest.fn(),
     history: {},
   }
