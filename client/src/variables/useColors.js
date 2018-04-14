@@ -2,7 +2,6 @@ const color = require('./colors')
 
 module.exports = {
   // ---------------------------------------
-  // New Colors
   // Naming convention inspired by Bootstrap
   // ---------------------------------------
 
